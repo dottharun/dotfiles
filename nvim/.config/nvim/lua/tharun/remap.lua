@@ -9,6 +9,13 @@ vim.keymap.set("i", "jj", "<Esc>", options)
 vim.keymap.set("i", "jk", "<Esc>", options)
 vim.keymap.set("i", "kj", "<Esc>", options)
 
+--save
+vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>")
+vim.keymap.set({ "n" }, "<leader>w", "<cmd>w<cr><esc>")
+
+--format
+vim.keymap.set("n", "<leader>m", vim.lsp.buf.format, options)
+
 --primeagen
 --move in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -32,7 +39,3 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
-
---format
-vim.keymap.set("n", "<leader>fo", vim.lsp.buf.format, options)
-

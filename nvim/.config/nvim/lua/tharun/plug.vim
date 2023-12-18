@@ -4,6 +4,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
 
 Plug 'rose-pine/neovim', { 'as': 'rose-pine'}
+Plug 'morhetz/gruvbox'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -11,9 +12,9 @@ Plug 'mhartington/formatter.nvim'
 
 Plug 'mbbill/undotree'
 
-Plug 'lervag/vimtex'
-
+" latex math
 Plug 'sirver/ultisnips'
+Plug 'lervag/vimtex' " latex compiler wrapper
 
 " lsp-zero
 "  Uncomment these if you want to manage LSP servers from neovim
