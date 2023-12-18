@@ -35,3 +35,4 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 --format
 vim.keymap.set("n", "<leader>fo", vim.lsp.buf.format, options)
+
