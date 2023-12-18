@@ -7,13 +7,15 @@ Plug 'rose-pine/neovim', { 'as': 'rose-pine'}
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+Plug 'mhartington/formatter.nvim'
+
 Plug 'mbbill/undotree'
 
 Plug 'lervag/vimtex'
 
 Plug 'sirver/ultisnips'
 
-" lsp zero
+" lsp-zero
 "  Uncomment these if you want to manage LSP servers from neovim
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
