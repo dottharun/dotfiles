@@ -1,1 +1,1 @@
-print("Hello from tex ftplugin")
+--print("Hello from tex ftplugin")
