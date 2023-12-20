@@ -3,13 +3,13 @@ call plug#begin()
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
 
+" theme
 Plug 'rose-pine/neovim', { 'as': 'rose-pine'}
 Plug 'gruvbox-community/gruvbox'
 Plug 'olivercederborg/poimandres.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-Plug 'mhartington/formatter.nvim'
+Plug 'numToStr/Comment.nvim'
 
 Plug 'mbbill/undotree'
 
