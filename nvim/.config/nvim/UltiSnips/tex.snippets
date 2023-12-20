@@ -11,10 +11,6 @@ def env(name):
 
 endglobal
 
-
-snippet template "Basic template" b
-\documentclass[a4paper]{article}
-
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
@@ -32,6 +28,10 @@ snippet template "Basic template" b
 	\def\svgwidth{\columnwidth}
 	\import{./figures/}{#1.pdf_tex}
 }
+
+snippet template "Basic template" b
+\documentclass[a4paper]{article}
+
 
 \pdfsuppresswarningpagegroup=1
 
@@ -641,4 +641,4 @@ snippet DD "D" iA
 \mathbb{D}
 endsnippet
 
-# vim:ft=snippets
+# vim:ft=python
