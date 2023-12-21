@@ -9,6 +9,9 @@ vim.keymap.set("i", "jj", "<Esc>", options)
 vim.keymap.set("i", "jk", "<Esc>", options)
 --vim.keymap.set("i", "kj", "<Esc>", options)
 
+--quick buffer switch
+vim.keymap.set("n", "<leader><leader>", "<C-^>", options)
+
 --save
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>")
 vim.keymap.set({ "n" }, "<leader>w", "<cmd>w<cr><esc>")
