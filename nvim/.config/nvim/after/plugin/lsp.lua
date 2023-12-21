@@ -18,12 +18,13 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'texlab', 'tsserver', 'eslint', 'rust_analyzer', 'lua_ls', 'clangd', 'gopls' },
+    ensure_installed = { 'texlab', 'tsserver', 'eslint', 'pyright', 'rust_analyzer', 'lua_ls', 'clangd', 'gopls' },
 
     handlers = {
         lsp_zero.default_setup,
         lua_ls = function()
             --setting our custom option here
+            --may need to move this to another new lsp folder
             local lua_opts = lsp_zero.nvim_lua_ls({
                 settings = {
                     Lua = {
@@ -39,9 +40,8 @@ require('mason-lspconfig').setup({
 
             require("lspconfig").lua_ls.setup(lua_opts)
         end,
-        texlab = function()
-            require("lspconfig").texlab.setup({})
-        end
+        texlab = function() require("lspconfig").texlab.setup({}) end,
+        pyright = function() require("lspconfig").pyright.setup({}) end,
     },
 })
 
@@ -60,5 +60,7 @@ cmp.setup({
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
         ['<C-y>'] = cmp.mapping.confirm({ select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
+        ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select)
     }),
 })

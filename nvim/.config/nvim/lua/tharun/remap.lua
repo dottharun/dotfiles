@@ -12,11 +12,11 @@ vim.keymap.set("i", "jk", "<Esc>", options)
 --quick buffer switch
 vim.keymap.set("n", "<leader><leader>", "<C-^>", options)
 
---save
+--only save
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>")
-vim.keymap.set({ "n" }, "<leader>w", "<cmd>w<cr><esc>")
-
---format
+--format and save
+vim.keymap.set({ "n" }, "<leader>w", "<cmd>w<CR><cmd>LspZeroFormat<CR><esc>")
+--only format
 vim.keymap.set("n", "<leader>m", vim.lsp.buf.format, options)
 
 --primeagen

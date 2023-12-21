@@ -26,6 +26,16 @@ function Poiman()
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
+function Wally()
+    vim.cmd.colorscheme("wal")
+    vim.opt.background = "dark"
+    vim.opt.termguicolors = false
+
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+end
+
 --ColorMyPencils()
 Gruvy()
 --Poiman()
+--Wally()
