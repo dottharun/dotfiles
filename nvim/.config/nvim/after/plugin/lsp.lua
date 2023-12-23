@@ -43,6 +43,7 @@ require('mason-lspconfig').setup({
         end,
         texlab = function() require("lspconfig").texlab.setup({}) end,
         pyright = function() require("lspconfig").pyright.setup({}) end,
+        gopls = function() require("lspconfig").gopls.setup({}) end,
     },
 })
 
