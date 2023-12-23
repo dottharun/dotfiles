@@ -8,10 +8,10 @@ Plug 'ThePrimeagen/harpoon', { 'branch': 'harpoon2' }
 Plug 'unblevable/quick-scope'
 
 " theme
-Plug 'rose-pine/neovim', { 'as': 'rose-pine'}
+"Plug 'rose-pine/neovim', { 'as': 'rose-pine'}
 Plug 'gruvbox-community/gruvbox'
-Plug 'olivercederborg/poimandres.nvim'
-Plug 'dylanaraps/wal'
+"Plug 'olivercederborg/poimandres.nvim'
+"Plug 'dylanaraps/wal'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
