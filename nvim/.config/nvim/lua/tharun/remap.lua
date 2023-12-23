@@ -12,10 +12,9 @@ vim.keymap.set("i", "jk", "<Esc>", options)
 --quick buffer switch
 vim.keymap.set("n", "<leader><leader>", "<C-^>", options)
 
---only save
+--save
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>")
---format and save
-vim.keymap.set({ "n" }, "<leader>w", "<cmd>w<CR><cmd>LspZeroFormat<CR><esc>")
+vim.keymap.set({ "n" }, "<leader>w", "<cmd>w<CR><esc>")
 --only format
 vim.keymap.set("n", "<leader>m", vim.lsp.buf.format, options)
 
@@ -34,7 +33,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- greatest remap ever
--- living overwrite paste
+-- living overwrite paste - dont forget use leader+p not raw p
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
