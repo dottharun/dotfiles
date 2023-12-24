@@ -2,12 +2,12 @@
 
 local options = { noremap = true }
 --save, compile, view
-vim.keymap.set("n", "<leader>l", "<Cmd>update<CR><Cmd>VimtexCompile<CR>", options)
+vim.keymap.set("n", "<leader>r", "<Cmd>update<CR><Cmd>VimtexCompile<CR>", options)
 vim.keymap.set("n", "<leader>k", "<Cmd>VimtexStop<CR>", options)
 vim.keymap.set("n", "<leader>c", "<Cmd>VimtexClean<CR>", options)
-vim.keymap.set("n", "<leader>v", "<Cmd>VimtexView<CR>", options)
-vim.keymap.set("n", "<leader>r", "<Cmd>VimtexErrors<CR>", options)
-vim.keymap.set("n", "<leader>t", "<Cmd>VimtexTocOpen<CR>", options)
+vim.keymap.set("n", "<leader>vv", "<Cmd>VimtexView<CR>", options)
+vim.keymap.set("n", "<leader>ve", "<Cmd>VimtexErrors<CR>", options)
+vim.keymap.set("n", "<leader>vt", "<Cmd>VimtexTocOpen<CR>", options)
 
 -- change delete toggle
 vim.keymap.set("n", "dsm", "<Plug>(vimtex-env-delete-math)")
