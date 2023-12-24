@@ -15,6 +15,10 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+
+    -- controlling lsp
+    vim.keymap.set("n", "<leader>ls", "<cmd>LspStart<CR><Esc>", opts)
+    vim.keymap.set("n", "<leader>lk", "<cmd>LspStop<CR><Esc>", opts)
 end)
 
 require('mason').setup({})

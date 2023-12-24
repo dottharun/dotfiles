@@ -23,8 +23,10 @@ vim.keymap.set("n", "<leader>m", vim.lsp.buf.format, options)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- centering view during page moves and search strings
+--Join lines from below without changing cursor position
 vim.keymap.set("n", "J", "mzJ`z")
+
+-- centering view during page moves and search strings
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "{", "{zz")
