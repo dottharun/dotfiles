@@ -1,0 +1,10 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal
+
+snippet ii "Item for enumerated environments \item" bA
+\item 
+endsnippet
+
+# vim:ft=snippet
