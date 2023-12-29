@@ -6,12 +6,15 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
 " nav
 Plug 'ThePrimeagen/harpoon', { 'branch': 'harpoon2' }
 Plug 'unblevable/quick-scope'
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " theme
-"Plug 'rose-pine/neovim', { 'as': 'rose-pine'}
+Plug 'rose-pine/neovim', { 'as': 'rose-pine'}
 Plug 'gruvbox-community/gruvbox'
-"Plug 'olivercederborg/poimandres.nvim'
-"Plug 'dylanaraps/wal'
+Plug 'sainnhe/gruvbox-material'
+Plug 'folke/tokyonight.nvim'
+Plug 'rebelot/kanagawa.nvim'
+Plug 'EdenEast/nightfox.nvim' " Vim-Plug
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 

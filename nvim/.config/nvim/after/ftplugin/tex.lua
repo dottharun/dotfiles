@@ -17,3 +17,7 @@ vim.keymap.set("n", "tsm", "<Plug>(vimtex-env-toggle-math)")
 vim.opt_local.spell = true
 vim.opt.spelllang = 'en_us'
 vim.keymap.set("i", "<C-z>", "<c-g>u<C-[>[s1z=`]a<c-g>u", options)
+
+
+-- personal
+-- vim.cmd("setlocal nolist")
