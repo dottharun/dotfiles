@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 -- netrw explorer shortcut
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+-- vim.keymap.set("n", "<leader>e", vim.cmd.Ex) -- remove this for oil.nvim
 
 -- Esc to normal mode
 local options = { noremap = true }
@@ -24,6 +24,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 --Join lines from below without changing cursor position
+-- SplitJoin extension does the same too
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- centering view during page moves and search strings
@@ -51,7 +52,8 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- open vim plug
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/dotfiles/nvim/.config/nvim/lua/tharun/plug.vim<CR>");
--- source vim plug
+-- source vim plug init
 vim.keymap.set("n", "<leader>vso", function()
+    print("hello from sourcing init")
     vim.cmd("so ~/dotfiles/nvim/.config/nvim/init.lua")
 end)
