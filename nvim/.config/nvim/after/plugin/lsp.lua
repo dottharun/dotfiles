@@ -23,7 +23,16 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'texlab', 'tsserver', 'eslint', 'pyright', 'rust_analyzer', 'lua_ls', 'clangd', 'gopls' },
+    ensure_installed = {
+        'texlab',
+        'tsserver',
+        'eslint',
+        'pyright',
+        'rust_analyzer',
+        'lua_ls',
+        'clangd',
+        'gopls',
+    },
 
     handlers = {
         lsp_zero.default_setup,

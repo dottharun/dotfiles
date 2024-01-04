@@ -24,7 +24,6 @@ Plug 'folke/tokyonight.nvim'
 Plug 'rebelot/kanagawa.nvim'
 Plug 'EdenEast/nightfox.nvim' " Vim-Plug
 
-
 Plug 'mbbill/undotree'
 
 " latex math
@@ -34,11 +33,9 @@ Plug 'lervag/vimtex' " latex compiler wrapper
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
 
-" lsp-zero
-"  Uncomment these if you want to manage LSP servers from neovim
+" lsp-zero requires
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
-
 " LSP Support
 Plug 'neovim/nvim-lspconfig'
 " Autocompletion
