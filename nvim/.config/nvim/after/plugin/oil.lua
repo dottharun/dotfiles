@@ -19,7 +19,7 @@ require("oil").setup({
         -- ["<C-h>"] = "actions.select_split",
         ["<C-h>"] = false,
         ["<C-t>"] = "actions.select_tab",
-        ["<C-p>"] = "actions.preview",
+        ["<C-p>"] = false,
         ["<C-c>"] = "actions.close",
         -- ["<C-l>"] = "actions.refresh",
         ["<C-l>"] = false,
