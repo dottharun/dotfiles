@@ -25,6 +25,7 @@ Plug 'rebelot/kanagawa.nvim'
 Plug 'EdenEast/nightfox.nvim' " Vim-Plug
 
 Plug 'mbbill/undotree'
+Plug 'CRAG666/code_runner.nvim'
 
 " latex math
 Plug 'sirver/ultisnips'
