@@ -1,0 +1,10 @@
+#!/bin/bash
+
+alias ls="ls --color -G --group-directories-first"
+alias ll="ls -la"
+
+alias soz="source ~/.zshrc"
+
+cd() {
+    builtin cd "${@:-$HOME}" && ls
+}

@@ -1,0 +1,17 @@
+export XDG_CONFIG_HOME=$HOME/.config
+
+PERSONAL=$XDG_CONFIG_HOME/personal
+source $PERSONAL/env
+
+for i in `find -L $PERSONAL`; do
+    source $i
+done
+
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8
+
+addToPathFront $HOME/.local/scripts
+addToPathFront $HOME/.local/bin
+
+# Where should I put you?
+bindkey -s ^f "tmux-sessionizer\n"

@@ -2,12 +2,15 @@
 
 1. TMUX
     - requires tpm to be installed
-```bash
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```
 
 2. NVIM
     - requires ripgrep for telescope
+    - vim-plug installation (manual)
 
 3. bin
     - requires fzf for tmux-sessionizer
+
+4. ZSH
+    - requires Oh-my-zsh installation
+    - and making it as default shell
+    - requires zoxide installtion 3d party plugin oh myzsh
