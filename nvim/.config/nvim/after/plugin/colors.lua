@@ -41,15 +41,7 @@ end
 
 function Kana()
     require('kanagawa').setup({
-        colors = {
-            theme = {
-                all = {
-                    ui = {
-                        bg_gutter = "none"
-                    }
-                }
-            }
-        }
+        colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
     })
 
     vim.cmd("colorscheme kanagawa")
@@ -57,15 +49,13 @@ function Kana()
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
-function Fox()
-    vim.cmd("colorscheme carbonfox")
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+function VSCode()
+    require('vscode').load()
 end
 
 -- ColorMyPencils()
 -- Gruvy()
 -- Matgru()
 -- Tokyo()
-Kana()
--- Fox()
+-- Kana()
+VSCode()
