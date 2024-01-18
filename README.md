@@ -6,6 +6,7 @@
 2. NVIM
     - requires ripgrep for telescope
     - vim-plug installation (manual)
+    - javascript ecosystem formatting requires prettierd installation
 
 3. bin
     - requires fzf for tmux-sessionizer
