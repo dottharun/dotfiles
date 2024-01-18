@@ -116,15 +116,11 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# # ??? maybe does some lazy loading -- check when using npm/node modules
-# if [ -s "$HOME/.nvm/nvm.sh" ]; then
-#   export NVM_DIR="$HOME/.nvm"
-#   nvm_cmds=(nvm node npm yarn pnpm)
-#   for cmd in $nvm_cmds ; do
-#     alias $cmd="unalias $nvm_cmds && unset nvm_cmds && . $NVM_DIR/nvm.sh && $cmd"
-#   done
-# fi
+# zoxide alias must be called after init of zoxide
+# cd() {
+#     z "${@:-$HOME}" && ls
+# }
