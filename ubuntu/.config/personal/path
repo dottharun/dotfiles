@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
 addToPath $HOME/.cargo/bin
+addToPath $HOME/.npm/bin
+addToPath /usr/local/go/bin

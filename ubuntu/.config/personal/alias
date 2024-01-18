@@ -3,8 +3,19 @@
 alias ls="ls --color -G --group-directories-first"
 alias ll="ls -la"
 
-alias soz="source ~/.zshrc"
-
 cd() {
     builtin cd "${@:-$HOME}" && ls
 }
+
+alias soz="source ~/.zshrc"
+
+
+# for todoist-cli
+# write td with the entire line as input no worries
+function addTodoFunc() {
+	todoist-cli add --date today "$*";
+	exit;
+};
+
+alias td='addTodoFunc'
+alias tdl='todoist-cli list'
