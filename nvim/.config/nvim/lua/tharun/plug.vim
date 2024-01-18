@@ -5,16 +5,20 @@ Plug 'nvim-lua/plenary.nvim'
 " code
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'numToStr/Comment.nvim'
-Plug 'tpope/vim-surround'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring' "for react comments
+
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired' " left right movement
+Plug 'tpope/vim-abolish' " find and replace
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb' " github
+Plug 'tpope/vim-eunuch' " unix commands
+Plug 'tpope/vim-rsi'
 
 " nav
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
 Plug 'ThePrimeagen/harpoon', { 'branch': 'harpoon2' }
-Plug 'stevearc/oil.nvim'
-Plug 'ggandor/leap.nvim'
-Plug 'unblevable/quick-scope'
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " theme
 Plug 'rose-pine/neovim', { 'as': 'rose-pine'}
@@ -22,10 +26,16 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'sainnhe/gruvbox-material'
 Plug 'folke/tokyonight.nvim'
 Plug 'rebelot/kanagawa.nvim'
-Plug 'EdenEast/nightfox.nvim' " Vim-Plug
+Plug 'Mofiqul/vscode.nvim'
+
+Plug 'j-hui/fidget.nvim'
+"  Plug 'nvim-lualine/lualine.nvim'
+" " If you want to have icons in your statusline choose one of these
+" Plug 'nvim-tree/nvim-web-devicons'
 
 Plug 'mbbill/undotree'
 Plug 'CRAG666/code_runner.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 " latex math
 Plug 'sirver/ultisnips'
@@ -45,5 +55,11 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'L3MON4D3/LuaSnip'
 
 Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
+
+Plug 'mhartington/formatter.nvim'
+Plug 'simrat39/inlay-hints.nvim'
+
+Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
+let g:codeium_enabled = v:false
 
 call plug#end()

@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 -- netrw explorer shortcut
--- vim.keymap.set("n", "<leader>e", vim.cmd.Ex) -- remove this for oil.nvim
+vim.keymap.set("n", "<leader>e", vim.cmd.Ex) -- remove this for oil.nvim
 
 -- Esc to normal mode
 local options = { noremap = true }
@@ -12,11 +12,16 @@ vim.keymap.set("i", "jk", "<Esc>", options)
 --quick buffer switch
 vim.keymap.set("n", "<leader><leader>", "<C-^>", options)
 
---save
-vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>")
-vim.keymap.set({ "n" }, "<leader>w", "<cmd>w<CR><esc>")
+--vim-cmdline-window and go to insert mode
+vim.keymap.set("n", "<leader>:", "q:i", options)
+
+
+-- EVERYTHING CAN BE DONE WITH :w and cmdline
+--save k
+-- vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>")
+-- vim.keymap.set({ "n" }, "<leader>w", "<cmd>w<CR><esc>")
 --only format
-vim.keymap.set("n", "<leader>m", vim.lsp.buf.format, options)
+-- vim.keymap.set("n", "<leader>m", vim.lsp.buf.format, options)
 
 --primeagen
 --move in visual mode
@@ -45,16 +50,28 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
--- tmux-sessionizer
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ~/.local/scripts/tmux-sessionizer<CR>")
+-- tmux-sessionizer - need this to work in nvim
+vim.keymap.set("n", "<C-f>", "<cmd>!tmux neww ~/.local/scripts/tmux-sessionizer<CR>")
 
--- replace all instances of selected
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- just trying to get vim-cmd-window to work with remap
+vim.keymap.set("n", "<leader>//", [[yiwq:i%s/\<<Esc>pa\>/<Esc>pa/gI<Left><Left><Left>]])
+
+-- search and replace
+-- all file
+vim.keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- current line and down
+vim.keymap.set("n", "<leader>sd", [[:.,$s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- on visual selection only --kinda funky since selection has to be made afterwords
+vim.keymap.set("v", "<leader>s", [[:s/\<\>/foo/gI<Left><Left><Left><Left><Left><Left><Left><Left><Left>]])
+
 -- make current file executable (for bash files)
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- open vim plug
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/dotfiles/nvim/.config/nvim/lua/tharun/plug.vim<CR>");
+-- open vim theme page
+vim.keymap.set("n", "<leader>vtt", "<cmd>e ~/dotfiles/nvim/.config/nvim/after/plugin/colors.lua<CR>");
+
 -- source vim plug init
 vim.keymap.set("n", "<leader>vso", function()
     print("hello from sourcing init")

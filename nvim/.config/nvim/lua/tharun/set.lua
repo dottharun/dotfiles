@@ -1,5 +1,6 @@
+vim.opt.guicursor = ""
 vim.opt.nu = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -16,6 +17,16 @@ vim.opt.expandtab = true
 --     conceal = '┊',
 --     nbsp = '␣',
 -- }
+
+-- had to do it for the meshery repo
+-- vim.g.editorconfig = false
+
+vim.cmd([[
+" status line
+set statusline=%<\ %{mode()}\ \|\ %f%m
+set statusline+=%{&paste?'\ \ \|\ PASTE\ ':'\ '}
+set statusline+=%=\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}\ \|\ %l/%L\(%c\)\
+]])
 
 vim.opt.smartindent = true
 vim.opt.wrap = false
