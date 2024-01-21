@@ -24,4 +24,4 @@ end, options)
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, options)
 vim.keymap.set("n", "<C-p>", builtin.git_files, options)
 
-vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})

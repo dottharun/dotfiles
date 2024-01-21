@@ -15,21 +15,13 @@ vim.keymap.set("n", "<leader><leader>", "<C-^>", options)
 --vim-cmdline-window and go to insert mode
 vim.keymap.set("n", "<leader>:", "q:i", options)
 
-
--- EVERYTHING CAN BE DONE WITH :w and cmdline
---save k
--- vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>")
--- vim.keymap.set({ "n" }, "<leader>w", "<cmd>w<CR><esc>")
---only format
--- vim.keymap.set("n", "<leader>m", vim.lsp.buf.format, options)
-
 --primeagen
 --move in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 --Join lines from below without changing cursor position
--- SplitJoin extension does the same too
+-- SplitJoin extension does the same too -lets see if i really use it or it works all the time
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- centering view during page moves and search strings
@@ -56,7 +48,7 @@ vim.keymap.set("n", "<C-f>", "<cmd>!tmux neww ~/.local/scripts/tmux-sessionizer<
 -- just trying to get vim-cmd-window to work with remap
 vim.keymap.set("n", "<leader>//", [[yiwq:i%s/\<<Esc>pa\>/<Esc>pa/gI<Left><Left><Left>]])
 
--- search and replace
+-- SEARCH AND REPLACE
 -- all file
 vim.keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- current line and down
@@ -72,7 +64,6 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/dotfiles/nvim/.config/nvim/lua/thar
 -- open vim theme page
 vim.keymap.set("n", "<leader>vtt", "<cmd>e ~/dotfiles/nvim/.config/nvim/after/plugin/colors.lua<CR>");
 
--- source vim plug init
 vim.keymap.set("n", "<leader>vso", function()
     print("hello from sourcing init")
     vim.cmd("so ~/dotfiles/nvim/.config/nvim/init.lua")

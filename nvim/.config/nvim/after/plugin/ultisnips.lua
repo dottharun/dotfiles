@@ -4,4 +4,3 @@ vim.g.UltiSnipsExpandTrigger = '<Tab>'
 
 vim.g.UltiSnipsJumpForwardTrigger = 'jk'
 vim.g.UltiSnipsJumpBackwardTrigger = '<c-j>'
-

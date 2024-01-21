@@ -17,7 +17,7 @@ Plug 'tpope/vim-eunuch' " unix commands
 Plug 'tpope/vim-rsi'
 
 " nav
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'ThePrimeagen/harpoon', { 'branch': 'harpoon2' }
 
 " theme
@@ -29,13 +29,13 @@ Plug 'rebelot/kanagawa.nvim'
 Plug 'Mofiqul/vscode.nvim'
 
 Plug 'j-hui/fidget.nvim'
-"  Plug 'nvim-lualine/lualine.nvim'
-" " If you want to have icons in your statusline choose one of these
-" Plug 'nvim-tree/nvim-web-devicons'
+" Plug 'nvim-tree/nvim-web-devicons' " feels weird
 
 Plug 'mbbill/undotree'
 Plug 'CRAG666/code_runner.nvim'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'folke/which-key.nvim'
+Plug 'ThePrimeagen/vim-apm'
 
 " latex math
 Plug 'sirver/ultisnips'
@@ -60,6 +60,5 @@ Plug 'mhartington/formatter.nvim'
 Plug 'simrat39/inlay-hints.nvim'
 
 Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
-let g:codeium_enabled = v:false
 
 call plug#end()

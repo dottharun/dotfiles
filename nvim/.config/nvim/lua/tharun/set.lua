@@ -19,13 +19,16 @@ vim.opt.expandtab = true
 -- }
 
 -- had to do it for the meshery repo
--- vim.g.editorconfig = false
+vim.g.editorconfig = false
 
 vim.cmd([[
 " status line
 set statusline=%<\ %{mode()}\ \|\ %f%m
 set statusline+=%{&paste?'\ \ \|\ PASTE\ ':'\ '}
 set statusline+=%=\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}\ \|\ %l/%L\(%c\)\
+
+" syntax highlighting
+syntax sync minlines=256
 ]])
 
 vim.opt.smartindent = true
@@ -38,6 +41,8 @@ vim.opt.undofile = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true -- Do not ignore case, if uppercase is in search term
 
 vim.opt.termguicolors = true
 

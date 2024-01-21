@@ -10,13 +10,13 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("n", "gr", '<cmd>Telescope lsp_references<CR>', opts)
 
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
     vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>rr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set("n", "<leader>lws", function() vim.lsp.buf.workspace_symbol() end, opts)
+    vim.keymap.set("n", "<leader>ld", function() vim.diagnostic.open_float() end, opts)
+    vim.keymap.set("n", "<leader>lca", function() vim.lsp.buf.code_action() end, opts)
+    vim.keymap.set("n", "<leader>lrr", function() vim.lsp.buf.references() end, opts)
+    vim.keymap.set("n", "<leader>lrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
     -- controlling lsp
@@ -74,10 +74,38 @@ require('mason-lspconfig').setup({
         tsserver = function()
             require("lspconfig").tsserver.setup({
                 on_init = function(client)
+                    -- for prettierd to work
                     client.server_capabilities.documentFormattingProvider = false
                     client.server_capabilities.documentFormattingRangeProvider = false
                 end,
-                init_options = { preferences = { disableSuggestions = true } }
+                init_options = { preferences = { disableSuggestions = true } },
+
+                -- for inlay hints
+                on_attach = function(c, b) ih.on_attach(c, b) end,
+                settings = {
+                    javascript = {
+                        inlayHints = {
+                            includeInlayEnumMemberValueHints = true,
+                            includeInlayFunctionLikeReturnTypeHints = true,
+                            includeInlayFunctionParameterTypeHints = true,
+                            includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                            includeInlayPropertyDeclarationTypeHints = true,
+                            includeInlayVariableTypeHints = true,
+                        },
+                    },
+                    typescript = {
+                        inlayHints = {
+                            includeInlayEnumMemberValueHints = true,
+                            includeInlayFunctionLikeReturnTypeHints = true,
+                            includeInlayFunctionParameterTypeHints = true,
+                            includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                            includeInlayPropertyDeclarationTypeHints = true,
+                            includeInlayVariableTypeHints = true,
+                        },
+                    },
+                },
             })
         end,
         eslint = function() require('lspconfig').eslint.setup({}) end
