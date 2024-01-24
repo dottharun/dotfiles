@@ -28,6 +28,7 @@ Plug 'folke/tokyonight.nvim'
 Plug 'rebelot/kanagawa.nvim'
 Plug 'Mofiqul/vscode.nvim'
 
+Plug 'RRethy/vim-illuminate'
 Plug 'j-hui/fidget.nvim'
 " Plug 'nvim-tree/nvim-web-devicons' " feels weird
 
@@ -36,10 +37,11 @@ Plug 'CRAG666/code_runner.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'ThePrimeagen/vim-apm'
+Plug 'kdheepak/lazygit.nvim'
 
 " latex math
 Plug 'sirver/ultisnips'
-Plug 'lervag/vimtex' " latex compiler wrapper
+Plug 'lervag/vimtex' " latex compiler wrapper , probably need to be removed giving many headaches
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
@@ -57,7 +59,7 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
 
 Plug 'mhartington/formatter.nvim'
-Plug 'simrat39/inlay-hints.nvim'
+Plug 'moliva/inlay-hints.nvim', {'branch': 'feat/disable-tsserver-adapter'} "experimental custom branch by someone else need to find solution
 
 Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 

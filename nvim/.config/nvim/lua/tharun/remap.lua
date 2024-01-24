@@ -1,7 +1,10 @@
 vim.g.mapleader = " "
 
 -- netrw explorer shortcut
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex) -- remove this for oil.nvim
+vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", "<cmd>Ex .<CR>")
+
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
 
 -- Esc to normal mode
 local options = { noremap = true }

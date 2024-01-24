@@ -46,7 +46,14 @@ require('mason-lspconfig').setup({
             --setting our custom option here
             --may need to move this to another new lsp folder
             local lua_opts = lsp_zero.nvim_lua_ls({
-                settings = { Lua = { workspace = { checkThirdParty = false, library = { vim.fn.expand("$VIMRUNTIME/lua"), }, }, } },
+                settings = {
+                    Lua = {
+                        workspace = {
+                            checkThirdParty = false,
+                            library = { vim.fn.expand("$VIMRUNTIME/lua"), },
+                        },
+                    }
+                },
             })
 
             require("lspconfig").lua_ls.setup(lua_opts)
@@ -55,7 +62,10 @@ require('mason-lspconfig').setup({
         pyright = function() require("lspconfig").pyright.setup({}) end,
         gopls = function()
             require("lspconfig").gopls.setup({
-                on_attach = function(c, b) ih.on_attach(c, b) end,
+                on_attach = function(c, b)
+                    print("help me inlayhints")
+                    ih.on_attach(c, b)
+                end,
                 settings = {
                     gopls = {
                         hints = {
@@ -81,7 +91,10 @@ require('mason-lspconfig').setup({
                 init_options = { preferences = { disableSuggestions = true } },
 
                 -- for inlay hints
-                on_attach = function(c, b) ih.on_attach(c, b) end,
+                on_attach = function(c, b)
+                    print("help me inlayhints")
+                    ih.on_attach(c, b)
+                end,
                 settings = {
                     javascript = {
                         inlayHints = {

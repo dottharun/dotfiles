@@ -21,7 +21,7 @@ vim.opt_local.spelllang = 'en_us'
 vim.keymap.set("i", "<C-z>", "<c-g>u<C-[>[s1z=`]a<c-g>u", options)
 
 vim.opt.conceallevel = 1
-vim.cmd [[TSContextDisable]]
+-- vim.cmd [[TSContextDisable]]
 
 -- personal
 -- vim.cmd("setlocal nolist")
