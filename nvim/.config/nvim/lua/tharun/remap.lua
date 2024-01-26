@@ -46,7 +46,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- tmux-sessionizer - need this to work in nvim
-vim.keymap.set("n", "<C-f>", "<cmd>!tmux neww ~/.local/scripts/tmux-sessionizer<CR>")
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ~/.local/scripts/tmux-sessionizer<CR>")
 
 -- just trying to get vim-cmd-window to work with remap
 vim.keymap.set("n", "<leader>//", [[yiwq:i%s/\<<Esc>pa\>/<Esc>pa/gI<Left><Left><Left>]])
