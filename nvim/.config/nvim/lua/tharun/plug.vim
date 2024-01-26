@@ -58,6 +58,7 @@ Plug 'L3MON4D3/LuaSnip'
 
 Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
 
+Plug 'davidosomething/format-ts-errors.nvim'
 Plug 'mhartington/formatter.nvim'
 Plug 'moliva/inlay-hints.nvim', {'branch': 'feat/disable-tsserver-adapter'} "experimental custom branch by someone else need to find solution
 
