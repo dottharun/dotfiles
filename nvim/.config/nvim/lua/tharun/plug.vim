@@ -18,6 +18,7 @@ Plug 'tpope/vim-rsi'
 
 " nav
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'ThePrimeagen/harpoon', { 'branch': 'harpoon2' }
 
 " theme

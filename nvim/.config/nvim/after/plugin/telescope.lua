@@ -25,3 +25,6 @@ vim.keymap.set("n", "<leader>cg", function() builtin.live_grep({ cwd = vim.fn.ex
 
 vim.keymap.set("n", "<C-p>", builtin.git_files, options)
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+
+-- seems to make fzf native work
+require('telescope').load_extension('fzf')

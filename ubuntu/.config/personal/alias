@@ -3,6 +3,8 @@
 alias ls="ls --color -G --group-directories-first"
 alias ll="ls -la"
 
+alias n="nvim ."
+
 cd() {
     builtin cd "${@:-$HOME}" && ls
 }
