@@ -7,9 +7,10 @@
     - requires ripgrep for telescope
     - vim-plug installation (manual)
     - javascript ecosystem formatting requires prettierd installation
+    - lazygit
 
 3. bin
-    - requires fzf for tmux-sessionizer
+    - requires fzf for tmux-sessionizer, and zsh bindings
 
 4. ZSH
     - requires Oh-my-zsh installation
