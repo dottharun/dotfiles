@@ -16,6 +16,120 @@ addToPathFront $HOME/.local/bin
 addToPathFront $HOME/go/bin
 addToPathFront $HOME/.rbenv/bin
 
+
+#############
+# COMPLETION
+#############
+
+# Speed up completion init, see: https://gist.github.com/ctechols/ca1035271ad134841284
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
+# unsetopt menucomplete
+unsetopt flowcontrol
+setopt auto_menu
+setopt complete_in_word
+setopt always_to_end
+setopt auto_pushd
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+###############
+# KEY BINDINGS
+###############
+
+# Vim Keybindings
+bindkey -v
+
+# Open line in Vim by pressing 'v' in Command-Mode
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
+# Push current line to buffer stack, return to PS1
+bindkey "^Q" push-input
+
+# Make up/down arrow put the cursor at the end of the line
+# instead of using the vi-mode mappings for these keys
+bindkey "\eOA" up-line-or-history
+bindkey "\eOB" down-line-or-history
+bindkey "\eOC" forward-char
+bindkey "\eOD" backward-char
+
+# CTRL-R to search through history
+bindkey '^R' history-incremental-search-backward
+# CTRL-S to search forward in history
+bindkey '^S' history-incremental-search-forward
+# Accept the presented search result
+bindkey '^Y' accept-search
+
+# Use the arrow keys to search forward/backward through the history,
+# using the first word of what's typed in as search word
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+
+# Use the same keys as bash for history forward/backward: Ctrl+N/Ctrl+P
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward
+
+# Backspace working the way it should
+bindkey '^?' backward-delete-char
+bindkey '^[[3~' delete-char
+
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
 
+#########
+# PROMPT
+#########
+
+setopt prompt_subst
+
+git_prompt_info() {
+  local dirstatus=" OK"
+  local dirty="%{$fg_bold[red]%} X%{$reset_color%}"
+
+  if [[ ! -z $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
+    dirstatus=$dirty
+  fi
+
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+  echo " %{$fg_bold[green]%}${ref#refs/heads/}$dirstatus%{$reset_color%}"
+}
+
+local dir_info_color="%B"
+
+local dir_info_color_file="${HOME}/.zsh.d/dir_info_color"
+if [ -r ${dir_info_color_file} ]; then
+  source ${dir_info_color_file}
+fi
+
+local dir_info="%{$dir_info_color%}%(5~|%-1~/.../%2~|%4~)%{$reset_color%}"
+local promptnormal="φ %{$reset_coljr%}"
+local promptjobs="%{$fg_bold[red]%}φk%{$reset_color%}"
+
+# PROMPT='${dir_info}$(git_prompt_info) ${nix_prompt}%(1j.$promptjobs.$promptnormal)'
+
+NEWLINE=$'\n'
+# PROMPT='${dir_info}$(git_prompt_info)${NEWLINE}[I] ➞ '
+
+function zle-line-init zle-keymap-select {
+    # RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+    VI_MODE="${${KEYMAP/vicmd/N}/(main|viins)/I}"
+    PROMPT='${NEWLINE}[${VI_MODE}] ${dir_info}$(git_prompt_info)${NEWLINE}➞ '
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# --------------
+
+# Reduce delay for key combinations in order to change to vi mode faster
+# See: http://www.johnhawthorn.com/2012/09/vi-escape-delays/
+# Set it to 10ms
+export KEYTIMEOUT=1
