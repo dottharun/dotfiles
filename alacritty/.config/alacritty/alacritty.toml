@@ -27,7 +27,7 @@ background = "0x101421"
 foreground = "0xfffbf6"
 
 [font]
-size = 15
+size = 14
 
 [font.bold]
 family = "Fira Mono"
