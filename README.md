@@ -13,6 +13,6 @@
     - requires fzf for tmux-sessionizer, and zsh bindings
 
 4. ZSH
-    - requires Oh-my-zsh installation
     - and making it as default shell
     - requires zoxide installtion 3d party plugin oh myzsh
+

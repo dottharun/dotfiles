@@ -9,8 +9,13 @@ cd() {
     builtin cd "${@:-$HOME}" && ls
 }
 
-alias soz="source ~/.zshrc"
+alias sz="source ~/.zshrc"
 
+#for running detached processes
+run_detached() {
+    nohup "$@" </dev/null >/dev/null 2>&1 &
+    disown
+}
 
 # for todoist-cli
 # write td with the entire line as input no worries
@@ -21,3 +26,4 @@ function addTodoFunc() {
 
 alias td='addTodoFunc'
 alias tdl='todoist-cli list'
+
