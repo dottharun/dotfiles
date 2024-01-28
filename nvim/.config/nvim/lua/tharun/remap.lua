@@ -6,8 +6,8 @@ vim.keymap.set("n", "<leader>pv", "<cmd>Ex .<CR>")
 
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
 
--- Esc to normal mode
 local options = { noremap = true }
+-- Esc to normal mode
 vim.keymap.set("i", "jj", "<Esc>", options)
 vim.keymap.set("i", "jk", "<Esc>", options)
 --vim.keymap.set("i", "kj", "<Esc>", options)

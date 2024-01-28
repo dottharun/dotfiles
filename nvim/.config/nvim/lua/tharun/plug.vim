@@ -9,7 +9,7 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring' "for react comments
 
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired' " left right movement
+Plug 'tpope/vim-unimpaired' "all left right movement
 Plug 'tpope/vim-abolish' " find and replace
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb' " github
@@ -42,6 +42,10 @@ Plug 'kdheepak/lazygit.nvim'
 
 " latex math
 Plug 'sirver/ultisnips'
+let g:UltiSnipsJumpBackwardTrigger = "<C-b>"
+let g:UltiSnipsExpandOrJumpTrigger = "<tab>"  " might use later
+" let g:UltiSnipsJumpForwardTrigger = "jk"
+
 Plug 'lervag/vimtex' " latex compiler wrapper , probably need to be removed giving many headaches
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
