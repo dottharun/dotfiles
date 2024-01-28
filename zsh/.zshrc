@@ -118,7 +118,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-eval "$(zoxide init zsh)"
-eval "$(rbenv init -)"
+# eval "$(zoxide init zsh)"
+# eval "$(rbenv init -)"
 
 # zprof
