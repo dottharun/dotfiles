@@ -71,3 +71,14 @@ vim.keymap.set("n", "<leader>vso", function()
     print("hello from sourcing init")
     vim.cmd("so ~/dotfiles/nvim/.config/nvim/init.lua")
 end)
+
+-- bracket pair -wont work for multiple brackets --needs a specialized snippet
+vim.keymap.set("i", "{<CR>", "{<CR>}<ESC>O", { silent = true })
+vim.keymap.set("i", "[<CR>", "[<CR>]<ESC>O", { silent = true })
+vim.keymap.set("i", "(<CR>", "(<CR>)<ESC>O", { silent = true })
+vim.keymap.set("i", "<<CR>", "<<CR>><ESC>O", { silent = true })
+
+-- vim.keymap.set("i", "{<C-b>", "{<CR>}<ESC>O", { silent = true })
+-- vim.keymap.set("i", "[<C-b>", "[<CR>]<ESC>O", { silent = true })
+-- vim.keymap.set("i", "(<C-b>", "(<CR>)<ESC>O", { silent = true })
+-- vim.keymap.set("i", "<<C-b>", "<<CR>><ESC>O", { silent = true })

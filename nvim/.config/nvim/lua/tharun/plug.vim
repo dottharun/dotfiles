@@ -64,5 +64,6 @@ Plug 'mhartington/formatter.nvim'
 Plug 'moliva/inlay-hints.nvim', {'branch': 'feat/disable-tsserver-adapter'} "experimental custom branch by someone else need to find solution
 
 Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
+Plug 'honza/vim-snippets'
 
 call plug#end()
