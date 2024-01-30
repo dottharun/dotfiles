@@ -15,6 +15,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb' " github
 Plug 'tpope/vim-eunuch' " unix commands
 Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-fugitive'
 
 " nav
 Plug 'nvim-telescope/telescope.nvim'
@@ -43,8 +44,8 @@ Plug 'kdheepak/lazygit.nvim'
 " latex math
 Plug 'sirver/ultisnips'
 let g:UltiSnipsJumpBackwardTrigger = "<C-b>"
-let g:UltiSnipsExpandOrJumpTrigger = "<tab>"  " might use later
-" let g:UltiSnipsJumpForwardTrigger = "jk"
+" let g:UltiSnipsExpandOrJumpTrigger = "<tab>"  " might use later
+let g:UltiSnipsJumpForwardTrigger = "jk"
 
 Plug 'lervag/vimtex' " latex compiler wrapper , probably need to be removed giving many headaches
 
