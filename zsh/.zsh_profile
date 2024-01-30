@@ -160,7 +160,7 @@ local dir_info="%{$dir_info_color%}%(5~|%-1~/.../%2~|%4~)%{$reset_color%}"
 # PROMPT='${dir_info}$(git_prompt_info) ${nix_prompt}%(1j.$promptjobs.$promptnormal)'
 
 NEWLINE=$'\n'
-PROMPT='${dir_info}$(git_prompt_info)${NEWLINE}➞ '
+PROMPT='${NEWLINE}${dir_info}$(git_prompt_info)${NEWLINE}➞ '
 
 function zle-line-init zle-keymap-select {
     RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
