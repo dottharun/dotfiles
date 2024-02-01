@@ -9,7 +9,17 @@ cd() {
     builtin cd "${@:-$HOME}" && ls
 }
 
-alias sz="source ~/.zshrc"
+# Edit/Source zsh config
+alias ez='nvim ~/.zsh_profile'
+alias sz='source ~/.zshrc'
+
+# Project helpers
+alias ..='cd ../'
+alias ...='cd ../../'
+alias .3='cd ../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../../'
+alias .6='cd ../../../../../../'
 
 #for running detached processes
 run_detached() {

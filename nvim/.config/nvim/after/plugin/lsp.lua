@@ -9,6 +9,8 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("n", "gd", '<cmd>Telescope lsp_definitions<CR>', opts)
     vim.keymap.set("n", "gr", '<cmd>Telescope lsp_references<CR>', opts)
 
+    -- vim.keymap.set('n', 'gi', function() vim.lsp.buf.implementation() end, opts)   --going to quickfix list which i dont like
+
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
@@ -20,7 +22,7 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
     -- controlling lsp
-    vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<CR><Esc>", opts)
+    vim.keymap.set("n", "<leader>lrs", "<cmd>LspRestart<CR><Esc>", opts)
     vim.keymap.set("n", "<leader>ls", "<cmd>LspStart<CR><Esc>", opts)
     vim.keymap.set("n", "<leader>lk", "<cmd>LspStop<CR><Esc>", opts)
 end)
@@ -117,9 +119,14 @@ require('mason-lspconfig').setup({
                 },
 
                 -- for inlay hints
-                on_attach = function(c, b)
+                on_attach = function(client, bufnr)
                     print("help me inlayhints")
-                    ih.on_attach(c, b)
+                    ih.on_attach(client, bufnr)
+
+                    -- twoslash comment plugin
+                    require("twoslash-queries").attach(client, bufnr)
+                    -- prettier breaks this might need something
+                    vim.keymap.set('n', "gkk", "<cmd>TwoslashQueriesInspect<CR>", { remap = false })
                 end,
                 settings = {
                     javascript = {

@@ -8,9 +8,9 @@ vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
 
 local options = { noremap = true }
 -- Esc to normal mode
-vim.keymap.set("i", "jj", "<Esc>", options)
-vim.keymap.set("i", "jk", "<Esc>", options)
---vim.keymap.set("i", "kj", "<Esc>", options)
+-- vim.keymap.set("i", "jj", "<Esc>", options)
+-- vim.keymap.set("i", "jk", "<Esc>", options)
+-- vim.keymap.set("i", "kj", "<Esc>", options)
 
 --quick buffer switch
 vim.keymap.set("n", "<leader><leader>", "<C-^>", options)
@@ -35,11 +35,9 @@ vim.keymap.set("n", "}", "}zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- greatest remap ever
--- living overwrite paste - dont forget use leader+p not raw p
+-- living overwrite paste - don't forget to use leader+p not raw p
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
--- next greatest remap ever : asbjornHaland
 -- leader+y to yank to system clipboard and similars
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
@@ -47,9 +45,6 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- tmux-sessionizer - need this to work in nvim
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ~/.local/scripts/tmux-sessionizer<CR>")
-
--- just trying to get vim-cmd-window to work with remap
-vim.keymap.set("n", "<leader>//", [[yiwq:i%s/\<<Esc>pa\>/<Esc>pa/gI<Left><Left><Left>]])
 
 -- SEARCH AND REPLACE
 -- all file
@@ -67,23 +62,10 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/dotfiles/nvim/.config/nvim/lua/thar
 -- open vim theme page
 vim.keymap.set("n", "<leader>vtt", "<cmd>e ~/dotfiles/nvim/.config/nvim/after/plugin/colors.lua<CR>");
 
+-- for the giggles
+vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+
 vim.keymap.set("n", "<leader>vso", function()
     print("hello from sourcing init")
     vim.cmd("so ~/dotfiles/nvim/.config/nvim/init.lua")
 end)
-
--- bracket pair -wont work for multiple brackets --needs a specialized snippet
--- vim.keymap.set("i", "{<CR>", "{<CR>}<ESC>O", { silent = true })
--- vim.keymap.set("i", "[<CR>", "[<CR>]<ESC>O", { silent = true })
--- vim.keymap.set("i", "(<CR>", "(<CR>)<ESC>O", { silent = true })
--- vim.keymap.set("i", "<<CR>", "<<CR>><ESC>O", { silent = true })
-
-vim.keymap.set("i", "{<Tab>", "{<CR>}<ESC>O", { silent = true })
-vim.keymap.set("i", "[<Tab>", "[<CR>]<ESC>O", { silent = true })
-vim.keymap.set("i", "(<Tab>", "(<CR>)<ESC>O", { silent = true })
-vim.keymap.set("i", "<<Tab>", "<<CR>><ESC>O", { silent = true })
-
--- vim.keymap.set("i", "{<Tab>", "{<CR>}<ESC>kA", { silent = true })
--- vim.keymap.set("i", "[<Tab>", "[<CR>]<ESC>kA", { silent = true })
--- vim.keymap.set("i", "(<Tab>", "(<CR>)<ESC>kA", { silent = true })
--- vim.keymap.set("i", "<<Tab>", "<<CR>><ESC>kA", { silent = true })
