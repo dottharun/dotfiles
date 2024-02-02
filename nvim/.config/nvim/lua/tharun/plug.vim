@@ -42,7 +42,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'ThePrimeagen/vim-apm'
 Plug 'kdheepak/lazygit.nvim'
-Plug 'jiangmiao/auto-pairs'   " for the leetcode defaults
+" Plug 'jiangmiao/auto-pairs'   " for the leetcode defaults
 
 " latex math
 Plug 'sirver/ultisnips'

@@ -6,11 +6,16 @@ vim.keymap.set("n", "<leader>pv", "<cmd>Ex .<CR>")
 
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
 
+
 local options = { noremap = true }
 -- Esc to normal mode
 -- vim.keymap.set("i", "jj", "<Esc>", options)
 -- vim.keymap.set("i", "jk", "<Esc>", options)
 -- vim.keymap.set("i", "kj", "<Esc>", options)
+
+-- vscode like commenting with Ctrl+/ in both normal and insert mode, ---might break something else need to check correctly
+vim.keymap.set('n', '', '<Plug>(comment_toggle_linewise_current)')
+vim.keymap.set('i', '', '<ESC><Plug>(comment_toggle_linewise_current)A')
 
 --quick buffer switch
 vim.keymap.set("n", "<leader><leader>", "<C-^>", options)

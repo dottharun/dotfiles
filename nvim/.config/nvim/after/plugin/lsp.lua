@@ -5,8 +5,8 @@ lsp_zero.on_attach(function(client, bufnr)
     lsp_zero.buffer_autoformat()
 
     local opts = { buffer = bufnr, remap = false }
-    -- vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "gd", '<cmd>Telescope lsp_definitions<CR>', opts)
+    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+    -- vim.keymap.set("n", "gd", '<cmd>Telescope lsp_definitions<CR>', opts)
     vim.keymap.set("n", "gr", '<cmd>Telescope lsp_references<CR>', opts)
 
     -- vim.keymap.set('n', 'gi', function() vim.lsp.buf.implementation() end, opts)   --going to quickfix list which i dont like
