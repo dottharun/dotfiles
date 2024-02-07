@@ -25,7 +25,8 @@ vim.cmd([[
 " status line
 set statusline=%<\ %{mode()}\ \|\ %f%m
 set statusline+=%{&paste?'\ \ \|\ PASTE\ ':'\ '}
-set statusline+=%=\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}\ \|\ %l/%L\(%c\)\
+set statusline+=%=\ %l/%L\(%c\)\ \|\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}
+set statusline+=%{'\ '}
 
 " syntax highlighting
 syntax sync minlines=256

@@ -19,9 +19,9 @@ local options = { noremap = true }
 vim.keymap.set("n", "<leader>ff", builtin.find_files, options)
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, options)
 
--- for searching relative to current buffer
-vim.keymap.set("n", "<leader>cf", function() builtin.find_files({ cwd = vim.fn.expand("%:p:h") }) end, options)
-vim.keymap.set("n", "<leader>cg", function() builtin.live_grep({ cwd = vim.fn.expand("%:p:h") }) end, options)
+-- for searching relative to current buffer dir
+vim.keymap.set("n", "<leader>bf", function() builtin.find_files({ cwd = vim.fn.expand("%:p:h") }) end, options)
+vim.keymap.set("n", "<leader>bg", function() builtin.live_grep({ cwd = vim.fn.expand("%:p:h") }) end, options)
 
 vim.keymap.set("n", "<C-p>", builtin.git_files, options)
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})

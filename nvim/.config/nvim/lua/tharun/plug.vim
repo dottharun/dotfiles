@@ -29,12 +29,19 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'folke/tokyonight.nvim'
 Plug 'rebelot/kanagawa.nvim'
 Plug 'Mofiqul/vscode.nvim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'rafi/awesome-vim-colorschemes'
+
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'tjdevries/colorbuddy.nvim'
 
 Plug 'Eandrju/cellular-automaton.nvim' "for the giggles
 
-" Plug 'RRethy/vim-illuminate'
+" Plug 'RRethy/vim-illuminate'  " too cluttered
 Plug 'j-hui/fidget.nvim'
 " Plug 'nvim-tree/nvim-web-devicons' " feels weird
+
+Plug 'shellRaining/hlchunk.nvim'
 
 Plug 'mbbill/undotree'
 Plug 'CRAG666/code_runner.nvim'

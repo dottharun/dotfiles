@@ -6,6 +6,7 @@ vim.keymap.set("n", "<leader>pv", "<cmd>Ex .<CR>")
 
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
 
+vim.keymap.set("n", "<leader><leader>", "<cmd>write<CR>", { desc = "Save current file" })
 
 local options = { noremap = true }
 -- Esc to normal mode
@@ -16,19 +17,26 @@ local options = { noremap = true }
 -- vscode like commenting with Ctrl+/ in both normal and insert mode, ---might break something else need to check correctly
 vim.keymap.set('n', '', '<Plug>(comment_toggle_linewise_current)')
 vim.keymap.set('i', '', '<ESC><Plug>(comment_toggle_linewise_current)A')
+vim.keymap.set('n', '<leader>c', '<Plug>(comment_toggle_linewise_current)') -- lets see if i really use it
 
 --quick buffer switch
-vim.keymap.set("n", "<leader><leader>", "<C-^>", options)
+vim.keymap.set("n", "<leader>^", "<C-^>", options)
+vim.keymap.set("n", "<leader>n", "<C-^>", options)
 
---vim-cmdline-window and go to insert mode
-vim.keymap.set("n", "<leader>:", "q:i", options)
+--vim window motions
+vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "vim window motions" })
+
+-- vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move cursor bottom window" })
+-- vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move cursor right window" })
+-- vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move cursor top window" })
+-- vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move cursor left window" })
 
 --primeagen
 --move in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
---Join lines from below without changing cursor position
+-- Join lines from below without changing cursor position
 -- SplitJoin extension does the same too -lets see if i really use it or it works all the time
 vim.keymap.set("n", "J", "mzJ`z")
 
@@ -59,8 +67,8 @@ vim.keymap.set("n", "<leader>sd", [[:.,$s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Lef
 -- on visual selection only --kinda funky since selection has to be made afterwords
 vim.keymap.set("v", "<leader>s", [[:s/\<\>/foo/gI<Left><Left><Left><Left><Left><Left><Left><Left><Left>]])
 
--- make current file executable (for bash files)
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "make curr file executable" })
+vim.keymap.set("n", "<leader>xr", "<cmd>!chmod -x %<CR>", { silent = true, desc = "revert curr file as executable" })
 
 -- open vim plug
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/dotfiles/nvim/.config/nvim/lua/tharun/plug.vim<CR>");

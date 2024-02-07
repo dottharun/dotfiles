@@ -31,3 +31,20 @@ require("nvim-treesitter.configs").setup({
         additional_vim_regex_highlighting = false,
     },
 })
+
+
+--highlight chunk like indent blank line
+require("hlchunk").setup({
+    chunk = {
+        chars = {
+            horizontal_line = "─",
+            vertical_line = "│",
+            left_top = "╭",
+            left_bottom = "╰",
+            right_arrow = ">",
+        },
+    },
+    indent = { enable = false, },
+    line_num = { enable = false, },
+    blank = { enable = false, },
+})
