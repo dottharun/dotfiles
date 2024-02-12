@@ -27,18 +27,18 @@ background = "0x101421"
 foreground = "0xfffbf6"
 
 [font]
-size = 13
+size = 14
 
 [font.bold]
-family = "FiraCode Nerd Font Mono"
+family = "Fira Mono"
 style = "Bold"
 
 [font.italic]
-family = "FiraCode Nerd Font Mono"
+family = "Fira Mono"
 style = "Italic"
 
 [font.normal]
-family = "FiraCode Nerd Font Mono"
+family = "Fira Mono"
 style = "Regular"
 
 [window]
