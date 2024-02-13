@@ -21,7 +21,7 @@ vim.keymap.set("i", "<C-z>", "<c-g>u<C-[>[s1z=`]a<c-g>u", { noremap = true })
 
 vim.opt.conceallevel = 1
 -- vim.cmd [[TSContextDisable]]
-vim.cmd [[DisableHLChunk]]
+vim.cmd [[DisableHL]]
 
 -- personal
 -- vim.cmd("setlocal nolist")
