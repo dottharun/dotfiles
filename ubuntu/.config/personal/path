@@ -2,4 +2,4 @@
 
 addToPath $HOME/.cargo/bin
 addToPath $HOME/.npm/bin
-addToPath /usr/local/go/bin
+addToPath /usr/local/go/bin #for main go versions

@@ -23,7 +23,7 @@ vim.g.editorconfig = false
 
 vim.cmd([[
 " status line
-set statusline=%<\ %{mode()}\ \|\ %f%m
+set statusline=%<\ %{mode()}\ \|\ %{FugitiveStatusline()}\ \|\ %f%m
 set statusline+=%{&paste?'\ \ \|\ PASTE\ ':'\ '}
 set statusline+=%=\ %l/%L\(%c\)\ \|\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}
 set statusline+=%{'\ '}
