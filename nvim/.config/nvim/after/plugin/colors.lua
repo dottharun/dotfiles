@@ -64,7 +64,7 @@ function Cat()
     catppuccin.setup({
         flavour = "mocha", -- latte, frappe, macchiato, mocha
         term_colors = true,
-        transparent_background = true,
+        -- transparent_background = true,
         no_italic = false,
         no_bold = false,
         styles = {
@@ -114,6 +114,6 @@ require('colorizer').setup()
 -- Matgru()
 -- Tokyo()
 -- Kana()
-VSCode()
+-- VSCode()
 -- KanaDragon()
--- Cat()
+Cat()

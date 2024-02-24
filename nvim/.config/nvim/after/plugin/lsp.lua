@@ -1,6 +1,6 @@
 local lsp_zero = require('lsp-zero')
 
-lsp_zero.on_attach(function(client, bufnr)
+lsp_zero.on_attach(function(_, bufnr)
     -- print("help me lsp, client: ", client)
     lsp_zero.buffer_autoformat()
 
