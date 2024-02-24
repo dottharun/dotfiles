@@ -23,23 +23,23 @@ white = "0xe5e9f0"
 yellow = "0xf6c744"
 
 [colors.primary]
-background = "0x101421"
+background = "#000000"
 foreground = "0xfffbf6"
 
 [font]
-size = 14
+size = 9
 
 [font.bold]
 family = "Fira Mono"
-style = "Bold"
+style = "Regular"
 
 [font.italic]
 family = "Fira Mono"
-style = "Italic"
+style = "Regular"
 
 [font.normal]
 family = "Fira Mono"
 style = "Regular"
 
 [window]
-opacity = 0.95
+opacity = 1
