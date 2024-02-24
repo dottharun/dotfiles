@@ -2,6 +2,7 @@
 
 alias ls="ls --color -G --group-directories-first"
 alias ll="ls -la"
+alias l="ls -aF"
 
 alias n="nvim ."
 
@@ -20,6 +21,9 @@ alias .3='cd ../../../'
 alias .4='cd ../../../../'
 alias .5='cd ../../../../../'
 alias .6='cd ../../../../../../'
+
+#git
+alias lg='lazygit'
 
 #for running detached processes
 run_detached() {
