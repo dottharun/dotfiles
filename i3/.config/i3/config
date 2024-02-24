@@ -19,8 +19,6 @@ font pango:monospace 15px
 default_border pixel 0
 default_floating_border pixel 0
 for_window [class="^.*"] border pixel 0
-#                           # class                 border  backgr. text    indicator child_border
-# for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -199,16 +197,6 @@ exec --no-startup-id nm-applet
 
 # bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor
 # bindsym $mod+Shift+n exec --no-startup-id ~/dotfiles/bin/resolution
-#
-# # FKeys
-# # Pulse Audio controls
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec "/home/tharun/.local/scripts/brightness + eDP 0.2"
-bindsym XF86MonBrightnessDown exec "/home/tharun/.local/scripts/brightness - eDP 0.2"
 
 # # Alsa audio controls.
 # bindsym $mod+Shift+comma exec ~/.config/i3/scripts/alsa restore
@@ -216,10 +204,14 @@ bindsym XF86MonBrightnessDown exec "/home/tharun/.local/scripts/brightness - eDP
 # bindsym $mod+comma exec ~/.config/i3/scripts/alsa up Headphone
 # bindsym $mod+m move workspace to output left
 
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec "/home/tharun/.local/scripts/brightness + eDP 0.2"
+bindsym XF86MonBrightnessDown exec "/home/tharun/.local/scripts/brightness - eDP 0.2"
+
 mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
   bindsym l exec i3-msg exit
-  bindsym r exec systemctl reboot
-  bindsym s exec systemctl shutdown
+  bindsym r exec reboot
+  bindsym s exec poweroff
   bindsym Escape mode "default"
   bindsym Return mode "default"
 }
