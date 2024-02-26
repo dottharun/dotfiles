@@ -155,7 +155,8 @@ require('mason-lspconfig').setup({
                 },
             })
         end,
-        eslint = function() require('lspconfig').eslint.setup({}) end
+        eslint = function() require('lspconfig').eslint.setup({}) end,
+        clangd = function() require('lspconfig').clangd.setup({}) end,
     },
 })
 
