@@ -118,7 +118,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-[[ -s /home/tharun/.autojump/etc/profile.d/autojump.sh ]] && source /home/tharun/.autojump/etc/profile.d/autojump.sh
+# [[ -s /home/tharun/.autojump/etc/profile.d/autojump.sh ]] && source /home/tharun/.autojump/etc/profile.d/autojump.sh
 
 # autoload -U compinit && compinit -u
 

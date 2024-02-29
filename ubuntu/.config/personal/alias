@@ -10,6 +10,9 @@ cd() {
     builtin cd "${@:-$HOME}" && ls
 }
 
+#tmux sessionizer - for bash
+alias cf='tmux-sessionizer'
+
 # Edit/Source zsh config
 alias ez='nvim ~/.zsh_profile'
 alias sz='source ~/.zshrc'
@@ -40,4 +43,3 @@ function addTodoFunc() {
 
 alias td='addTodoFunc'
 alias tdl='todoist-cli list'
-

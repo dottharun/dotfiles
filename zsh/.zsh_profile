@@ -152,10 +152,10 @@ local dir_info="%{$dir_info_color%}%(5~|%-1~/.../%2~|%4~)%{$reset_color%}"
 
 local arrow="%{$fg_bold[green]%}➞ %{$reset_color%}"
 
-local user="%{$fg[cyan]%}%n %{$reset_color%}"
+# local user="%{$fg[cyan]%}%n %{$reset_color%}"
 
 NEWLINE=$'\n'
-PROMPT='${NEWLINE}${user}${dir_info}$(git_prompt_info)${NEWLINE}${arrow}'
+PROMPT='${NEWLINE}${dir_info}$(git_prompt_info)${NEWLINE}${arrow}'
 
 function zle-line-init zle-keymap-select {
     RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"

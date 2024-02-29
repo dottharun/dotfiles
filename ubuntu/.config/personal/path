@@ -3,3 +3,10 @@
 addToPath $HOME/.cargo/bin
 addToPath $HOME/.npm/bin
 addToPath /usr/local/go/bin #for main go versions
+
+addToPathFront $HOME/.local/scripts
+addToPathFront $HOME/.local/bin
+addToPathFront $HOME/go/bin             #for other go versions
+addToPathFront $HOME/.rbenv/bin
+
+source $HOME/.autojump/etc/profile.d/autojump.sh
