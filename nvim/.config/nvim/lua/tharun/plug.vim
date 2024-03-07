@@ -40,6 +40,7 @@ Plug 'Eandrju/cellular-automaton.nvim' "for the giggles
 " Plug 'RRethy/vim-illuminate'  " too cluttered
 Plug 'j-hui/fidget.nvim'
 " Plug 'nvim-tree/nvim-web-devicons' " feels weird
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 Plug 'shellRaining/hlchunk.nvim'
 
@@ -52,10 +53,12 @@ Plug 'kdheepak/lazygit.nvim'
 " Plug 'jiangmiao/auto-pairs'   " for the leetcode defaults
 
 " latex math
-Plug 'sirver/ultisnips'
+" Plug 'sirver/ultisnips'
+let g:UltiSnipsNoPythonWarning = 1
 let g:UltiSnipsJumpBackwardTrigger = "<C-b>"
 let g:UltiSnipsExpandOrJumpTrigger = "<tab>"  " might use later
 " let g:UltiSnipsJumpForwardTrigger = "jk"
+
 
 Plug 'lervag/vimtex' " latex compiler wrapper , probably need to be removed giving many headaches
 
@@ -71,6 +74,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'L3MON4D3/LuaSnip'
+
+Plug 'stevearc/conform.nvim'  "trying for c++ might need cleanup later
 
 Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
 

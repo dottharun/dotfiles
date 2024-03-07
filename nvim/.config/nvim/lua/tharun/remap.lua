@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 
 -- netrw explorer shortcut
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>pv", "<cmd>Ex .<CR>")
+-- vim.keymap.set("n", "<leader>pv", "<cmd>Ex .<CR>")
 
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
 
@@ -19,7 +19,7 @@ vim.keymap.set('n', '', '<Plug>(comment_toggle_linewise_current)')
 vim.keymap.set('i', '', '<ESC><Plug>(comment_toggle_linewise_current)A')
 vim.keymap.set('n', '<leader>c', '<Plug>(comment_toggle_linewise_current)') -- lets see if i really use it
 
---quick buffer switch
+-- quick buffer switch
 vim.keymap.set("n", "<leader>^", "<C-^>", options)
 vim.keymap.set("n", "<leader>n", "<C-^>", options)
 
@@ -30,6 +30,10 @@ vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "vim window motions" })
 -- vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move cursor right window" })
 -- vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move cursor top window" })
 -- vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move cursor left window" })
+
+-- for easy movement when wrap is enabled - they say
+vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "k", "gk")
 
 --primeagen
 --move in visual mode

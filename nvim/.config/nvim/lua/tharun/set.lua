@@ -21,6 +21,9 @@ vim.opt.expandtab = true
 -- had to do it for the meshery repo
 vim.g.editorconfig = false
 
+-- turn off that mouse always disturbing
+vim.opt.mouse = ""
+
 vim.cmd([[
 " status line
 set statusline=%<\ %{mode()}\ \|\ %{FugitiveStatusline()}\ \|\ %f%m
