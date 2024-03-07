@@ -17,6 +17,9 @@ alias cf='tmux-sessionizer'
 alias ez='nvim ~/.zsh_profile'
 alias sz='source ~/.zshrc'
 
+alias eb='nvim ~/.bashrc'
+alias sb='source ~/.bashrc'
+
 # Project helpers
 alias ..='cd ../'
 alias ...='cd ../../'
@@ -33,6 +36,9 @@ run_detached() {
     nohup "$@" </dev/null >/dev/null 2>&1 &
     disown
 }
+
+# for i3lock sleep
+alias sleepi3="i3lock -c 000000"
 
 # for todoist-cli
 # write td with the entire line as input no worries

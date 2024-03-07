@@ -11,11 +11,6 @@ export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 export GOPATH=$HOME/go
 
-addToPathFront $HOME/.local/scripts
-addToPathFront $HOME/.local/bin
-addToPathFront $HOME/go/bin             #for other go versions
-addToPathFront $HOME/.rbenv/bin
-
 ##############
 # BASIC SETUP
 ##############

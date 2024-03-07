@@ -17,8 +17,8 @@
     - autojump installation manual
 
 5. Ubuntu setup
-    - keyd installed manually and symlinked manually since the config file in system dir
-    - laptop touchpad in configured manually since gnome ui breaks in i3
+    - keyd installed manually and symlinked manually since the config file in system dir not user dir
+    - laptop touchpad in configured manually since gnome ui settings breaks in i3
 
 6. i3
     - used brightness script in bin for brightness control
