@@ -32,10 +32,15 @@ require("nvim-treesitter.configs").setup({
     },
 })
 
+require'treesitter-context'.setup{
+  max_lines = 10, -- How many lines the window should span. Values <= 0 mean no limit.
+}
+
 
 --highlight chunk like indent blank line
 require("hlchunk").setup({
     chunk = {
+        enable = false,    --breaking all the time
         chars = {
             horizontal_line = "─",
             vertical_line = "│",
@@ -48,3 +53,12 @@ require("hlchunk").setup({
     line_num = { enable = false, },
     blank = { enable = false, },
 })
+
+if vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] == 0 then
+    vim.cmd([[DisableHL]])
+end
+
+-- require("ibl").setup({
+--     indent = { char = "▏" },
+--     scope = { enabled = false },
+-- })

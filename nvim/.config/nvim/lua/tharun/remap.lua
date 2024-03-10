@@ -7,6 +7,7 @@ vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
 
 vim.keymap.set("n", "<leader><leader>", "<cmd>write<CR>", { desc = "Save current file" })
+vim.keymap.set({"n", "i", "v"}, "<C-s>", "<cmd>write<CR>", { desc = "Save current file" })  -- will work when tmux key is disabled
 
 local options = { noremap = true }
 -- Esc to normal mode

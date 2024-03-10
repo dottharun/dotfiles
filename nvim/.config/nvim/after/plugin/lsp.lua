@@ -2,7 +2,7 @@ local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(_, bufnr)
     -- print("help me lsp, client: ", client)
-    lsp_zero.buffer_autoformat()
+    -- lsp_zero.buffer_autoformat()
 
     local opts = { buffer = bufnr, remap = false }
     -- vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -14,7 +14,8 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+    -- vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+    vim.keymap.set("n", "<leader>vws", '<cmd>Telescope lsp_workspace_symbols<CR>', opts)
     vim.keymap.set("n", "<leader>vdd", function() vim.diagnostic.open_float() end, opts)
     vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
@@ -27,6 +28,7 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.keymap.set("n", "<leader>vkk", "<cmd>LspStop<CR><Esc>", opts)
 end)
 
+require("lspconfig").clangd.setup({})
 
 local ih = require("inlay-hints")
 
@@ -38,7 +40,7 @@ require('mason-lspconfig').setup({
         'texlab',
         'tsserver',
         'eslint',
-        'clangd',
+        'nil_ls',
         'pyright',
         'rust_analyzer',
     },
@@ -156,7 +158,21 @@ require('mason-lspconfig').setup({
             })
         end,
         eslint = function() require('lspconfig').eslint.setup({}) end,
-        clangd = function() require('lspconfig').clangd.setup({}) end,
+        -- clangd = function()
+        --     require('lspconfig').clangd.setup({
+        --         cmd = {'clangd'},
+        --         -- on_attach = function(client, _)
+        --         --     client.server_capabilities.signatureHelpProvider = false
+        --         -- end
+        --     })
+        -- end,
+        nil_ls = function() require('lspconfig').nil_ls.setup({
+            on_init = function(client)
+                -- for prettierd to work
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentFormattingRangeProvider = false
+            end,
+        }) end,
     },
 })
 
