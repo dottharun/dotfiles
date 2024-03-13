@@ -4,7 +4,12 @@ alias ls="ls --color -G --group-directories-first"
 alias ll="ls -la"
 alias l="ls -aF"
 
+#nvim
 alias n="nvim ."
+alias n1="nvim -c 'lua require(\"harpoon\"):list():select(1)'"
+alias n2="nvim -c 'lua require(\"harpoon\"):list():select(2)'"
+alias n3="nvim -c 'lua require(\"harpoon\"):list():select(3)'"
+alias n4="nvim -c 'lua require(\"harpoon\"):list():select(4)'"
 
 cd() {
     builtin cd "${@:-$HOME}" && ls
@@ -23,6 +28,8 @@ alias sb='source ~/.bashrc'
 # Project helpers
 alias ..='cd ../'
 alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
 alias .3='cd ../../../'
 alias .4='cd ../../../../'
 alias .5='cd ../../../../../'
@@ -44,7 +51,6 @@ alias sleepi3="i3lock -c 000000"
 # write td with the entire line as input no worries
 function addTodoFunc() {
 	todoist-cli add --date today "$*";
-	exit;
 };
 
 alias td='addTodoFunc'
