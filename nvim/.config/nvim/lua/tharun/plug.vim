@@ -45,7 +45,6 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'shellRaining/hlchunk.nvim'
 
 Plug 'mbbill/undotree'
-Plug 'CRAG666/code_runner.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'ThePrimeagen/vim-apm'
@@ -64,6 +63,7 @@ Plug 'lervag/vimtex' " latex compiler wrapper , probably need to be removed givi
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 " lsp-zero requires
 Plug 'williamboman/mason.nvim'

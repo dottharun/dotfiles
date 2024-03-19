@@ -83,7 +83,7 @@ function Cat()
         color_overrides = {
             mocha = {
                 base = "#000000",
-                mantle = "#000000",
+                mantle = "#111111",
                 crust = "#000000",
             },
         },
@@ -93,7 +93,7 @@ function Cat()
                     TabLineSel = { bg = C.pink },
                     CmpBorder = { fg = C.surface2 },
                     Pmenu = { bg = C.none },
-                    TelescopeBorder = { link = "FloatBorder" },
+                    TelescopeBorder = {  fg = C.surface2 },
                 }
             end,
         },
