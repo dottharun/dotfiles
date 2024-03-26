@@ -47,6 +47,9 @@ run_detached() {
 # for i3lock sleep
 alias sleepi3="i3lock -c 000000"
 
+# bluetooth
+alias headphones="until bluetoothctl connect 40:C1:F6:FF:DB:14; do  echo ...  ; sleep 1; done"
+
 # for todoist-cli
 # write td with the entire line as input no worries
 function addTodoFunc() {

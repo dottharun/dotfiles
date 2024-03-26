@@ -22,3 +22,8 @@
 
 6. i3
     - used brightness script in bin for brightness control
+    - for screenshot need these tools
+        maim
+        xclip
+        xdotool
+

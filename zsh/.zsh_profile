@@ -36,6 +36,7 @@ setopt HIST_IGNORE_SPACE      # Dont record an entry starting with a space.
 setopt HIST_SAVE_NO_DUPS      # Dont write duplicate entries in the history file.
 setopt SHARE_HISTORY          # Share history between all sessions.
 unsetopt HIST_VERIFY          # Execute commands using history (e.g.: using !$) immediately
+setopt NO_GLOB
 
 #############
 # COMPLETION
@@ -121,6 +122,12 @@ if type fzf &> /dev/null && type rg &> /dev/null; then
     export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
     # echo "hello from fzf source"
 fi
+
+# breaking when opening file explorer open in terminal
+#tmux attach always
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec tmux-sessionizer ~
+# fi
 
 #########
 # PROMPT

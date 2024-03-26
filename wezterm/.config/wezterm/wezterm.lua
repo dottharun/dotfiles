@@ -14,6 +14,8 @@ config.colors = {}
 config.colors.background = '#000000'
 
 config.font = wezterm.font_with_fallback {
+    'Hasklug Nerd Font',
+    'Berkeley Mono',
     'Fira Mono',
     'Ubuntu Mono',
 }
@@ -36,7 +38,7 @@ config.window_padding = {
     bottom = 0,
 }
 
--- config.freetype_load_target = "HorizontalLcd"
+config.freetype_load_target = "HorizontalLcd"
 
 -- and finally, return the configuration to wezterm
 return config
