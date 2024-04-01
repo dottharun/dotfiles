@@ -123,12 +123,6 @@ if type fzf &> /dev/null && type rg &> /dev/null; then
     # echo "hello from fzf source"
 fi
 
-# breaking when opening file explorer open in terminal
-#tmux attach always
-# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#   exec tmux-sessionizer ~
-# fi
-
 #########
 # PROMPT
 #########
