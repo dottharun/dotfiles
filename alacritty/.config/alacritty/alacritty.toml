@@ -105,17 +105,41 @@ color = "#F5E0DC"
 [font]
 size = 9.5
 
+# [font.bold]
+# family = "Hasklug Nerd Font"
+# style = "Regular"
+#
+# [font.italic]
+# family = "Hasklug Nerd Font"
+# style = "Regular"
+#
+# [font.normal]
+# family = "Hasklug Nerd Font"
+# style = "Regular"
+
 [font.bold]
-family = "Hasklug Nerd Font"
+family = "Source Code Pro"
 style = "Regular"
 
 [font.italic]
-family = "Hasklug Nerd Font"
+family = "Source Code Pro"
 style = "Regular"
 
 [font.normal]
-family = "Hasklug Nerd Font"
+family = "Source Code Pro"
 style = "Regular"
+
+# [font.bold]
+# family = "Berkeley Mono"
+# style = "Regular"
+#
+# [font.italic]
+# family = "Berkeley Mono"
+# style = "Regular"
+#
+# [font.normal]
+# family = "Berkeley Mono"
+# style = "Regular"
 
 # [font.bold]
 # family = "Fira Mono"
@@ -131,3 +155,12 @@ style = "Regular"
 
 [window]
 opacity = 1
+
+
+# keyboard binding for ctrl + shift chars
+# code from https://github.com/alacritty/alacritty/issues/7892#issuecomment-2041265313
+[keyboard]
+bindings = [
+{ key = "T", mods = "Control | Shift", chars = "\u001b[84;6u" },
+{ key = "B", mods = "Control | Shift", chars = "\u001b[66;6u" }
+]
