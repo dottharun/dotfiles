@@ -1,42 +1,25 @@
 vim.g.mapleader = " "
 
--- netrw explorer shortcut
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
--- vim.keymap.set("n", "<leader>pv", "<cmd>Ex .<CR>")
 
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
 
-vim.keymap.set("n", "<leader><leader>", "<cmd>write<CR>", { desc = "Save current file" })
-vim.keymap.set({"n", "i", "v"}, "<C-s>", "<cmd>write<CR>", { desc = "Save current file" })  -- will work when tmux key is disabled
+vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>write<CR>", { desc = "Save current file" }) -- will work when tmux key is disabled
 
 local options = { noremap = true }
--- Esc to normal mode
--- vim.keymap.set("i", "jj", "<Esc>", options)
--- vim.keymap.set("i", "jk", "<Esc>", options)
--- vim.keymap.set("i", "kj", "<Esc>", options)
-
--- vscode like commenting with Ctrl+/ in both normal and insert mode, ---might break something else need to check correctly
-vim.keymap.set('n', '', '<Plug>(comment_toggle_linewise_current)')
-vim.keymap.set('i', '', '<ESC><Plug>(comment_toggle_linewise_current)A')
-vim.keymap.set('n', '<leader>c', '<Plug>(comment_toggle_linewise_current)') -- lets see if i really use it
 
 -- quick buffer switch
 vim.keymap.set("n", "<leader>^", "<C-^>", options)
-vim.keymap.set("n", "<leader>n", "<C-^>", options)
-
---vim window motions
-vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "vim window motions" })
-
--- vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move cursor bottom window" })
--- vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move cursor right window" })
--- vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move cursor top window" })
--- vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move cursor left window" })
+vim.keymap.set("n", "<leader><leader>", "<cmd>so<CR>", options)
 
 -- for easy movement when wrap is enabled - they say
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 
---primeagen
+vim.keymap.set("n", "<leader>cd", ":cd %:h<CR>", { desc = "change dir" })
+-- may help in splits ??
+vim.keymap.set("n", "<leader>cld", ":lcd %:h<CR>", { desc = "change dir local" })
+
 --move in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -46,12 +29,31 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- centering view during page moves and search strings
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "{", "{zz")
 vim.keymap.set("n", "}", "}zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+-- elaborate setup to make C-d, work in last line
+vim.keymap.set("n", "<C-d>", function()
+    if vim.fn.line('.') == vim.fn.line('$') then
+        vim.api.nvim_feedkeys('zz', 'n', false);
+    else
+        local key = vim.api.nvim_replace_termcodes("<C-d>", true, false, true) .. "zz"
+        vim.api.nvim_feedkeys(key, 'n', false);
+    end
+end, options)
+
+-- goto top and bottom of quickfixlist
+vim.keymap.set("n", "<C-t>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-b>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-S-t>", "<cmd>lprev<CR>zz")
+vim.keymap.set("n", "<C-S-b>", "<cmd>lnext<CR>zz")
+
+vim.keymap.set("n", "<leader>qq", "<cmd>cclose<CR>")
+vim.keymap.set("n", "<leader>ql", "<cmd>lclose<CR>")
 
 -- living overwrite paste - don't forget to use leader+p not raw p
 vim.keymap.set("x", "<leader>p", [["_dP]])
