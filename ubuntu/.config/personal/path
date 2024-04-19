@@ -8,5 +8,3 @@ addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
 addToPathFront $HOME/go/bin             #for other go versions
 addToPathFront $HOME/.rbenv/bin
-
-source $HOME/.autojump/etc/profile.d/autojump.sh
