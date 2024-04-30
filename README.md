@@ -1,16 +1,19 @@
 # my dotfiles managed via GNU stow
 
 1. TMUX
-    - requires tpm to be installed
+    - requires tpm to be installed -- (git cloning some repo --maybe wont work with nixos)
 
 2. NVIM
     - requires ripgrep for telescope
-    - vim-plug installation (manual)
+    - vim-plug installation (manual) -- switch to lazynvim, it can bootstrap itself
     - javascript ecosystem formatting requires prettierd installation
     - lazygit
 
 3. bin
     - requires fzf for tmux-sessionizer, and zsh bindings
+    - misc:
+        - gf2 from NixOS-search - better frontend for gdb
+        - watchexec for command running
 
 4. ZSH
     - and making it as default shell
@@ -26,4 +29,6 @@
         maim
         xclip
         xdotool
+    - not sure - maybe i need i3lock and i3status
 
+7. TODO - research how to use android as webcam with OBS-studio
