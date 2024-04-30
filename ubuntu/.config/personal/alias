@@ -17,7 +17,6 @@ cd() {
 
 #tmux sessionizer - for bash
 alias cf='tmux-sessionizer'
-alias tma='tmux attach -t'
 
 # Edit/Source zsh config
 alias ez='nvim ~/.zsh_profile'
