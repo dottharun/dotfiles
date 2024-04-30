@@ -26,110 +26,150 @@ term = "xterm-256color"
 # background = "#000000"
 # foreground = "0xfffbf6"
 
-[colors.primary]
-background = "#000000"
-foreground = "#CDD6F4"
-dim_foreground = "#CDD6F4"
-bright_foreground = "#CDD6F4"
-
 [colors.cursor]
 text = "#000000"
 cursor = "#FFFFFF"
 
-[colors.vi_mode_cursor]
-text = "#1E1E2E"
-cursor = "#B4BEFE"
+### CATPUCCIN
 
-[colors.search.matches]
-foreground = "#1E1E2E"
-background = "#A6ADC8"
+# [colors.primary]
+# background = "#000000"
+# foreground = "#CDD6F4"
+# dim_foreground = "#CDD6F4"
+# bright_foreground = "#CDD6F4"
+#
+# [colors.vi_mode_cursor]
+# text = "#1E1E2E"
+# cursor = "#B4BEFE"
+#
+# [colors.search.matches]
+# foreground = "#1E1E2E"
+# background = "#A6ADC8"
+#
+# [colors.search.focused_match]
+# foreground = "#1E1E2E"
+# background = "#A6E3A1"
+#
+# [colors.footer_bar]
+# foreground = "#1E1E2E"
+# background = "#A6ADC8"
+#
+# [colors.hints.start]
+# foreground = "#1E1E2E"
+# background = "#F9E2AF"
+#
+# [colors.hints.end]
+# foreground = "#1E1E2E"
+# background = "#A6ADC8"
+#
+# [colors.selection]
+# text = "#1E1E2E"
+# background = "#F5E0DC"
+#
+# [colors.normal]
+# black = "#45475A"
+# red = "#F38BA8"
+# green = "#A6E3A1"
+# yellow = "#F9E2AF"
+# blue = "#89B4FA"
+# magenta = "#F5C2E7"
+# cyan = "#94E2D5"
+# white = "#BAC2DE"
+#
+# [colors.bright]
+# black = "#585B70"
+# red = "#F38BA8"
+# green = "#A6E3A1"
+# yellow = "#F9E2AF"
+# blue = "#89B4FA"
+# magenta = "#F5C2E7"
+# cyan = "#94E2D5"
+# white = "#A6ADC8"
+#
+# [colors.dim]
+# black = "#45475A"
+# red = "#F38BA8"
+# green = "#A6E3A1"
+# yellow = "#F9E2AF"
+# blue = "#89B4FA"
+# magenta = "#F5C2E7"
+# cyan = "#94E2D5"
+# white = "#BAC2DE"
+#
+# [[colors.indexed_colors]]
+# index = 16
+# color = "#FAB387"
+#
+# [[colors.indexed_colors]]
+# index = 17
+# color = "#F5E0DC"
 
-[colors.search.focused_match]
-foreground = "#1E1E2E"
-background = "#A6E3A1"
 
-[colors.footer_bar]
-foreground = "#1E1E2E"
-background = "#A6ADC8"
+### ONEDARK
 
-[colors.hints.start]
-foreground = "#1E1E2E"
-background = "#F9E2AF"
-
-[colors.hints.end]
-foreground = "#1E1E2E"
-background = "#A6ADC8"
-
-[colors.selection]
-text = "#1E1E2E"
-background = "#F5E0DC"
+[colors.primary]
+background = "0x111111"
+foreground = "0xabb2bf"
+bright_foreground = "0xe6efff"
 
 [colors.normal]
-black = "#45475A"
-red = "#F38BA8"
-green = "#A6E3A1"
-yellow = "#F9E2AF"
-blue = "#89B4FA"
-magenta = "#F5C2E7"
-cyan = "#94E2D5"
-white = "#BAC2DE"
+black = "0x1e2127"
+red = "0xe06c75"
+green = "0x98c379"
+yellow = "0xd19a66"
+blue = "0x61afef"
+magenta = "0xc678dd"
+cyan = "0x56b6c2"
+white = "0x828791"
 
 [colors.bright]
-black = "#585B70"
-red = "#F38BA8"
-green = "#A6E3A1"
-yellow = "#F9E2AF"
-blue = "#89B4FA"
-magenta = "#F5C2E7"
-cyan = "#94E2D5"
-white = "#A6ADC8"
+black = "0x5c6370"
+red = "0xe06c75"
+green = "0x98c379"
+yellow = "0xd19a66"
+blue = "0x61afef"
+magenta = "0xc678dd"
+cyan = "0x56b6c2"
+white = "0xe6efff"
 
 [colors.dim]
-black = "#45475A"
-red = "#F38BA8"
-green = "#A6E3A1"
-yellow = "#F9E2AF"
-blue = "#89B4FA"
-magenta = "#F5C2E7"
-cyan = "#94E2D5"
-white = "#BAC2DE"
-
-[[colors.indexed_colors]]
-index = 16
-color = "#FAB387"
-
-[[colors.indexed_colors]]
-index = 17
-color = "#F5E0DC"
+black = "0x1e2127"
+red = "0xe06c75"
+green = "0x98c379"
+yellow = "0xd19a66"
+blue = "0x61afef"
+magenta = "0xc678dd"
+cyan = "0x56b6c2"
+white = "0x828791"
 
 [font]
 size = 9.5
 
-# [font.bold]
-# family = "Hasklug Nerd Font"
-# style = "Regular"
-#
-# [font.italic]
-# family = "Hasklug Nerd Font"
-# style = "Regular"
-#
-# [font.normal]
-# family = "Hasklug Nerd Font"
-# style = "Regular"
-
 [font.bold]
-family = "Source Code Pro"
+family = "Hasklug Nerd Font"
 style = "Regular"
 
 [font.italic]
-family = "Source Code Pro"
+family = "Hasklug Nerd Font"
 style = "Regular"
 
 [font.normal]
-family = "Source Code Pro"
+family = "Hasklug Nerd Font"
 style = "Regular"
 
 # [font.bold]
+# family = "Source Code Pro"
+# style = "Regular"
+#
+# [font.italic]
+# family = "Source Code Pro"
+# style = "Regular"
+#
+# [font.normal]
+# family = "Source Code Pro"
+# style = "Regular"
+
+# [font.bold]
 # family = "Berkeley Mono"
 # style = "Regular"
 #
@@ -151,6 +191,18 @@ style = "Regular"
 #
 # [font.normal]
 # family = "Fira Mono"
+# style = "Regular"
+
+# [font.bold]
+# family = "jetBrains Mono"
+# style = "Regular"
+#
+# [font.italic]
+# family = "jetBrains Mono"
+# style = "Regular"
+#
+# [font.normal]
+# family = "jetBrains Mono"
 # style = "Regular"
 
 [window]
