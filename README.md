@@ -8,6 +8,7 @@
     - vim-plug installation (manual) -- switch to lazynvim, it can bootstrap itself
     - javascript ecosystem formatting requires prettierd installation
     - lazygit
+    - tex viewing requires - zathura pdf viewer
 
 3. bin
     - requires fzf for tmux-sessionizer, and zsh bindings
