@@ -1,5 +1,7 @@
 # my dotfiles managed via GNU stow
 
+- just do `stow <appdir>` for each app
+
 1. TMUX
     - requires tpm to be installed -- (git cloning some repo --maybe wont work with nixos)
 
