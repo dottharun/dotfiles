@@ -83,7 +83,7 @@ function Cat()
         color_overrides = {
             mocha = {
                 base = "#000000",
-                mantle = "#111111",
+                mantle = "#000000",
                 crust = "#000000",
             },
         },
@@ -106,7 +106,35 @@ function VSCode()
     require('vscode').load()
 end
 
--- for higlighting colors
+function Osaka()
+    vim.cmd[[colorscheme solarized-osaka]]
+end
+
+function Od()
+    require('onedark').setup {
+        -- style = 'warmer',
+        code_style = {
+            comments = 'none',
+            keywords = 'none',
+            functions = 'none',
+            strings = 'none',
+            variables = 'none'
+        },
+        colors = {
+            bg0 = "#111111",
+        }
+    }
+
+    require('onedark').load()
+end
+
+function Clown() vim.cmd[[colorscheme no-clown-fiesta]] end
+
+function Solar()
+    vim.cmd('colorscheme solarized-flat')
+end
+
+-- for higlighting colors from text hex
 require('colorizer').setup()
 
 -- ColorMyPencils()
@@ -116,4 +144,8 @@ require('colorizer').setup()
 -- Kana()
 -- VSCode()
 -- KanaDragon()
-Cat()
+-- Cat()
+Od()
+-- Osaka()
+-- Solar()
+

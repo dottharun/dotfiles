@@ -3,7 +3,7 @@ call plug#begin()
 Plug 'nvim-lua/plenary.nvim'
 
 " code
-Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/splitjoin.vim' "not even using it that much and frequently breaks
 Plug 'numToStr/Comment.nvim'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring' "for react comments
 
@@ -18,31 +18,36 @@ Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-fugitive'
 
 " nav
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'ThePrimeagen/harpoon', { 'branch': 'harpoon2' }
 
+Plug 'ThePrimeagen/git-worktree.nvim'
+
 " theme
 Plug 'rose-pine/neovim', { 'as': 'rose-pine'}
-Plug 'gruvbox-community/gruvbox'
 Plug 'sainnhe/gruvbox-material'
 Plug 'folke/tokyonight.nvim'
-Plug 'rebelot/kanagawa.nvim'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'rafi/awesome-vim-colorschemes'
+Plug 'craftzdog/solarized-osaka.nvim'
+Plug 'whatyouhide/vim-gotham'
+Plug 'twerth/ir_black'
+Plug 'navarasu/onedark.nvim'
+Plug 'aktersnurra/no-clown-fiesta.nvim'
+Plug 'ishan9299/nvim-solarized-lua'
 
-Plug 'norcalli/nvim-colorizer.lua'
+Plug 'norcalli/nvim-colorizer.lua' "colors hex codes
 Plug 'tjdevries/colorbuddy.nvim'
 
 Plug 'Eandrju/cellular-automaton.nvim' "for the giggles
 
 " Plug 'RRethy/vim-illuminate'  " too cluttered
-Plug 'j-hui/fidget.nvim'
+Plug 'j-hui/fidget.nvim' " lsp info - very good
 " Plug 'nvim-tree/nvim-web-devicons' " feels weird
 Plug 'lukas-reineke/indent-blankline.nvim'
 
-Plug 'shellRaining/hlchunk.nvim'
+Plug 'shellRaining/hlchunk.nvim' " breaks all the time
 
 Plug 'mbbill/undotree'
 Plug 'lewis6991/gitsigns.nvim'
@@ -50,14 +55,18 @@ Plug 'folke/which-key.nvim'
 Plug 'ThePrimeagen/vim-apm'
 Plug 'kdheepak/lazygit.nvim'
 " Plug 'jiangmiao/auto-pairs'   " for the leetcode defaults
+Plug 'folke/trouble.nvim'
 
-" latex math
-" Plug 'sirver/ultisnips'
-let g:UltiSnipsNoPythonWarning = 1
-let g:UltiSnipsJumpBackwardTrigger = "<C-b>"
-let g:UltiSnipsExpandOrJumpTrigger = "<tab>"  " might use later
+" latex math   --- really needs lazy managing
+Plug 'sirver/ultisnips'
+" let g:UltiSnipsJumpBackwardTrigger = "<C-b>"
+" let g:UltiSnipsExpandOrJumpTrigger = "<tab>"  " might use later
 " let g:UltiSnipsJumpForwardTrigger = "jk"
+"
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 Plug 'lervag/vimtex' " latex compiler wrapper , probably need to be removed giving many headaches
 
@@ -85,6 +94,8 @@ Plug 'moliva/inlay-hints.nvim', {'branch': 'feat/disable-tsserver-adapter'} "exp
 Plug 'marilari88/twoslash-queries.nvim'
 
 Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
-Plug 'honza/vim-snippets'
+Plug 'kwakzalver/duckytype.nvim'
+
+" Plug 'honza/vim-snippets'  " colliding
 
 call plug#end()

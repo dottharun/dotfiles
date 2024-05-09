@@ -4,15 +4,19 @@ local harpoon = require("harpoon")
 harpoon:setup()
 -- REQUIRED
 
-vim.keymap.set("n", "<C-m>", function() harpoon:list():append() end)
+vim.keymap.set("n", "<C-m>", function() harpoon:list():add() end)
 vim.keymap.set("n", "<leader>a", function()
     print("added to harpoon")
-    harpoon:list():append()
+    harpoon:list():add()
 end, { desc = "add buffer to harpoon" })
 
 vim.keymap.set("n", "<c-e>", function()
     harpoon.ui:toggle_quick_menu(harpoon:list())
-end, { desc = "open harpoon tab list" })
+end, { desc = "open harpoon [b]uffer list" })
+
+vim.keymap.set("n", "<leader>b", function()
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "open harpoon [b]uffer list" })
 
 -- vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end, { desc = "goto harpoon - 1" })
 -- vim.keymap.set("n", "<C-j>", function() harpoon:list():select(2) end, { desc = "goto harpoon - 2" })
