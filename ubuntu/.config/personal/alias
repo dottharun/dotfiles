@@ -11,6 +11,9 @@ alias 2="nvim -c 'lua require(\"harpoon\"):list():select(2)'"
 alias 3="nvim -c 'lua require(\"harpoon\"):list():select(3)'"
 alias 4="nvim -c 'lua require(\"harpoon\"):list():select(4)'"
 
+# typing test with nvim
+alias tt="nvim +DuckyType"
+
 cd() {
     builtin cd "${@:-$HOME}" && ls
 }
@@ -61,3 +64,6 @@ function addTodoFunc() {
 
 alias td='addTodoFunc'
 alias tdl='todoist-cli list'
+
+# obs-studio flatpak installation
+alias obs='flatpak run com.obsproject.Studio'
