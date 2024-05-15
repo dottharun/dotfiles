@@ -47,8 +47,9 @@ fo() {
 }
 
 # [p]r check[o]ut
+# TODO: limit set at 500 --might cause problems
 po() {
-    GH_FORCE_TTY=100% gh pr list | fzf --ansi --preview 'GH_FORCE_TTY=100% gh pr view {1}' --preview-window down --header-lines 3 | awk '{print $1}' | xargs gh pr checkout
+    GH_FORCE_TTY=100% gh pr list --limit 500 | fzf --ansi --preview 'GH_FORCE_TTY=100% gh pr view {1}' --preview-window down --header-lines 3 | awk '{print $1}' | xargs gh pr checkout
 }
 
 #gdb frontend
