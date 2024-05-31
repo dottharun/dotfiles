@@ -4,6 +4,17 @@ alias ls="ls --color -G --group-directories-first"
 alias ll="ls -la"
 alias l="ls -aF"
 
+#watch memory
+alias mem="watch -t -n 1 '\$(which ps_mem) -p \$(pgrep -d, -u \$USER) | tac'"
+
+# mem() {
+#     watch -t -n 1 "
+#         ps_mem_path=\$(which ps_mem)
+#         pids=\$(pgrep -d, -u \$USER)
+#         \$ps_mem_path -p \$pids | tac
+#     "
+# }
+
 #nvim
 alias n="nvim ."
 alias 1="nvim -c 'lua require(\"harpoon\"):list():select(1)'"
@@ -78,3 +89,9 @@ alias tdl='todoist-cli list'
 
 # obs-studio flatpak installation
 alias obs='flatpak run com.obsproject.Studio'
+
+# kubernetes
+alias k='kubectl'
+
+# meshery
+alias m='mesheryctl'
