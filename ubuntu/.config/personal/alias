@@ -5,7 +5,7 @@ alias ll="ls -la"
 alias l="ls -aF"
 
 #watch memory
-alias mem="watch -t -n 1 '\$(which ps_mem) -p \$(pgrep -d, -u \$USER) | tac'"
+alias mem="watch -t '\$(which ps_mem) -p \$(pgrep -d, -u \$USER) | tac'"
 
 # mem() {
 #     watch -t -n 1 "
