@@ -25,6 +25,7 @@
 5. Ubuntu setup
     - keyd installed manually and symlinked manually since the config file in system dir not user dir
     - laptop touchpad in configured manually since gnome ui settings breaks in i3
+    - memory watching alias always requires `ps_mem` installed
 
 6. i3
     - used brightness script in bin for brightness control
