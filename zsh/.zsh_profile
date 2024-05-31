@@ -3,8 +3,9 @@ export XDG_CONFIG_HOME=$HOME/.config
 PERSONAL=$XDG_CONFIG_HOME/personal
 
 source $PERSONAL/env
-source $PERSONAL/alias
-source $PERSONAL/path
+for i in `find -L $PERSONAL`; do
+    source $i
+done
 
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
@@ -163,3 +164,6 @@ zle -N zle-keymap-select
 
 # dont know how but this eval is still fast
 eval "$(zoxide init --cmd cd zsh)"
+
+# meshery
+source <(mesheryctl completion zsh)

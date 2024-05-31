@@ -146,3 +146,6 @@ export PATH="/home/tharun/.rbenv/shims:${PATH}"
 
 # zprof
 
+
+# bun completions
+[ -s "/home/tharun/.bun/_bun" ] && source "/home/tharun/.bun/_bun"
