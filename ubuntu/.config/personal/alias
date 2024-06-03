@@ -7,13 +7,7 @@ alias l="ls -aF"
 #watch memory
 alias mem="watch -t '\$(which ps_mem) -p \$(pgrep -d, -u \$USER) | tac'"
 
-# mem() {
-#     watch -t -n 1 "
-#         ps_mem_path=\$(which ps_mem)
-#         pids=\$(pgrep -d, -u \$USER)
-#         \$ps_mem_path -p \$pids | tac
-#     "
-# }
+alias my_ip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"
 
 #nvim
 alias n="nvim ."
@@ -51,16 +45,22 @@ alias .6='cd ../../../../../../'
 
 #git
 alias lg='lazygit'
+alias gd='git diff --ws-error-highlight=all'
 
 # [f]uzzy check[o]ut
 fo() {
-  git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff {1} --color=always" | xargs git checkout
+  git branch --sort=-committerdate \
+  | fzf --header "Checkout Recent Branch" --preview "git diff {1} --color=always" \
+  | xargs git checkout
 }
 
 # [p]r check[o]ut
 # TODO: limit set at 500 --might cause problems
 po() {
-    GH_FORCE_TTY=100% gh pr list --limit 500 | fzf --ansi --preview 'GH_FORCE_TTY=100% gh pr view {1}' --preview-window down --header-lines 3 | awk '{print $1}' | xargs gh pr checkout
+  GH_FORCE_TTY=100% gh pr list --limit 500 \
+  | fzf --ansi --preview 'GH_FORCE_TTY=100% gh pr view {1}' --preview-window down --header-lines 3 \
+  | awk '{print $1}' \
+  | xargs gh pr checkout
 }
 
 #gdb frontend
