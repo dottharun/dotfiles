@@ -1,6 +1,6 @@
+-- print("hello from new tharun")
+
+require("tharun.autocmds")
 require("tharun.remap")
 require("tharun.set")
-
-local plug = vim.fn.stdpath("config") .. "/lua/tharun/plug.vim"
-vim.cmd.source(plug)
--- print("hello from tharun dir")
+require("tharun.lazy_init")

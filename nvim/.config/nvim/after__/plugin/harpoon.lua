@@ -27,3 +27,8 @@ vim.keymap.set("n", "<leader>h", function() harpoon:list():select(1) end, { desc
 vim.keymap.set("n", "<leader>j", function() harpoon:list():select(2) end, { desc = "goto harpoon - 2" })
 vim.keymap.set("n", "<leader>k", function() harpoon:list():select(3) end, { desc = "goto harpoon - 3" })
 vim.keymap.set("n", "<leader>l", function() harpoon:list():select(4) end, { desc = "goto harpoon - 4" })
+
+
+-- Toggle previous & next buffers stored within Harpoon list ---TODO configure alacritty for this keymap
+vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
