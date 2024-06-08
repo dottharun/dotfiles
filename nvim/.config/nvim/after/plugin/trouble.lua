@@ -27,6 +27,6 @@ vim.keymap.set("n", "]t", function()
 end)
 
 -- can make it to goto references
-vim.keymap.set("n", "gr", function() require("trouble").toggle("lsp_references") end)
-vim.keymap.set("n", "<leader>tr", function() require("trouble").toggle("lsp_references") end)
+-- vim.keymap.set("n", "gr", function() require("trouble").toggle("lsp_references") end)
+-- vim.keymap.set("n", "<leader>tr", function() require("trouble").toggle("lsp_references") end)
 

@@ -2,13 +2,12 @@ local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+    -- vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)   --shows nodemodules in quickfix
 
-    -- trying trouble for gr
     vim.keymap.set("n", "gR", function() vim.lsp.buf.references() end, opts)
 
-    -- vim.keymap.set("n", "gd", '<cmd>Telescope lsp_definitions<CR>', opts)
-    -- vim.keymap.set("n", "gr", '<cmd>Telescope lsp_references<CR>', opts)
+    vim.keymap.set("n", "gd", '<cmd>Telescope lsp_definitions<CR>', opts)
+    vim.keymap.set("n", "gr", '<cmd>Telescope lsp_references<CR>', opts)
     vim.keymap.set("n", "gi", '<cmd>Telescope lsp_implementations<CR>', opts)
 
     -- vim.keymap.set('n', 'gi', function() vim.lsp.buf.implementation() end, opts)   --going to quickfix list which i dont like
@@ -30,11 +29,13 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-p>", function() vim.lsp.buf.signature_help() end, opts)
 
-    -- controlling lsp
-    vim.keymap.set("n", "<leader>vrs", "<cmd>LspRestart<CR><Esc>", opts)
-    vim.keymap.set("n", "<leader>vv", "<cmd>LspStart<CR><Esc>", opts)
-    vim.keymap.set("n", "<leader>vk", "<cmd>LspStop<CR><Esc>", opts)
 end)
+
+-- controlling lsp
+vim.keymap.set("n", "<leader>vrs", "<cmd>LspRestart<CR><Esc>")
+vim.keymap.set("n", "<leader>vv", "<cmd>LspStart<CR><Esc>")
+vim.keymap.set("n", "<leader>vk", "<cmd>LspStop<CR><Esc>")
+vim.keymap.set("n", "<leader>vi", "<cmd>LspInfo<CR><Esc>")
 
 require("lspconfig").clangd.setup({})
 
@@ -96,6 +97,9 @@ require('mason-lspconfig').setup({
         end,
         tsserver = function()
             require("lspconfig").tsserver.setup({
+                --for manual startup in js files
+                autostart = false,
+
                 on_init = function(client)
                     -- for prettierd to work
                     client.server_capabilities.documentFormattingProvider = false
@@ -165,7 +169,10 @@ require('mason-lspconfig').setup({
                 },
             })
         end,
-        eslint = function() require('lspconfig').eslint.setup({}) end,
+        eslint = function() require('lspconfig').eslint.setup({
+                --for manual startup in js files
+                autostart = false,
+        }) end,
         nil_ls = function()
             require('lspconfig').nil_ls.setup({
                 on_init = function(client)

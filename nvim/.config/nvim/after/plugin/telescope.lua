@@ -7,7 +7,7 @@ require("telescope").setup {
         },
     },
     defaults = {
-        file_ignore_patterns = { ".git/", "node_modules/" }
+        file_ignore_patterns = { ".git/", "node_modules/", "__generated__/" }
     }
 }
 
@@ -32,7 +32,7 @@ vim.keymap.set('n', '<leader>fbb', builtin.buffers, {})
 require('telescope').load_extension('fzf')
 
 -- trouble setup
-local trouble = require("trouble.providers.telescope")
+local trouble = require("trouble.sources.telescope")
 local telescope = require("telescope")
 
 telescope.setup {
