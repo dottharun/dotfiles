@@ -4,7 +4,18 @@ vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 
 vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>write<CR>", { desc = "Save current file" }) -- will work when tmux key is disabled
 
+-- controlling lsp
+vim.keymap.set("n", "<leader>vrs", "<cmd>LspRestart<CR><Esc>")
+vim.keymap.set("n", "<leader>vv", "<cmd>LspStart<CR><Esc>")
+vim.keymap.set("n", "<leader>vk", "<cmd>LspStop<CR><Esc>")
+vim.keymap.set("n", "<leader>vi", "<cmd>LspInfo<CR><Esc>")
+
 local options = { noremap = true }
+-- controlling lsp
+vim.keymap.set("n", "<leader>vrs", "<cmd>LspRestart<CR><Esc>")
+vim.keymap.set("n", "<leader>vv", "<cmd>LspStart<CR><Esc>")
+vim.keymap.set("n", "<leader>vk", "<cmd>LspStop<CR><Esc>")
+vim.keymap.set("n", "<leader>vi", "<cmd>LspInfo<CR><Esc>")
 
 -- quick buffer switch
 vim.keymap.set("n", "<leader>^", "<C-^>", options)
