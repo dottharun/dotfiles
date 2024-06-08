@@ -1,7 +1,19 @@
 -- print("hello from plugins")
 
 return {
-   "tpope/vim-fugitive" 
+    { 'numToStr/Comment.nvim', opts = {} },
+    { 
+        'norcalli/nvim-colorizer.lua', 
+        config = function() require('colorizer').setup() end
+    },
+    { 
+        'Eandrju/cellular-automaton.nvim',
+        -- TODO: tree-sitter not correctly configured - or we can just remove this plugin
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+    },
+    {
+        "j-hui/fidget.nvim",
+    }
 }
 
 -- Plug 'nvim-lua/plenary.nvim'
