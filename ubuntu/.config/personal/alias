@@ -25,6 +25,7 @@ cd() {
 
 #tmux sessionizer - for bash
 alias cf='tmux-sessionizer'
+alias tma='tmux a'
 
 # Edit/Source zsh config
 alias ez='nvim ~/.zsh_profile'
@@ -95,3 +96,6 @@ alias k='kubectl'
 
 # meshery
 alias m='mesheryctl'
+
+# node
+alias noden='/usr/bin/n'

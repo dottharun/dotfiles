@@ -10,6 +10,7 @@ done
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 export GOPATH=$HOME/go
+export NIXPKGS_ALLOW_UNFREE=1
 
 ##############
 # BASIC SETUP
