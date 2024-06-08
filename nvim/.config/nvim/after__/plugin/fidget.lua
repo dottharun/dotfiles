@@ -1,4 +1,3 @@
-require("fidget").setup {
-    -- options
-}
-
+require("fidget").setup({
+	-- options
+})

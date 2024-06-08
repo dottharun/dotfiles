@@ -38,12 +38,12 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- elaborate setup to make C-d, work in last line
 vim.keymap.set("n", "<C-d>", function()
-    if vim.fn.line('.') == vim.fn.line('$') then
-        vim.api.nvim_feedkeys('zz', 'n', false);
-    else
-        local key = vim.api.nvim_replace_termcodes("<C-d>", true, false, true) .. "zz"
-        vim.api.nvim_feedkeys(key, 'n', false);
-    end
+	if vim.fn.line(".") == vim.fn.line("$") then
+		vim.api.nvim_feedkeys("zz", "n", false)
+	else
+		local key = vim.api.nvim_replace_termcodes("<C-d>", true, false, true) .. "zz"
+		vim.api.nvim_feedkeys(key, "n", false)
+	end
 end, options)
 
 -- goto top and bottom of quickfixlist
@@ -78,14 +78,14 @@ vim.keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true, desc 
 vim.keymap.set("n", "<leader>xr", "<cmd>!chmod -x %<CR>", { silent = true, desc = "revert curr file as executable" })
 
 -- open vim plug
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/dotfiles/nvim/.config/nvim/lua/tharun/plug.vim<CR>");
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/dotfiles/nvim/.config/nvim/lua/tharun/plug.vim<CR>")
 -- open vim theme page
-vim.keymap.set("n", "<leader>vtt", "<cmd>e ~/dotfiles/nvim/.config/nvim/after/plugin/colors.lua<CR>");
+vim.keymap.set("n", "<leader>vtt", "<cmd>e ~/dotfiles/nvim/.config/nvim/after/plugin/colors.lua<CR>")
 
 -- for the giggles
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
 
 vim.keymap.set("n", "<leader>vso", function()
-    print("hello from sourcing init")
-    vim.cmd("so ~/dotfiles/nvim/.config/nvim/init.lua")
+	print("hello from sourcing init")
+	vim.cmd("so ~/dotfiles/nvim/.config/nvim/init.lua")
 end)
