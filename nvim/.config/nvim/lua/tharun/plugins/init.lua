@@ -20,9 +20,9 @@ return {
 		config = function()
 			require("gitsigns").setup({ signcolumn = false })
 
-			vim.keymap.set("n", "<leader>gs", ":Gitsigns toggle_signs<CR>")
-			vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk_inline<CR>")
-			vim.keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>")
+			vim.keymap.set("n", "<leader>Gs", ":Gitsigns toggle_signs<CR>")
+			vim.keymap.set("n", "<leader>Gp", ":Gitsigns preview_hunk_inline<CR>")
+			vim.keymap.set("n", "<leader>Gr", ":Gitsigns reset_hunk<CR>")
 		end,
 	},
 	{

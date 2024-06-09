@@ -24,17 +24,6 @@ vim.g.editorconfig = false
 -- turn off that mouse always disturbing
 vim.opt.mouse = ""
 
-vim.cmd([[
-" status line
-set statusline=%<\ %{mode()}\ \|\ %{FugitiveStatusline()}\ \|\ %f%m
-set statusline+=%{&paste?'\ \ \|\ PASTE\ ':'\ '}
-set statusline+=%=\ %l/%L\(%c\)\ \|\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}
-set statusline+=%{'\ '}
-
-" syntax highlighting
-syntax sync minlines=256
-]])
-
 vim.opt.smartindent = true
 vim.opt.wrap = false
 
