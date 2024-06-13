@@ -1,5 +1,6 @@
 return {
 	"tpope/vim-fugitive",
+	dependencies = { "tpope/vim-rhubarb" },
 	config = function()
 		-- status line with fugitive git branch name
 		vim.cmd([[
@@ -14,7 +15,7 @@ return {
         ]])
 
 		vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "[g]it [s]tatus" })
-		vim.keymap.set("n", "<leader>gb", ":Git blame %<CR>", { desc = "[g]it [b]lame" })
+		vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", { desc = "[g]it [b]lame" })
 		vim.keymap.set("n", "<leader>gll", ":Git log<CR>", { desc = "[g]it [l]og" })
 		vim.keymap.set("n", "<leader>glo", ":Git log --oneline<CR>", { desc = "[g]it [l]og --[o]neline" })
 
