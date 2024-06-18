@@ -17,7 +17,7 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
-			require("gitsigns").setup({ signcolumn = false })
+			require("gitsigns").setup({ signcolumn = true })
 
 			vim.keymap.set("n", "<leader>Gs", ":Gitsigns toggle_signs<CR>")
 			vim.keymap.set("n", "<leader>Gp", ":Gitsigns preview_hunk_inline<CR>")
