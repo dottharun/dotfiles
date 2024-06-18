@@ -48,7 +48,7 @@ alias .6='cd ../../../../../../'
 alias lg='lazygit'
 alias gd='git diff --ws-error-highlight=all'
 
-# from oh-my-zsh-aabid
+## from oh-my-zsh/aabid
 alias g=git
 alias ga='git add'
 alias gaa='git add --all'
@@ -123,8 +123,8 @@ alias ggpur=ggu
 alias ggpush='git push origin "$(git_current_branch)"'
 alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
 alias ghh='git help'
-alias gignore='git update-index --assume-unchanged'
-alias gignored='git ls-files -v | grep "^[[:lower:]]"'
+alias gignore='git update-index --skip-worktree'
+alias gignored='git ls-files -v | grep "^S"'
 alias git-svn-dcommit-push='git svn dcommit && git push github $(git_main_branch):svntrunk'
 alias gk='\gitk --all --branches &!'
 alias gke='\gitk --all $(git log -g --pretty=%h) &!'
@@ -217,7 +217,7 @@ alias gswm='git switch $(git_main_branch)'
 alias gtl='gtl(){ git tag --sort=-v:refname -n -l "${1}*" }; noglob gtl'
 alias gts='git tag -s'
 alias gtv='git tag | sort -V'
-alias gunignore='git update-index --no-assume-unchanged'
+alias gunignore='git update-index --no-skip-worktree'
 alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
 alias gup='git pull --rebase'
 alias gupa='git pull --rebase --autostash'
@@ -243,7 +243,7 @@ po() {
 }
 
 #gdb frontend
-alias gf='gf2'
+alias gdbf='gf2'
 
 #for running detached processes
 run_detached() {
