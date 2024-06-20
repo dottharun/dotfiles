@@ -168,4 +168,4 @@ zle -N zle-keymap-select
 eval "$(zoxide init --cmd cd zsh)"
 
 # meshery
-source <(mesheryctl completion zsh)
+# source <(mesheryctl completion zsh)

@@ -49,6 +49,32 @@ alias lg='lazygit'
 alias gd='git diff --ws-error-highlight=all'
 
 ## from oh-my-zsh/aabid
+function git_current_branch() {
+  local ref
+  ref=$(__git_prompt_git symbolic-ref --quiet HEAD 2> /dev/null)
+  local ret=$?
+  if [[ $ret != 0 ]]; then
+    [[ $ret == 128 ]] && return  # no git repo.
+    ref=$(__git_prompt_git rev-parse --short HEAD 2> /dev/null) || return
+  fi
+  echo ${ref#refs/heads/}
+}
+
+function git_main_branch() {
+  command git rev-parse --git-dir &>/dev/null || return
+  local ref
+  for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default,stable,master}; do
+    if command git show-ref -q --verify $ref; then
+      echo ${ref:t}
+      return 0
+    fi
+  done
+
+  # If no main branch was found, fall back to master but return error
+  echo master
+  return 1
+}
+
 alias g=git
 alias ga='git add'
 alias gaa='git add --all'
@@ -116,9 +142,11 @@ alias gf='git fetch'
 alias gfa='git fetch --all --prune --jobs=10'
 alias gfg='git ls-files | grep'
 alias gfo='git fetch origin'
+alias gfu='git fetch upstream'
 alias gg='git gui citool'
 alias gga='git gui citool --amend'
 alias ggpull='git pull origin "$(git_current_branch)"'
+alias glom='git pull origin "$(git_current_branch)"'
 alias ggpur=ggu
 alias ggpush='git push origin "$(git_current_branch)"'
 alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
@@ -171,6 +199,7 @@ alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbd='git rebase $(git_develop_branch)'
 alias grbi='git rebase -i'
+alias grbium='git rebase -i upstream/$(git_main_branch)'
 alias grbm='git rebase $(git_main_branch)'
 alias grbo='git rebase --onto'
 alias grbom='git rebase origin/$(git_main_branch)'
@@ -274,6 +303,10 @@ alias k='kubectl'
 
 # meshery
 alias m='mesheryctl'
+alias msc='m system check'
+alias mss='m system start'
+alias msr='m system restart'
+alias msl='m system login'
 
 # node
 alias noden='/usr/bin/n'
