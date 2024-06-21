@@ -50,6 +50,7 @@ vscode-fhs zed-editor
 # tools
 less jq ffmpeg speedtest-cli ncdu unzip wget zip mpv font-manager
 htop btop nethogs
+qdirstat
 
 # docker
 #   - requires adding custom apt repo - https://docs.docker.com/engine/install/debian/#install-using-the-repository

@@ -145,29 +145,29 @@ white = "0x828791"
 [font]
 size = 9.5
 
-[font.bold]
-family = "Hasklug Nerd Font"
-style = "Regular"
-
-[font.italic]
-family = "Hasklug Nerd Font"
-style = "Regular"
-
-[font.normal]
-family = "Hasklug Nerd Font"
-style = "Regular"
-
 # [font.bold]
-# family = "Source Code Pro"
+# family = "Hasklug Nerd Font"
 # style = "Regular"
 #
 # [font.italic]
-# family = "Source Code Pro"
+# family = "Hasklug Nerd Font"
 # style = "Regular"
 #
 # [font.normal]
-# family = "Source Code Pro"
+# family = "Hasklug Nerd Font"
 # style = "Regular"
+
+[font.bold]
+family = "Source Code Pro"
+style = "Regular"
+
+[font.italic]
+family = "Source Code Pro"
+style = "Regular"
+
+[font.normal]
+family = "Source Code Pro"
+style = "Regular"
 
 # [font.bold]
 # family = "Berkeley Mono"

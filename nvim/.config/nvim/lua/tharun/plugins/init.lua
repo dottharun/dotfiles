@@ -1,53 +1,53 @@
 -- print("hello from plugins")
 
 return {
-	{
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
-	},
-	{ "Eandrju/cellular-automaton.nvim", dependencies = { "nvim-treesitter/nvim-treesitter" } },
-	{
-		"mbbill/undotree",
-		config = function()
-			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-		end,
-	},
-	{
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup({ signcolumn = true })
+    {
+        "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup()
+        end,
+    },
+    { "Eandrju/cellular-automaton.nvim", dependencies = { "nvim-treesitter/nvim-treesitter" } },
+    {
+        "mbbill/undotree",
+        config = function()
+            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+        end,
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require("gitsigns").setup({ signcolumn = true })
 
-			vim.keymap.set("n", "<leader>Gs", ":Gitsigns toggle_signs<CR>")
-			vim.keymap.set("n", "<leader>Gp", ":Gitsigns preview_hunk_inline<CR>")
-			vim.keymap.set("n", "<leader>Gr", ":Gitsigns reset_hunk<CR>")
-		end,
-	},
-	{
-		"folke/which-key.nvim",
-		config = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 1000
-			require("which-key").setup({})
-		end,
-	},
-	{
-		"kdheepak/lazygit.nvim",
-		config = function()
-			vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
-		end,
-	},
-	{
-		"kwakzalver/duckytype.nvim",
-		config = function()
-			require("duckytype").setup({
-				number_of_words = 30,
-			})
+            -- vim.keymap.set("n", "<leader>Gs", ":Gitsigns toggle_signs<CR>")
+            vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk_inline<CR>")
+            vim.keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>")
+        end,
+    },
+    {
+        "folke/which-key.nvim",
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 1000
+            require("which-key").setup({})
+        end,
+    },
+    {
+        "kdheepak/lazygit.nvim",
+        config = function()
+            vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
+        end,
+    },
+    {
+        "kwakzalver/duckytype.nvim",
+        config = function()
+            require("duckytype").setup({
+                number_of_words = 30,
+            })
 
-			vim.keymap.set("n", "<leader>mt", ":DuckyType<CR>", { desc = "[m]ake [t]ype" })
-		end,
-	},
+            vim.keymap.set("n", "<leader>mt", ":DuckyType<CR>", { desc = "[m]ake [t]ype" })
+        end,
+    },
 }
 
 -- Plug 'nvim-lua/plenary.nvim'
