@@ -10,6 +10,7 @@ alias mem="watch -t '\$(which ps_mem) -p \$(pgrep -d, -u \$USER) | tac'"
 alias my_ip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"
 
 alias firefox_refresh='xdotool search --name "Mozilla Firefox" key "F5"'
+alias firefoxDE='/home/tharun/.nix-profile/bin/firefox'
 
 #nvim
 alias n="nvim ."

@@ -57,4 +57,8 @@ qdirstat
  # kubectl - binary installation - https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux
 # minikube - binary installation - https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fdebian+package
  jekyll bundler
+# postgres - need to download from apt
+# soda - all three from go - https://gobuffalo.io/documentation/database/soda/
+# hydra - https://www.ory.sh/docs/hydra/5min-tutorial
+# kratos - https://go-kratos.dev/en/docs/getting-started/start/
 ]
