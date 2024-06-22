@@ -35,10 +35,11 @@ watchexec
 zoxide
 
 ps_mem
-# maim xclip xdotool
 
 # i3 i3lock i3status
 #   - installed by apt
+maim xclip xdotool
+blueman
 
 # apps
 google-chrome chromium brave slack
