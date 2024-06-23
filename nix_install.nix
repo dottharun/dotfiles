@@ -47,6 +47,7 @@ google-chrome chromium brave slack
 #               - warning: wont install correctly needs manual installation of dependency
 # clickup # not downloading in nix --too unstable
 vscode-fhs zed-editor
+# audacity pavucontrol - both needs to be installed from apt
 
 # tools
 less jq ffmpeg speedtest-cli ncdu unzip wget zip mpv font-manager
