@@ -17,4 +17,5 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	spec = "tharun.plugins",
 	change_detection = { notify = false },
+	dev = { path = "~/personal/nvim_plugins" },
 })
