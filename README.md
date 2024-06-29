@@ -5,6 +5,8 @@
 
 1. TMUX
     - requires tpm to be installed -- (git cloning some repo --maybe wont work with nixos)
+    - after installing tpm - to install plugins
+        - press prefix+I inside tmux
 
 2. NVIM
     - requires ripgrep for telescope
