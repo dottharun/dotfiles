@@ -1,5 +1,6 @@
 with import <nixpkgs> {}; [
-vim gh neovim zsh tmux stow
+vim gh zsh tmux stow
+# neovim
 # keyd
 #   - needs source cloning - https://github.com/rvaiya/keyd?tab=readme-ov-file#from-source
 #   - needs systemctl cmds for installation with config manual linking
@@ -64,4 +65,8 @@ qdirstat
 # soda - all three from go - https://gobuffalo.io/documentation/database/soda/
 # hydra - https://www.ory.sh/docs/hydra/5min-tutorial
 # kratos - https://go-kratos.dev/en/docs/getting-started/start/
+
+
+# lang - lua
+stylua
 ]

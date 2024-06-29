@@ -9,6 +9,7 @@
         - press prefix+I inside tmux
 
 2. NVIM
+    - install neovim from git repo with curl cmd
     - requires ripgrep for telescope
     - vim-plug installation (manual) -- switch to lazynvim, it can bootstrap itself
     - javascript ecosystem formatting requires prettierd installation
