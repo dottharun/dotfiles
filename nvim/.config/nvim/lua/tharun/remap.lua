@@ -17,6 +17,9 @@ vim.keymap.set("n", "<leader>vv", "<cmd>LspStart<CR><Esc>")
 vim.keymap.set("n", "<leader>vk", "<cmd>LspStop<CR><Esc>")
 vim.keymap.set("n", "<leader>vi", "<cmd>LspInfo<CR><Esc>")
 
+-- view plugin logs
+vim.keymap.set("n", "<leader>ms", ":mes<CR>", { desc = "messages" })
+
 -- quick buffer switch
 vim.keymap.set("n", "<leader>^", "<C-^>", options)
 vim.keymap.set("n", "<leader><leader>", "<cmd>so<CR>", options)
