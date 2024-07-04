@@ -9,6 +9,9 @@ return {
 				lua = { "stylua" },
 				-- Use a sub-list to run only the first available formatter
 				javascript = { { "prettierd", "prettier" } },
+				javascriptreact = { { "prettierd", "prettier" } },
+				typescript = { { "prettierd", "prettier" } },
+				typescriptreact = { { "prettierd", "prettier" } },
 			},
 
 			--Activating formatters
