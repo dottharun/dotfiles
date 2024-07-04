@@ -67,6 +67,17 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # Vim Keybindings
 bindkey -v
 
+# The time the shell waits, in hundredths of seconds, for another key
+# to be pressed when reading bound multi-character sequences.
+#
+# Set to shortest possible delay is 1/100 second.
+# This allows escape sequences like cursor/arrow keys to work,
+# while eliminating the delay exiting vi insert mode.
+#
+# from here https://www.reddit.com/r/vim/comments/60jl7h/zsh_vimode_no_delay_entering_normal_mode/
+# TODO: Might break some keys
+KEYTIMEOUT=1
+
 # Open line in Vim by pressing 'v' in Command-Mode
 autoload -U edit-command-line
 zle -N edit-command-line
