@@ -2,10 +2,11 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 PERSONAL=$XDG_CONFIG_HOME/personal
 
+# personal scripts
 source $PERSONAL/env
-for i in `find -L $PERSONAL`; do
-    source $i
-done
+source $PERSONAL/path
+source $PERSONAL/alias
+source $PERSONAL/.env
 
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
