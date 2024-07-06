@@ -50,3 +50,7 @@
 - go
 - docker, kubernetes, minikube
 - rust - to get cargo
+
+8. system configuration
+- file watchers limit for gatsby
+    -https://github.com/gatsbyjs/gatsby/issues/11406
