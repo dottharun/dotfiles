@@ -147,7 +147,8 @@ git_prompt_info() {
   local dirstatus=" OK"
   local dirty="%{$fg_bold[red]%} X%{$reset_color%}"
 
-  if [[ ! -z $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
+  # does'nt care about untracked files
+  if [[ ! -z $(git status --porcelain --untracked-files=no 2> /dev/null | tail -n1) ]]; then
     dirstatus=$dirty
   fi
 
