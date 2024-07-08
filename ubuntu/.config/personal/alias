@@ -119,7 +119,7 @@ alias gcf='git config --list'
 alias gclr='git clone --recurse-submodules'
 alias gcl='git clone'
 alias gcld='git clone --depth'
-alias gclean='git clean -id'
+alias gclean='git clean -idffx'
 alias gcm='git checkout $(git_main_branch)'
 alias gcmsg='git commit -m'
 alias 'gcn!'='git commit -v --no-edit --amend'
@@ -189,6 +189,7 @@ alias 'gpf!'='git push --force'
 alias gpoat='git push origin --all && git push origin --tags'
 alias gpr='git pull --rebase'
 alias gpristine='git reset --hard && git clean -dffx'
+alias gpristinedry='git clean -dffx -n'
 alias gpsup='git push --set-upstream origin $(git_current_branch)'
 alias gpu='git push upstream'
 alias gpv='git push -v'
@@ -273,6 +274,9 @@ po() {
   | awk '{print $1}' \
   | xargs gh pr checkout
 }
+
+# alias fst='git stash list | fzf -0 --preview "git show --pretty=oneline --color=always --patch \"\$(echo {} | cut -d: -f1)\"" | cut -d: -f1 | xargs -r git stash pop'
+alias fst='git stash list | fzf -0 --preview "git show --pretty=oneline --color=always --patch \"\$(echo {} | cut -d: -f1)\"" | cut -d: -f1 | xargs -r git stash apply'
 
 #gdb frontend
 alias gdbf='gf2'
