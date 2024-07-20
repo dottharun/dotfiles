@@ -47,6 +47,7 @@
 
 ## common tools
 - node, n- node version manager, npm, prettier
+    - npm packages: json, prettier, prettierd
 - go
 - docker, kubernetes, minikube
 - rust - to get cargo

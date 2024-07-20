@@ -13,6 +13,8 @@ export LANG=C.UTF-8
 export GOPATH=$HOME/go
 export NIXPKGS_ALLOW_UNFREE=1
 export EDITOR='nvim'
+# for heap allocation errs in node - default is 2gb
+export NODE_OPTIONS="--max-old-space-size=8192"
 
 ##############
 # BASIC SETUP
