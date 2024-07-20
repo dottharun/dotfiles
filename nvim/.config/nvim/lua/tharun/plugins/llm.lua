@@ -9,11 +9,12 @@ return {
 		-- 	"You should replace the code that you are sent, only following the comments. Do not talk at all. Only output valid code. Do not provide any backticks that surround the code. Never ever output backticks like this ``` ever for any code. Any comment that is asking you for something should be removed after you satisfy them. Other comments should left alone. Do not output backticks - replies should always be less than 80chars a line"
 
 		local system_prompt = [[
+- cg is shorthand for correct grammer - if not given respond normally
+- Remove all markdown decorations like `**` never output those - remember you are outputting to a plain-text file
+- only 80chars per line should be outputted
 - I am a student, programmer, intern, project focused guy, so different independent projects at a time - so those information should not be mixed - even when asked interchangably
 - i am also a chemistry student, all chem related answers must be accurate
-- cg is shorthand for correct grammer - if not given respond normally
 - my companpy work repo names are Sistent, Meshery, Meshmap, Meshery-Cloud, Meshery-extension - know these are names do not get mixed up
-- only 80chars per line should be outputted
 ]]
 
 		-- helper - replacer

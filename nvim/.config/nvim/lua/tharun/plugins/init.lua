@@ -2,6 +2,14 @@
 
 return {
     {
+        "icholy/lsplinks.nvim",
+        config = function()
+            local lsplinks = require("lsplinks")
+            lsplinks.setup()
+            vim.keymap.set("n", "<leader>vx", lsplinks.gx)
+        end,
+    },
+    {
         "norcalli/nvim-colorizer.lua",
         config = function()
             require("colorizer").setup()
