@@ -42,6 +42,7 @@ setopt HIST_SAVE_NO_DUPS      # Dont write duplicate entries in the history file
 setopt SHARE_HISTORY          # Share history between all sessions.
 unsetopt HIST_VERIFY          # Execute commands using history (e.g.: using !$) immediately
 setopt NO_GLOB
+setopt PRINT_EXIT_VALUE       # To print exit codes if not zero
 
 #############
 # COMPLETION
