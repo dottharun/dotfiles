@@ -21,6 +21,9 @@ vim.opt.expandtab = true
 -- had to do it for the meshery repo
 vim.g.editorconfig = false
 
+-- to disable conform autoformat
+-- vim.g.disable_autoformat = true
+
 -- turn off that mouse always disturbing
 vim.opt.mouse = ""
 
