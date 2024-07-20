@@ -2,10 +2,10 @@
 
 --save, compile, view
 vim.keymap.set(
-	"n",
-	"<leader>rt",
-	"<Cmd>update<CR><Cmd>VimtexCompile<CR><Esc>",
-	{ noremap = true, desc = "start tex compiler in watch mode" }
+    "n",
+    "<leader>rt",
+    "<Cmd>update<CR><Cmd>VimtexCompile<CR><Esc>",
+    { noremap = true, desc = "start tex compiler in watch mode" }
 )
 vim.keymap.set("n", "<leader>rk", "<Cmd>VimtexStop<CR>", { noremap = true, desc = "kill tex compiler" })
 vim.keymap.set("n", "<leader>rc", "<Cmd>VimtexClean<CR>", { noremap = true, desc = "clean extra tex files" })

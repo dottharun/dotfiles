@@ -1,5 +1,5 @@
 require("gitsigns").setup({
-	signcolumn = false,
+    signcolumn = false,
 })
 
 vim.keymap.set("n", "<leader>gs", ":Gitsigns toggle_signs<CR>")
@@ -13,10 +13,10 @@ vim.keymap.set("n", "<leader>ga", ":Git add .<CR>", { desc = "[g]it [a]dd ." })
 vim.keymap.set("n", "<leader>gcs", ":Git commit -s<CR>", { desc = "[g]it [c]ommit --[s]igned" })
 
 vim.keymap.set(
-	"n",
-	"<leader>gdd",
-	":Git diff --ws-error-highlight=all<CR>",
-	{ desc = "[g]it [d]iff for only curr buff" }
+    "n",
+    "<leader>gdd",
+    ":Git diff --ws-error-highlight=all<CR>",
+    { desc = "[g]it [d]iff for only curr buff" }
 )
 vim.keymap.set("n", "<leader>gdt", ":Git difftool<CR>", { desc = "[g]it [d]iff [t]ool for project as qf-hunks" })
 

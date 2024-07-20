@@ -1,16 +1,16 @@
 require("telescope").setup({
-	pickers = {
-		find_files = { hidden = true },
-		git_files = { show_untracked = true },
-		live_grep = {
-			additional_args = function(_)
-				return { "--hidden" }
-			end,
-		},
-	},
-	defaults = {
-		file_ignore_patterns = { ".git/", "node_modules/", "__generated__/" },
-	},
+    pickers = {
+        find_files = { hidden = true },
+        git_files = { show_untracked = true },
+        live_grep = {
+            additional_args = function(_)
+                return { "--hidden" }
+            end,
+        },
+    },
+    defaults = {
+        file_ignore_patterns = { ".git/", "node_modules/", "__generated__/" },
+    },
 })
 
 local builtin = require("telescope.builtin")
@@ -25,10 +25,10 @@ vim.keymap.set("n", "<leader>ft", builtin.builtin, options)
 
 -- for searching relative to current buffer dir
 vim.keymap.set("n", "<leader>fbf", function()
-	builtin.find_files({ cwd = vim.fn.expand("%:p:h") })
+    builtin.find_files({ cwd = vim.fn.expand("%:p:h") })
 end, options)
 vim.keymap.set("n", "<leader>fbg", function()
-	builtin.live_grep({ cwd = vim.fn.expand("%:p:h") })
+    builtin.live_grep({ cwd = vim.fn.expand("%:p:h") })
 end, options)
 
 vim.keymap.set("n", "<C-p>", builtin.git_files, options)
@@ -42,10 +42,10 @@ local trouble = require("trouble.sources.telescope")
 local telescope = require("telescope")
 
 telescope.setup({
-	defaults = {
-		mappings = {
-			i = { ["<c-t>"] = trouble.open_with_trouble },
-			n = { ["<c-t>"] = trouble.open_with_trouble },
-		},
-	},
+    defaults = {
+        mappings = {
+            i = { ["<c-t>"] = trouble.open_with_trouble },
+            n = { ["<c-t>"] = trouble.open_with_trouble },
+        },
+    },
 })

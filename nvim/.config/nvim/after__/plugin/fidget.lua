@@ -1,3 +1,3 @@
 require("fidget").setup({
-	-- options
+    -- options
 })
