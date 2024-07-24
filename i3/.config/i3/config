@@ -206,6 +206,9 @@ exec --no-startup-id nm-applet
 exec xinput set-prop 9 324 1
 exec xinput set-prop 9 332 1
 
+# battery notify
+exec --no-startup-id /home/tharun/.local/scripts/i3-battery-notify
+
 # # Alsa audio controls.
 # bindsym $mod+Shift+comma exec ~/.config/i3/scripts/alsa restore
 # bindsym $mod+semicolon exec ~/.config/i3/scripts/alsa down Headphone
