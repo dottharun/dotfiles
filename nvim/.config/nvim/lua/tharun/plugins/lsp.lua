@@ -75,7 +75,7 @@ return {
                 tsserver = function()
                     require("lspconfig").tsserver.setup({
                         --for manual startup in js files
-                        autostart = false,
+                        -- autostart = false,
 
                         on_init = function(client)
                             -- for prettierd to work - turn off format from tsserver
@@ -85,6 +85,7 @@ return {
                         init_options = { preferences = { disableSuggestions = true } },
 
                         settings = {
+                            maxTsServerMemory = 8192,
                             javascript = {
                                 inlayHints = {
                                     includeInlayEnumMemberValueHints = true,
