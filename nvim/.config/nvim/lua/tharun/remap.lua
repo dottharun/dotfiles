@@ -17,6 +17,10 @@ vim.keymap.set("n", "<leader>vv", "<cmd>LspStart<CR><Esc>")
 vim.keymap.set("n", "<leader>vk", "<cmd>LspStop<CR><Esc>")
 vim.keymap.set("n", "<leader>vi", "<cmd>LspInfo<CR><Esc>")
 
+-- wrap and nowrap
+vim.keymap.set("n", "<leader>ww", "<cmd>set wrap<CR><Esc>")
+vim.keymap.set("n", "<leader>wk", "<cmd>set nowrap<CR><Esc>")
+
 -- view plugin logs
 vim.keymap.set("n", "<leader>ms", ":mes<CR>", { desc = "messages" })
 

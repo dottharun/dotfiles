@@ -2,6 +2,9 @@
 
 return {
     {
+        "mechatroner/rainbow_csv",
+    },
+    {
         "icholy/lsplinks.nvim",
         config = function()
             local lsplinks = require("lsplinks")
