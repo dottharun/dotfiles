@@ -42,6 +42,9 @@
 
 7. TODO - research how to use android as webcam with OBS-studio
 
+8. CPP
+    - when installing specific version clang, Eg: clang-12 - install also the gcc pair too - else include path will not be found
+
 ## basics
 - vim, gh , neovim, zsh, tmux, stow, keyd, git
 
