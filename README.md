@@ -45,6 +45,7 @@
 8. CPP
     - when installing specific version clang, Eg: clang-12 - install also the gcc pair too - else include path will not be found
         ---could be wrong - maybe a stdlibc++ download issue not a gcc issue
+    - install clang-format
 
 ## basics
 - vim, gh , neovim, zsh, tmux, stow, keyd, git

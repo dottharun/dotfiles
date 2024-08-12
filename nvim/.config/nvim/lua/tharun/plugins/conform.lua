@@ -7,6 +7,7 @@ return {
             -- setting formatters only
             formatters_by_ft = {
                 lua = { "stylua" },
+                cpp = { "clang-format" },
                 -- Use a sub-list to run only the first available formatter
                 javascript = { { "prettierd", "prettier" } },
                 javascriptreact = { { "prettierd", "prettier" } },
