@@ -19,7 +19,8 @@ vim.opt.expandtab = true
 -- }
 
 -- had to do it for the meshery repo
-vim.g.editorconfig = false
+vim.g.editorconfig = false -- stops nvim from respecting editorconfig
+vim.opt.fixendofline = false -- stops nvim from autofixing end-of-line during save
 
 -- to disable conform autoformat
 -- vim.g.disable_autoformat = true
