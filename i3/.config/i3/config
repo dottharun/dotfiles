@@ -255,3 +255,10 @@ bindsym $mod+b exec "x-www-browser"
 
 # open reader
 bindsym $mod+p exec "evince"
+
+# initial workspaces
+assign [class="Chromium"] 2
+assign [class="Alacritty"] 3
+exec --no-startup-id /usr/bin/i3-msg 'workspace 3; exec /usr/bin/x-terminal-emulator -e zsh -i -c "tmux";'
+exec --no-startup-id /usr/bin/i3-msg 'workspace 2; exec /usr/bin/x-www-browser;'
+exec --no-startup-id /usr/bin/i3-msg 'workspace 3;'
