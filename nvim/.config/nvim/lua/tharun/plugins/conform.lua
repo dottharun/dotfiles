@@ -4,6 +4,17 @@ return {
     cmd = { "ConformInfo" },
     config = function()
         require("conform").setup({
+            -- configuring formatters
+            formatters = {
+                ["clang-format"] = {
+                    args = {
+                        "--fallback-style=none", --don't format when there is no .clang-format file
+                        "-assume-filename",
+                        "$FILENAME",
+                    },
+                },
+            },
+
             -- setting formatters only
             formatters_by_ft = {
                 lua = { "stylua" },
