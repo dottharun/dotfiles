@@ -159,15 +159,15 @@ size = 9.5
 
 [font.bold]
 family = "Source Code Pro"
-style = "Regular"
+style = "Medium"
 
 [font.italic]
 family = "Source Code Pro"
-style = "Regular"
+style = "Medium"
 
 [font.normal]
 family = "Source Code Pro"
-style = "Regular"
+style = "Medium"
 
 # [font.bold]
 # family = "Berkeley Mono"
