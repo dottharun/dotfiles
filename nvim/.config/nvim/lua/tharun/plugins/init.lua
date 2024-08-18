@@ -2,6 +2,9 @@
 
 return {
     {
+        "nvim-lua/plenary.nvim",
+    },
+    {
         "mechatroner/rainbow_csv",
     },
     {
