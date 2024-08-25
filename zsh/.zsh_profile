@@ -6,6 +6,7 @@ PERSONAL=$XDG_CONFIG_HOME/personal
 source $PERSONAL/env
 source $PERSONAL/path
 source $PERSONAL/alias
+source $PERSONAL/alias-git
 source $PERSONAL/.env
 
 export LC_ALL=C.UTF-8
