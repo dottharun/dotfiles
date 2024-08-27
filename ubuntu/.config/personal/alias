@@ -13,7 +13,7 @@ alias firefox_refresh='xdotool search --name "Mozilla Firefox" key "F5"'
 alias firefoxDE='/home/tharun/.nix-profile/bin/firefox'
 
 #nvim
-alias n="nvim ."
+n() { nvim "${1:-.}"; }
 alias 1="nvim -c 'lua require(\"harpoon\"):list():select(1)'"
 alias 2="nvim -c 'lua require(\"harpoon\"):list():select(2)'"
 alias 3="nvim -c 'lua require(\"harpoon\"):list():select(3)'"
