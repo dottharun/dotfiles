@@ -56,6 +56,7 @@
 - go
 - docker, kubernetes, minikube
 - rust - to get cargo
+- nnn - file manager
 
 8. system configuration
 - file watchers limit for gatsby
