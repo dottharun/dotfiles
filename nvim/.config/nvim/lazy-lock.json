@@ -14,6 +14,7 @@
   "format-ts-errors.nvim": { "branch": "main", "commit": "5dca66563baa9ccfff820b7ba97a2836d2421f7f" },
   "gitsigns.nvim": { "branch": "main", "commit": "6b1a14eabcebbcca1b9e9163a26b2f8371364cb7" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
+  "kznllm.nvim": { "branch": "main", "commit": "1d0b133433c868aba81a8a6997c1c74f4f9ac21b" },
   "lazy.nvim": { "branch": "main", "commit": "5bddef2415240b0fe620bb3dfec31a678bd670d9" },
   "lazygit.nvim": { "branch": "main", "commit": "ad3e1ea592f9d13e86e0d4e850224d9d78069508" },
   "lsplinks.nvim": { "branch": "master", "commit": "11d7a7177bc39d38a061df4a0ca0de8650853751" },

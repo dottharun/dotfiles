@@ -134,7 +134,7 @@ return {
         local function gemini_help()
             dingllm.invoke_llm_and_stream_into_editor({
                 url = "https://generativelanguage.googleapis.com/v1/models",
-                model = "gemini-1.5-flash",
+                model = "gemini-1.5-pro",
                 api_key_name = "GEMINI_API_KEY",
                 system_prompt = helpful_prompt,
                 replace = false,
@@ -144,7 +144,7 @@ return {
         local function gemini_replace()
             dingllm.invoke_llm_and_stream_into_editor({
                 url = "https://generativelanguage.googleapis.com/v1/models",
-                model = "gemini-1.5-flash",
+                model = "gemini-1.5-pro",
                 api_key_name = "GEMINI_API_KEY",
                 system_prompt = system_prompt,
                 replace = true,
@@ -154,8 +154,10 @@ return {
         vim.keymap.set({ "n", "v" }, "<leader>mG", gemini_help, { desc = "llm gemini_help" })
         vim.keymap.set({ "n", "v" }, "<leader>mg", gemini_replace, { desc = "llm gemini" })
 
-        vim.keymap.set({ "n", "v" }, "<leader>mk", groq_replace, { desc = "llm groq" })
-        vim.keymap.set({ "n", "v" }, "<leader>mK", groq_help, { desc = "llm groq_help" })
+        vim.keymap.set({ "n", "v" }, "<leader>mq", groq_replace, { desc = "llm groq" })
+        vim.keymap.set({ "n", "v" }, "<leader>mQ", groq_help, { desc = "llm groq_help" })
+        -- vim.keymap.set({ "n", "v" }, "<C-q>", groq_help, { desc = "llm groq_help" })
+
         vim.keymap.set({ "n", "v" }, "<leader>mL", openai_help, { desc = "llm openai_help" })
         vim.keymap.set({ "n", "v" }, "<leader>ml", openai_replace, { desc = "llm openai" })
         vim.keymap.set({ "n", "v" }, "<leader>mI", anthropic_help, { desc = "llm anthropic_help" })
