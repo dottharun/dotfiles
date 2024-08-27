@@ -21,6 +21,16 @@ export NODE_OPTIONS="--max-old-space-size=8192"
 export CC="clang-12"
 export CXX="clang++-12"
 
+# gaussian software
+export g16root=/home/tharun
+export GAUSS_SCRDIR=/home/tharun/g16/Scratch
+source /home/tharun/g16/bsd/g16.profile
+
+# gaussview software
+export GV_DIR=/home/tharun/gv/gview
+export PATH="$PATH:/home/tharun/gv/gview"
+alias -g gv=/home/tharun/gv/gview.sh
+
 ##############
 # BASIC SETUP
 ##############
