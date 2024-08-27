@@ -48,10 +48,10 @@ alias .5='cd ../../../../../'
 alias .6='cd ../../../../../../'
 
 #gdb frontend
-alias gdbf='gf2'
+alias -g gdbf='gf2'
 
 #for running detached processes
-run_detached() {
+function rd() {
     nohup "$@" </dev/null >/dev/null 2>&1 &
     disown
 }
@@ -72,7 +72,7 @@ alias td='addTodoFunc'
 alias tdl='todoist-cli list'
 
 # obs-studio flatpak installation
-alias obs='flatpak run com.obsproject.Studio'
+alias -g obs='flatpak run com.obsproject.Studio'
 
 # kubernetes
 alias k='kubectl'
