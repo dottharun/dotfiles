@@ -40,12 +40,15 @@
         xdotool
     - not sure - maybe i need i3lock and i3status
 
-7. TODO - research how to use android as webcam with OBS-studio
-
-8. CPP
+7. CPP
     - when installing specific version clang, Eg: clang-12 - install also the gcc pair too - else include path will not be found
         ---could be wrong - maybe a stdlibc++ download issue not a gcc issue
     - install clang-format
+
+## TODO
+- research how to use android as webcam with OBS-studio - not easy for free - but it should be???
+- include/move `~/.profile` into dotfiles to have ENV_VARS for any application
+    - and remove the souring from zsh
 
 ## basics
 - vim, gh , neovim, zsh, tmux, stow, keyd, git
