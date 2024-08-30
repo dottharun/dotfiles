@@ -13,15 +13,11 @@ return {
             harpoon:list():add()
         end)
         vim.keymap.set("n", "<leader>a", function()
-            print("added to harpoon")
             harpoon:list():add()
+            print("added to harpoon")
         end, { desc = "add buffer to harpoon" })
 
         vim.keymap.set("n", "<c-e>", function()
-            harpoon.ui:toggle_quick_menu(harpoon:list())
-        end, { desc = "open harpoon [b]uffer list" })
-
-        vim.keymap.set("n", "<leader>b", function()
             harpoon.ui:toggle_quick_menu(harpoon:list())
         end, { desc = "open harpoon [b]uffer list" })
 
