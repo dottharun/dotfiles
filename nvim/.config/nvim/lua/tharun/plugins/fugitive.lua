@@ -20,7 +20,10 @@ return {
         vim.keymap.set("n", "<leader>glo", ":Git log --oneline<CR>", { desc = "[g]it [l]og --[o]neline" })
 
         vim.keymap.set("n", "<leader>ga", ":Git add .<CR>", { desc = "[g]it [a]dd ." })
+
+        --commiting
         vim.keymap.set("n", "<leader>gcs", ":Git commit -s<CR>", { desc = "[g]it [c]ommit --[s]igned" })
+        vim.keymap.set("n", "<leader>gcc", ":Git commit<CR>", { desc = "[g]it [c]ommit" })
 
         vim.keymap.set("n", "<leader>gd", ":Git diff<CR>", { desc = "[g]it [d]iff for only curr buff" })
         vim.keymap.set("n", "<leader>gt", ":Git difftool<CR>", { desc = "[g]it diff [t]ool for project as qf-hunks" })
