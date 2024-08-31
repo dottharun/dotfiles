@@ -44,7 +44,13 @@ return {
 
             handlers = {
                 clangd = function()
-                    require("lspconfig").clangd.setup({})
+                    require("lspconfig").clangd.setup({
+                        cmd = {
+                            "clangd",
+                            "-header-insertion=never",
+                            -- "--log=verbose", -- for debugging
+                        },
+                    })
                 end,
                 lua_ls = function()
                     local lspconfig = require("lspconfig")
