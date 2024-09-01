@@ -79,6 +79,9 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
+-- paste from clipboard -- for firenvim
+vim.keymap.set("n", "<C-v>", '"+p', { noremap = true, silent = true })
+
 -- tmux-sessionizer - need this to work in nvim
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ~/.local/scripts/tmux-sessionizer<CR>")
 
