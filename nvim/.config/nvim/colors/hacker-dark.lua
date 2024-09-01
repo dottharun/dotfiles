@@ -36,6 +36,7 @@ C.new("bg_blue", "#1d2432")
 G.new("Normal", c.blue, c.bg_blue, s.none)
 G.new("Function", g.Normal, nil, nil)
 G.new("SignColumn", g.Normal, g.Normal, nil)
+G.new("Special", g.Normal, g.Normal, nil)
 
 -- G.new("TermCursor", c.white, nil, nil)
 
