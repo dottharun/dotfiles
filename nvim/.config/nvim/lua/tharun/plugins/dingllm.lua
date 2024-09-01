@@ -44,7 +44,7 @@ return {
         local function llama_405b_base()
             dingllm.invoke_llm_and_stream_into_editor({
                 url = "https://openrouter.ai/api/v1/chat/completions",
-                model = "meta-llama/llama-3.1-405b",
+                model = "nousresearch/hermes-3-llama-3.1-405b",
                 api_key_name = "OPEN_ROUTER_API_KEY",
                 max_tokens = "128",
                 replace = false,
@@ -164,7 +164,7 @@ return {
         vim.keymap.set({ "n", "v" }, "<leader>mi", anthropic_replace, { desc = "llm anthropic" })
         vim.keymap.set({ "n", "v" }, "<leader>mo", ollama_replace, { desc = "llm ollama" })
         vim.keymap.set({ "n", "v" }, "<leader>mO", ollama_help, { desc = "llm ollama_help" })
-        vim.keymap.set({ "n", "v" }, "<leader>mo", llama_405b_base, { desc = "llama base" })
+        vim.keymap.set({ "n", "v" }, "<leader>mH", llama_405b_base, { desc = "llama base" })
 
         vim.keymap.set({ "n" }, "<leader>mm", ":e llm.md<CR>", { desc = "new file" })
     end,
