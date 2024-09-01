@@ -27,11 +27,18 @@ return {
             cmp_lsp.default_capabilities()
         )
 
+        require("lspconfig").clangd.setup({
+            cmd = {
+                "clangd",
+                "-header-insertion=never",
+                -- "--log=verbose", -- for debugging
+            },
+        })
+
         require("fidget").setup({})
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "clangd",
                 "lua_ls",
                 "gopls",
                 "texlab",
@@ -43,15 +50,6 @@ return {
             },
 
             handlers = {
-                clangd = function()
-                    require("lspconfig").clangd.setup({
-                        cmd = {
-                            "clangd",
-                            "-header-insertion=never",
-                            -- "--log=verbose", -- for debugging
-                        },
-                    })
-                end,
                 lua_ls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup({
