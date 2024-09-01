@@ -30,21 +30,21 @@ C.new("brown", "#a3685a")
 
 C.new("bg_blue", "#1d2432")
 
-C.new("white", "#ffffff")
+-- C.new("white", "#ffffff")
 
 -- Define highlights in terms of `c` and `g`
 G.new("Normal", c.blue, c.bg_blue, s.none)
 G.new("Function", g.Normal, nil, nil)
 G.new("SignColumn", g.Normal, g.Normal, nil)
 
-G.new("TermCursor", c.white, nil, nil)
+-- G.new("TermCursor", c.white, nil, nil)
 
 G.new("Visual", nil, c.bg_blue:light(), nil)
 G.new("TreesitterContext", g.Visual, g.Visual, nil)
 
 G.new("LineNr", c.cyan, c.bg_blue, nil)
 
-G.new("@type", g.Normal, nil, nil)
+G.new("@type", g.Normal, nil, s.none)
 G.new("@module", g.Normal, nil, nil)
 G.new("@constant", g.Normal, nil, nil)
 
