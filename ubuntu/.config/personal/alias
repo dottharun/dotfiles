@@ -86,3 +86,37 @@ alias msl='m system login'
 
 # node
 alias noden='/usr/local/bin/n'
+
+# clang
+cpp_run() {  #runs cpp file in watch mode with -w else once
+  local watch_flag=""
+  local file_name=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -w)
+        watch_flag="-w"
+        shift
+        ;;
+      *)
+        file_name="$1"
+        shift
+        ;;
+    esac
+  done
+
+  if [[ -z "$file_name" ]]; then
+    echo "Please provide a file name."
+    return 1
+  fi
+
+  local output_file="/tmp/$(basename "$file_name" | tr '.' '_')"
+
+  local command="clang++ -o $output_file '$file_name' && $output_file; rm $output_file"
+
+  if [[ -n "$watch_flag" ]]; then
+    watchexec "$command"
+  else
+    eval "$command"
+  fi
+}

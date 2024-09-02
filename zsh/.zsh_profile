@@ -17,9 +17,9 @@ export EDITOR='nvim'
 # for heap allocation errs in node - default is 2gb
 export NODE_OPTIONS="--max-old-space-size=8192"
 
-# to control compilation of cpp versions
-export CC="clang-12"
-export CXX="clang++-12"
+# to control compilation of cpp versions --not sure if it really does anything
+export CC="clang-18"
+export CXX="clang++-18"
 
 # gaussian software
 export g16root=/home/tharun
