@@ -202,9 +202,11 @@ exec --no-startup-id nm-applet
 # bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor
 # bindsym $mod+Shift+n exec --no-startup-id ~/dotfiles/bin/resolution
 
-# make touchpad work - only works for hp omen 15 - #TODO might need more work to work always
-exec xinput set-prop 9 324 1
-exec xinput set-prop 9 332 1
+# make touchpad work
+# use `xinput list-props <device>` to view options
+#   and `xinput list` to view devices
+exec xinput set-prop "$(xinput list --name-only | grep -i touchpad)" "libinput Natural Scrolling Enabled" 1
+exec xinput set-prop "$(xinput list --name-only | grep -i touchpad)" "libinput Tapping Enabled" 1
 
 # battery notify
 exec --no-startup-id /home/tharun/.local/scripts/i3-battery-notify
