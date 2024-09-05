@@ -55,10 +55,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- elaborate setup to make C-d, work in last line
 vim.keymap.set("n", "<C-d>", function()
     if vim.fn.line(".") == vim.fn.line("$") then
-        vim.api.nvim_feedkeys("zz", "n", false)
+        vim.cmd("normal! zz")
     else
-        local key = vim.api.nvim_replace_termcodes("<C-d>", true, false, true) .. "zz"
-        vim.api.nvim_feedkeys(key, "n", false)
+        vim.cmd([[exe "normal! \<c-d>zz"]])
     end
 end, options)
 
