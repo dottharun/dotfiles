@@ -41,6 +41,7 @@ ps_mem
 #   - installed by apt
 maim xclip xdotool
 blueman
+normcap
 
 # apps
 google-chrome chromium brave slack

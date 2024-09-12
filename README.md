@@ -38,6 +38,7 @@
         maim
         xclip
         xdotool
+        normcap ---for ocr screenshot --only nix-env is working right now
     - not sure - maybe i need i3lock and i3status
 
 7. CPP
