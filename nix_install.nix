@@ -48,12 +48,15 @@ google-chrome chromium brave slack
 # zoom-us # need page download - https://zoom.us/download
 #               - warning: wont install correctly needs manual installation of dependency
 # clickup # not downloading in nix --too unstable
-vscode-fhs zed-editor
+# vscode-fhs
+zed-editor
 # audacity pavucontrol - both needs to be installed from apt
-vlc
+# vlc
 
 # tools
-less jq ffmpeg speedtest-cli ncdu unzip wget zip mpv font-manager
+less jq ffmpeg speedtest-cli ncdu unzip wget zip
+# mpv
+font-manager
 htop btop nethogs
 qdirstat
 
