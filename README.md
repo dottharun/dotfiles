@@ -53,9 +53,6 @@
 - research how to use android as webcam with OBS-studio - not easy for free - but it should be???
 - include/move `~/.profile` into dotfiles to have ENV_VARS for any application
     - and remove the souring from zsh
-- have a `thirdparty` folder to have forking projects of these libs
-    - currently they are in personal
-    - addition in tmux-sessionizer may be required
 
 ## basics
 - vim, gh , neovim, zsh, tmux, stow, keyd, git
