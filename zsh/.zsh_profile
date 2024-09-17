@@ -215,5 +215,8 @@ PROMPT='${NEWLINE}${dir_info}$(git_prompt_info)${NEWLINE}${arrow}'
 # dont know how but this eval is still fast
 eval "$(zoxide init --cmd cd zsh)"
 
+#direnv
+eval "$(direnv hook zsh)"
+
 # meshery
 # source <(mesheryctl completion zsh)

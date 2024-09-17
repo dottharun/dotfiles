@@ -59,6 +59,7 @@ less jq ffmpeg speedtest-cli ncdu unzip wget zip
 font-manager
 htop btop nethogs
 qdirstat
+direnv
 
 # docker
 #   - requires adding custom apt repo - https://docs.docker.com/engine/install/debian/#install-using-the-repository
