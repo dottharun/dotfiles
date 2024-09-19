@@ -47,6 +47,7 @@ G.new("LineNr", c.cyan, c.bg_blue, nil)
 G.new("@type", g.Normal, nil, s.none)
 G.new("@module", g.Normal, nil, nil)
 G.new("@constant", g.Normal, nil, nil)
+G.new("@label", g.Normal, nil, nil)
 
 G.new("Operator", c.white, nil, s.none)
 G.new("@function.bracket", g.Operator, nil, s.none)
