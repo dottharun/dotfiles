@@ -45,9 +45,10 @@
     - when installing specific version clang, Eg: clang-12 - install also the gcc pair too - else include path will not be found
         ---could be wrong - maybe a stdlibc++ download issue not a gcc issue
     - install all clang tools with llvm - from script here - https://apt.llvm.org/
+        - use `./llvm.sh 18 all`
         - install clang-format
         - install clangd
-            - do not use mason clangd
+            - do not use mason clangd - clangd itself is finicky maybe fully move to ccls? TODO:
 
 ## TODO
 - research how to use android as webcam with OBS-studio - not easy for free - but it should be???
