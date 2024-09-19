@@ -59,8 +59,24 @@ function rd() {
 # for i3lock sleep
 alias sleepi3="i3lock -c 000000"
 
-# bluetooth
+# bluetooth - currently oppo
 alias headphones="until bluetoothctl connect 40:C1:F6:FF:DB:14; do  echo ...  ; sleep 1; done"
+
+# bluetoothctl seems to have different command to find paired-devices in latest version
+#   -check that before using this
+fbt() {
+    local device
+    device=$(bluetoothctl paired-devices | awk '{print $2, $3}' | fzf --prompt="Select Bluetooth Device: ")
+
+    if [ -n "$device" ]; then
+        until bluetoothctl connect "$(echo $device | awk '{print $1}')" ; do
+            echo "Trying to connect to $device ..."
+            sleep 1
+        done
+    else
+        echo "No device selected."
+    fi
+}
 
 # for todoist-cli
 # write td with the entire line as input no worries
