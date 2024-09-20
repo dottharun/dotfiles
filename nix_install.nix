@@ -44,7 +44,9 @@ blueman
 normcap
 
 # apps
-google-chrome chromium brave slack
+# google-chrome  -- weird flash bang glitch in nix
+# chromium
+brave slack
 # zoom-us # need page download - https://zoom.us/download
 #               - warning: wont install correctly needs manual installation of dependency
 # clickup # not downloading in nix --too unstable
