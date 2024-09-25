@@ -20,7 +20,8 @@ return {
                 lua = { "stylua" },
                 cpp = { "clang-format" },
                 c = { "clang-format" },
-                -- Use a sub-list to run only the first available formatter
+                go = { "gofmt" },
+
                 javascript = { { "prettierd", "prettier" } },
                 javascriptreact = { { "prettierd", "prettier" } },
                 typescript = { { "prettierd", "prettier" } },
