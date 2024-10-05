@@ -8,6 +8,7 @@ return {
                 find_files = { hidden = true },
                 git_files = { show_untracked = true },
                 live_grep = {
+                    glob_pattern = "!package-lock.json",
                     additional_args = function(_)
                         return { "--hidden" }
                     end,
