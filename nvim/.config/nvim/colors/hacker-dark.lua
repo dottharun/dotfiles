@@ -51,6 +51,7 @@ G.new("@label", g.Normal, nil, nil)
 
 G.new("Operator", c.white, nil, s.none)
 G.new("@function.bracket", g.Operator, nil, s.none)
+G.new("Tag", g.Operator, nil, s.none)
 
 G.new("Comment", c.grey, nil, s.italic)
 
