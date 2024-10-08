@@ -12,10 +12,19 @@ return {
                     cmdline = "neovim", -- have nvim cmdline
                     priority = 0,
                 },
-                ["https://web.whatsapp.com/"] = {
+                -- stylua: ignore start
+                ["(https://web.whatsapp.com/"
+                    .. "|https://www.twitch.tv/"
+                    .. "|https://discord.com/"
+                    .. "|https://x.com/"
+                    .. "|https://styled-components.com/"
+                    .. "|https://codepen.io/"
+                    .. "|https://docs.google.com/"
+                    ..")"] = {
                     takeover = "never",
                     priority = 1,
                 },
+                -- stylua: ignore end
             },
         }
 
@@ -34,6 +43,10 @@ return {
                 vim.schedule_wrap(function()
                     if vim.o.lines < 6 then
                         vim.o.lines = 6
+                    end
+
+                    if vim.o.columns < 40 then
+                        vim.o.columns = 40
                     end
                 end)
             )
@@ -64,8 +77,16 @@ return {
             })
 
             vim.api.nvim_create_autocmd({ "BufEnter" }, {
-                pattern = { "www.hackerrank.com_*.txt", "leetcode.com_*.txt" },
+                pattern = { "www.hackerrank.com_*.txt", "leetcode.com_*.txt", "app.codesignal.com_*.txt" },
                 command = "set ft=cpp",
+            })
+            vim.api.nvim_create_autocmd({ "BufEnter" }, {
+                pattern = { "app.codesignal.com_*.txt", "leetcode.com_*.txt" },
+                command = "hi clear | colorscheme visual_studio_code",
+            })
+            vim.api.nvim_create_autocmd({ "BufEnter" }, {
+                pattern = { "www.hackerrank.com_*.txt" },
+                command = "hi clear | colorscheme hacker-dark",
             })
         end
     end,
