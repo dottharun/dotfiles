@@ -15,7 +15,7 @@ return {
                 },
             },
             defaults = {
-                file_ignore_patterns = { ".git/", "node_modules/", "__generated__/" },
+                file_ignore_patterns = { ".git/", "node_modules/", "__generated__/", "ccls%-cache" },
             },
         })
 
