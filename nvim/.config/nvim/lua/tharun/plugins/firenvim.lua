@@ -10,6 +10,7 @@ return {
             localSettings = {
                 [".*"] = {
                     cmdline = "neovim", -- have nvim cmdline
+                    takeover = "never",
                     priority = 0,
                 },
                 -- stylua: ignore start
