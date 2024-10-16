@@ -86,7 +86,7 @@ return {
 
         local function hermes_fill()
             presets.invoke_llm(make_data_for_hermes_chat, spec.make_curl_args, spec.make_job, {
-                model = "nousresearch/hermes-3-llama-3.1-405b",
+                model = "nousresearch/hermes-3-llama-3.1-405b:free",
                 max_tokens = 8192,
                 temperature = 0.7,
                 base_url = "https://openrouter.ai",
