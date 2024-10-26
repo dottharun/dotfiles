@@ -1,0 +1,8 @@
+[global]
+font = Monospace 10
+geometry = "100x50+10-10"  # Set a small width and reasonable height, position in lower left corner
+
+[style]
+background = "#A9A9A9"  # Grey background
+foreground = "#000000"  # Black text
+
