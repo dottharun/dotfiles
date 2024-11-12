@@ -12,8 +12,8 @@ alias my_ip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / '
 alias firefox_refresh='xdotool search --name "Mozilla Firefox" key "F5"'
 alias firefoxDE='/home/tharun/.nix-profile/bin/firefox'
 
-#nvim
 n() { nvim "${1:-.}"; }
+#nvim
 alias 1="nvim -c 'lua require(\"harpoon\"):list():select(1)'"
 alias 2="nvim -c 'lua require(\"harpoon\"):list():select(2)'"
 alias 3="nvim -c 'lua require(\"harpoon\"):list():select(3)'"
@@ -103,7 +103,50 @@ alias msl='m system login'
 # node
 alias noden='/usr/local/bin/n'
 
-# clang
+# watchexec
+we() {
+  watchexec --no-process-group -r "$*"
+}
+
+function nvim_url() {
+    tmp_dir=$(mktemp -d "${TMPDIR:-/tmp}/repo-XXXXXX")  # Use OS temp directory
+    url=$1
+
+    # Error if no URL is provided
+    if [ -z "$url" ]; then
+        echo "Error: No URL provided."
+        return 1
+    fi
+
+    # Function to clean up temp directory
+    function cleanup() {
+        rm -rf "$tmp_dir"
+        echo "Cleaned up temporary directory."
+    }
+
+    trap cleanup EXIT  # Ensure cleanup runs on exit
+
+    # Check if URL is for a GitHub repo
+    if [[ "$url" =~ ^https://github.com/.+/.+\.git$ ]]; then
+        if ! git clone "$url" "$tmp_dir"; then
+            echo "Error: Failed to clone repository."
+            return 1
+        fi
+        cd "$tmp_dir" || return 1
+        nvim .  # Open the whole repo in nvim
+    else
+        if ! wget -P "$tmp_dir" "$url"; then
+            echo "Error: Failed to download file."
+            return 1
+        fi
+        filename=$(basename "$url")
+        cd "$tmp_dir" || return 1
+        nvim "$filename"  # Open the file in nvim
+    fi
+
+    cd - >/dev/null  # Go back to the previous directory
+}
+
 cpp_run() {  #runs cpp file in watch mode with -w else once
   local watch_flag=""
   local file_name=""
@@ -131,7 +174,7 @@ cpp_run() {  #runs cpp file in watch mode with -w else once
   local command="clang++ -o $output_file '$file_name' && $output_file; rm $output_file"
 
   if [[ -n "$watch_flag" ]]; then
-    watchexec "$command"
+    watchexec --no-process-group -r "$command"
   else
     eval "$command"
   fi
