@@ -1,7 +1,7 @@
 return {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
-    cmd = { "ConformInfo" },
+    cmd = { "ConformInfo" }, --TODO: needs a write to disable - fix it by using some other event
     config = function()
         require("conform").setup({
             -- configuring formatters
@@ -21,6 +21,8 @@ return {
                 cpp = { "clang-format" },
                 c = { "clang-format" },
                 go = { "gofmt" },
+                java = { "google-java-format" },
+                python = { "black" },
 
                 javascript = { { "prettierd", "prettier" } },
                 javascriptreact = { { "prettierd", "prettier" } },

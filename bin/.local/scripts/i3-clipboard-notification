@@ -1,0 +1,6 @@
+#!/bin/bash
+# Get the current clipboard content using xclip
+clip_content=$(xclip -o -selection clipboard)
+
+# Display the clipboard content as a notification
+notify-send "$clip_content" --icon=dialog-information --urgency=low
