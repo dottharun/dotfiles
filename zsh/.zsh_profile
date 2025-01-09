@@ -62,8 +62,10 @@ setopt HIST_IGNORE_SPACE      # Dont record an entry starting with a space.
 setopt HIST_SAVE_NO_DUPS      # Dont write duplicate entries in the history file.
 setopt SHARE_HISTORY          # Share history between all sessions.
 unsetopt HIST_VERIFY          # Execute commands using history (e.g.: using !$) immediately
-setopt NO_GLOB
 setopt PRINT_EXIT_VALUE       # To print exit codes if not zero
+
+# still cant find the use it was causing problems when bash globbing is expected
+# setopt NO_GLOB
 
 #############
 # COMPLETION
@@ -150,16 +152,8 @@ bindkey -s ^f "tmux-sessionizer\n"
 # Set it to 10ms
 export KEYTIMEOUT=1
 
-# fzf
-if type fzf &> /dev/null && type rg &> /dev/null; then
-    source /usr/share/doc/fzf/examples/key-bindings.zsh
-    source /usr/share/doc/fzf/examples/completion.zsh
-
-    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-    export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-    export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
-    # echo "hello from fzf source"
-fi
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 #########
 # PROMPT
@@ -211,7 +205,7 @@ local dir_info_color="%B"
 
 local dir_info="%{$dir_info_color%}%(5~|%-1~/.../%2~|%4~)%{$reset_color%}"
 
-local arrow="%{$fg_bold[green]%}> %{$reset_color%}"
+local arrow="%{$fg_bold[green]%}$ %{$reset_color%}"
 
 # local user="%{$fg[cyan]%}%n %{$reset_color%}"
 
