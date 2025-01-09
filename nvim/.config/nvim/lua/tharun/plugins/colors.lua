@@ -3,8 +3,8 @@ return {
     {
         "tjdevries/colorbuddy.nvim",
         config = function()
-            vim.cmd.colorscheme("gruvbuddy")
-            vim.cmd.colorscheme("hacker-dark")
+            -- vim.cmd.colorscheme("gruvbuddy")
+            -- vim.cmd.colorscheme("hacker-dark")
         end,
     },
     {
@@ -30,7 +30,7 @@ return {
 
                 require("onedark").load()
             end
-            -- Od()
+            Od()
         end,
     },
     {
