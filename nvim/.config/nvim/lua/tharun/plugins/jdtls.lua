@@ -232,9 +232,9 @@ return {
                     },
                     format = {
                         enabled = true,
-                        -- settings = {
-                        --   profile = 'asdf'
-                        -- },
+                        settings = {
+                            url = "/home/tt/dotfiles/nvim/.config/nvim/lsp/idea-java.xml",
+                        },
                     },
                 },
                 signatureHelp = {

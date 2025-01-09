@@ -21,36 +21,17 @@ return {
                 cpp = { "clang-format" },
                 c = { "clang-format" },
                 go = { "gofmt" },
-                java = { "google-java-format" },
+                java = { lsp_format = "prefer" },
                 python = { "black" },
 
-                javascript = { { "prettierd", "prettier" } },
-                javascriptreact = { { "prettierd", "prettier" } },
-                typescript = { { "prettierd", "prettier" } },
-                typescriptreact = { { "prettierd", "prettier" } },
-                json = { { "prettierd", "prettier" } },
-                html = { { "prettierd", "prettier" } },
-                css = { { "prettierd", "prettier" } },
+                javascript = { "prettierd", "prettier", stop_after_first = true },
+                javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+                typescript = { "prettierd", "prettier", stop_after_first = true },
+                typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+                json = { "prettierd", "prettier", stop_after_first = true },
+                html = { "prettierd", "prettier", stop_after_first = true },
+                css = { "prettierd", "prettier", stop_after_first = true },
             },
-
-            --Activating formatters
-            format_on_save = function(bufnr)
-                -- Disable autoformat on certain filetypes
-                local ignore_filetypes = { "sql", "json" }
-                if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
-                    return
-                end
-                -- Disable with a global or buffer-local variable
-                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-                    return
-                end
-                -- Disable autoformat for files in a certain path
-                local bufname = vim.api.nvim_buf_get_name(bufnr)
-                if bufname:match("/node_modules/") then
-                    return
-                end
-                return { timeout_ms = 500, lsp_fallback = "never" }
-            end,
         })
 
         vim.api.nvim_create_user_command("ConformDisable", function(args)
@@ -69,6 +50,30 @@ return {
             vim.g.disable_autoformat = false
         end, {
             desc = "Re-enable autoformat-on-save",
+        })
+
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            pattern = "*",
+            callback = function(args)
+                -- Disable autoformat on certain filetypes
+                local ignore_filetypes = { "sql", "json" }
+                if vim.tbl_contains(ignore_filetypes, vim.bo[args.buf].filetype) then
+                    return
+                end
+
+                -- Disable with a global or buffer-local variable
+                if vim.g.disable_autoformat or vim.b[args.buf].disable_autoformat then
+                    return
+                end
+
+                -- Disable autoformat for files in a certain path
+                local bufname = vim.api.nvim_buf_get_name(args.buf)
+                if bufname:match("/node_modules/") then
+                    return
+                end
+
+                require("conform").format({ bufnr = args.buf, timeout_ms = 5000, lsp_format = "fallback" })
+            end,
         })
     end,
 }
