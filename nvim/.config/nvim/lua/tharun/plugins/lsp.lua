@@ -41,10 +41,7 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "gopls",
-                "texlab",
                 "tsserver",
-                "eslint",
-                "nil_ls",
                 "pyright",
                 "rust_analyzer",
             },
