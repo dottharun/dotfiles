@@ -4,8 +4,10 @@ addToPath $HOME/.cargo/bin
 addToPath $HOME/.npm/bin
 addToPath /usr/local/go/bin #for main go versions
 
+addToPathFront $HOME/personal/bg_api
 addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
 addToPathFront $HOME/go/bin             #for other go versions
 addToPathFront $HOME/.rbenv/bin
 addToPathFront /opt/nvim-linux64/bin    #neovim binary
+addToPathFront $JAVA_HOME/bin           #java

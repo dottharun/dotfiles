@@ -12,6 +12,7 @@ source $PERSONAL/.env
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 export GOPATH=$HOME/go
+export JAVA_HOME=/opt/java/jdk-23.0.1
 export NIXPKGS_ALLOW_UNFREE=1
 export EDITOR='nvim'
 # for heap allocation errs in node - default is 2gb
@@ -21,21 +22,21 @@ export NODE_OPTIONS="--max-old-space-size=8192"
 export CC="clang-18"
 export CXX="clang++-18"
 
-# gaussian software
-# export g16root=/home/tharun
-# export GAUSS_SCRDIR=/home/tharun/g16/Scratch
-# source /home/tharun/g16/bsd/g16.profile
-export g16root=$HOME/opt/gaussian
-export GAUSS_EXEDIR=$g16root/g16
-export GAUSS_SCRDIR=$g16root/scr
-source $g16root/g16/bsd/g16.profile
-export PGI_FASTMATH_CPU=haswell
-addToPath $GAUSS_EXEDIR
-
-# gaussview software
-export GV_DIR=/home/tharun/gv/gview
-export PATH="$PATH:/home/tharun/gv/gview"
-alias -g gv=/home/tharun/gv/gview.sh
+# # gaussian software
+# # export g16root=/home/tharun
+# # export GAUSS_SCRDIR=/home/tharun/g16/Scratch
+# # source /home/tharun/g16/bsd/g16.profile
+# export g16root=$HOME/opt/gaussian
+# export GAUSS_EXEDIR=$g16root/g16
+# export GAUSS_SCRDIR=$g16root/scr
+# source $g16root/g16/bsd/g16.profile
+# export PGI_FASTMATH_CPU=haswell
+# addToPath $GAUSS_EXEDIR
+#
+# # gaussview software
+# export GV_DIR=/home/tharun/gv/gview
+# export PATH="$PATH:/home/tharun/gv/gview"
+# alias -g gv=/home/tharun/gv/gview.sh
 
 ##############
 # BASIC SETUP
@@ -192,7 +193,7 @@ git_prompt_info() {
   local dirty="%{$fg_bold[red]%} X%{$reset_color%}"
 
   # does'nt care about untracked files
-  if [[ ! -z $(git status --porcelain --untracked-files=no 2> /dev/null | tail -n1) ]]; then
+  if [[ ! -z $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
     dirstatus=$dirty
   fi
 
@@ -214,6 +215,12 @@ PROMPT='${NEWLINE}${dir_info}$(git_prompt_info)${NEWLINE}${arrow}'
 
 # dont know how but this eval is still fast
 eval "$(zoxide init --cmd cd zsh)"
+
+# meshery
+# source <(mesheryctl completion zsh)
+
+# emscripten
+# source ~/thirdparty/emsdk/emsdk_env.sh
 
 #direnv
 eval "$(direnv hook zsh)"
