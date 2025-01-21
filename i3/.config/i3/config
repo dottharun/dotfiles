@@ -18,7 +18,7 @@ font pango:monospace 15px
 # GET DEM BORDERS OUT OF HERE
 default_border pixel 0
 default_floating_border pixel 0
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 0
 hide_edge_borders smart
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -58,7 +58,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec rofi -show run
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run -b
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -229,9 +229,9 @@ bindsym $mod+F3 exec "/home/tharun/.local/scripts/brightness + eDP 0.05"
 # bindsym XF86MonBrightnessDown exec "brightness - eDP 0.1"
 
 ## Screenshots - screen print, active-window print, selection print
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).png"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).png"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).png"
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
@@ -239,7 +239,14 @@ bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewi
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 ## ocr screenshot
-bindsym $mod+o exec --no-startup-id normcap -c "#000000"
+### normcap - funky/backup
+# bindsym $mod+Shift+o exec --no-startup-id normcap -c "#000000"
+
+### handmade ocr with maim
+bindsym $mod+o exec --no-startup-id "~/personal/bg_api/tess.sh"
+
+### handwritten ocr
+bindsym $mod+Shift+o exec --no-startup-id "~/personal/bg_api/hand_tess.sh"
 
 mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
   bindsym l exec i3-msg exit
@@ -270,8 +277,94 @@ mode "[c]lipboard" {
 # Bind $mod+c to open the clipboard mode
 bindsym $mod+c mode "[c]lipboard"
 
+# Define custom mode for script shortcuts
+mode "scripts: [g]roq, [h]ermes, [o]penai, (shift=>help), [j]ava-mode, [p]python-mode" {
+    bindsym g exec "~/personal/bg_api/bg_api.sh --groq"; mode "default"
+    bindsym h exec "~/personal/bg_api/bg_api.sh --hermes"; mode "default"
+    bindsym o exec "~/personal/bg_api/bg_api.sh --openai"; mode "default"
+
+    bindsym Shift+g exec "~/personal/bg_api/bg_api.sh --groq-help"; mode "default"
+    bindsym Shift+h exec "~/personal/bg_api/bg_api.sh --hermes-help"; mode "default"
+    bindsym Shift+o exec "~/personal/bg_api/bg_api.sh --openai-help"; mode "default"
+
+    # Nested mode for Java scripts
+    bindsym j mode "java-scripts: [g]roq, [h]ermes, [o]penai"
+
+    # Nested mode for Python scripts
+    bindsym p mode "python-scripts: [g]roq, [h]ermes, [o]penai"
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+# Define custom mode for Java scripts
+mode "java-scripts: [g]roq, [h]ermes, [o]penai" {
+    bindsym g exec "~/personal/bg_api/bg_api.sh --groq-java"; mode "default"
+    bindsym h exec "~/personal/bg_api/bg_api.sh --hermes-java"; mode "default"
+    bindsym o exec "~/personal/bg_api/bg_api.sh --openai-java"; mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+# Define custom mode for Python scripts
+mode "python-scripts: [g]roq, [h]ermes, [o]penai" {
+    bindsym g exec "~/personal/bg_api/bg_api.sh --groq-python"; mode "default"
+    bindsym h exec "~/personal/bg_api/bg_api.sh --hermes-python"; mode "default"
+    bindsym o exec "~/personal/bg_api/bg_api.sh --openai-python"; mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+# Bind to activate the scripts mode
+bindsym $mod+m mode "scripts: [g]roq, [h]ermes, [o]penai, (shift=>help), [j]ava-mode, [p]python-mode"
+
+
+bindsym $mod+g exec "~/personal/bg_api/bg_api.sh --groq-grammar"
+
+# Define custom mode for script shortcuts
+mode "scripts: [g]roq, [h]ermes, [o]penai, (shift=>help), [j]ava-mode, [p]python-mode" {
+    bindsym g exec "~/personal/bg_api/iapi.sh --groq"; mode "default"
+    bindsym h exec "~/personal/bg_api/iapi.sh --hermes"; mode "default"
+    bindsym o exec "~/personal/bg_api/iapi.sh --openai"; mode "default"
+
+    bindsym Shift+g exec "~/personal/bg_api/iapi.sh --groq-help"; mode "default"
+    bindsym Shift+h exec "~/personal/bg_api/iapi.sh --hermes-help"; mode "default"
+    bindsym Shift+o exec "~/personal/bg_api/iapi.sh --openai-help"; mode "default"
+
+    # Nested mode for Java scripts
+    bindsym j mode "java-scripts: [g]roq, [h]ermes, [o]penai"
+
+    # Nested mode for Python scripts
+    bindsym p mode "python-scripts: [g]roq, [h]ermes, [o]penai"
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+# Define custom mode for Java scripts
+mode "java-scripts: [g]roq, [h]ermes, [o]penai" {
+    bindsym g exec "~/personal/bg_api/iapi.sh --groq-java"; mode "default"
+    bindsym h exec "~/personal/bg_api/iapi.sh --hermes-java"; mode "default"
+    bindsym o exec "~/personal/bg_api/iapi.sh --openai-java"; mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+# Define custom mode for Python scripts
+mode "python-scripts: [g]roq, [h]ermes, [o]penai" {
+    bindsym g exec "~/personal/bg_api/iapi.sh --groq-python"; mode "default"
+    bindsym h exec "~/personal/bg_api/iapi.sh --hermes-python"; mode "default"
+    bindsym o exec "~/personal/bg_api/iapi.sh --openai-python"; mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+# Bind to activate the scripts mode
+bindsym $mod+i mode "scripts: [g]roq, [h]ermes, [o]penai, (shift=>help), [j]ava-mode, [p]python-mode"
+
+
 # initial workspaces
-assign [class="Chromium"] 2
+assign [class="Google-chrome"] 2
 assign [class="Alacritty"] 3
 exec --no-startup-id /usr/bin/i3-msg 'workspace 3; exec /usr/bin/x-terminal-emulator -e zsh -i -c "tmux";'
 exec --no-startup-id /usr/bin/i3-msg 'workspace 2; exec /usr/bin/x-www-browser;'
