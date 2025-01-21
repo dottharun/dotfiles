@@ -10,6 +10,24 @@ vim.keymap.set("n", "<leader>vv", "<cmd>LspStart<CR><Esc>")
 vim.keymap.set("n", "<leader>vk", "<cmd>LspStop<CR><Esc>")
 vim.keymap.set("n", "<leader>vi", "<cmd>LspInfo<CR><Esc>")
 
+-- TS inspect
+vim.keymap.set("n", "<leader>i", vim.cmd.Inspect)
+
+vim.keymap.set("n", "-", vim.cmd.Ex)
+
+vim.keymap.set("n", "<C-m>", vim.cmd.make)
+
+local function set_makeprg()
+    local makeprg = vim.fn.input("set makeprg: ")
+    if makeprg ~= "" then
+        vim.o.makeprg = makeprg
+        print("makeprg set to: " .. makeprg)
+    end
+end
+
+-- Remap to easily set makeprg via a dialog
+vim.keymap.set("n", "<leader>mp", set_makeprg, { noremap = true, silent = false })
+
 local options = { noremap = true }
 -- controlling lsp
 vim.keymap.set("n", "<leader>vrs", "<cmd>LspRestart<CR><Esc>")
