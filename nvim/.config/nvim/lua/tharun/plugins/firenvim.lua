@@ -1,6 +1,7 @@
 -- browser embed nvim
 return {
     "glacambre/firenvim",
+    dependencies = { "navarasu/onedark.nvim" },
     -- Lazy load firenvim
     -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
     lazy = not vim.g.started_by_firenvim,
@@ -33,8 +34,9 @@ return {
             -- TODO: This is a hack to get around nix messing with env vars - resove this or remove nix
             vim.fn.setenv("LD_LIBRARY_PATH", "")
 
-            vim.o.guifont = "Source Code Pro:h14"
+            vim.o.guifont = "Source Code Pro:h13"
             vim.o.laststatus = 0 -- to stop showing status lines
+            vim.o.gcr = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 
             -- Hack to set the min-lines in loop - since browser resizes in all the time
             local timer = vim.uv.new_timer()
@@ -78,8 +80,17 @@ return {
             })
 
             vim.api.nvim_create_autocmd({ "BufEnter" }, {
-                pattern = { "www.hackerrank.com_*.txt", "leetcode.com_*.txt", "app.codesignal.com_*.txt" },
+                pattern = {
+                    "www.hackerrank.com_*.txt",
+                    "www.hackerearth.com_*.txt",
+                    "leetcode.com_*.txt",
+                    "app.codesignal.com_*.txt",
+                },
                 command = "set ft=cpp",
+            })
+            vim.api.nvim_create_autocmd({ "BufEnter" }, {
+                pattern = "*",
+                command = "hi clear | colorscheme visual_studio_code",
             })
             vim.api.nvim_create_autocmd({ "BufEnter" }, {
                 pattern = { "app.codesignal.com_*.txt", "leetcode.com_*.txt" },
@@ -88,6 +99,29 @@ return {
             vim.api.nvim_create_autocmd({ "BufEnter" }, {
                 pattern = { "www.hackerrank.com_*.txt" },
                 command = "hi clear | colorscheme hacker-dark",
+            })
+
+            function OneLightHE()
+                require("onedark").setup({
+                    style = "light",
+                    code_style = {
+                        comments = "none",
+                        keywords = "none",
+                        functions = "none",
+                        strings = "none",
+                        variables = "none",
+                    },
+                    colors = {
+                        bg0 = "#ffffff",
+                        bg1 = "#f0f0f0",
+                    },
+                })
+                require("onedark").load()
+            end
+
+            vim.api.nvim_create_autocmd({ "BufEnter" }, {
+                pattern = { "*.hackerearth.com_*.txt" },
+                command = ":hi clear | lua OneLightHE()",
             })
         end
     end,
