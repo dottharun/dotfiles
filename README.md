@@ -50,6 +50,7 @@
         - install clang-format
         - install clangd
             - do not use mason clangd - clangd itself is finicky maybe fully move to ccls? TODO:
+    - debugger gdb
 
 ## TODO
 - research how to use android as webcam with OBS-studio - not easy for free - but it should be???
