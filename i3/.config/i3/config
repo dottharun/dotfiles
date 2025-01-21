@@ -260,6 +260,16 @@ bindsym $mod+b exec "x-www-browser"
 # open reader
 bindsym $mod+p exec "evince"
 
+mode "[c]lipboard" {
+    bindsym c exec --no-startup-id /home/tharun/.local/scripts/i3-clipboard-notification
+
+    bindsym Escape exec --no-startup-id "dunstctl close-all"; mode "default"
+    bindsym Return exec --no-startup-id "dunstctl close-all"; mode "default"
+}
+
+# Bind $mod+c to open the clipboard mode
+bindsym $mod+c mode "[c]lipboard"
+
 # initial workspaces
 assign [class="Chromium"] 2
 assign [class="Alacritty"] 3

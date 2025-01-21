@@ -40,6 +40,7 @@
         xdotool
         normcap ---for ocr screenshot --only nix-env is working right now
     - not sure - maybe i need i3lock and i3status
+    - dunst for notifications
 
 7. CPP
     - when installing specific version clang, Eg: clang-12 - install also the gcc pair too - else include path will not be found

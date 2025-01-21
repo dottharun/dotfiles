@@ -3,4 +3,4 @@
 clip_content=$(xclip -o -selection clipboard)
 
 # Display the clipboard content as a notification
-notify-send "$clip_content" --icon=dialog-information --urgency=low
+notify-send "$clip_content" --icon=dialog-information --urgency=low --expire-time=300000
