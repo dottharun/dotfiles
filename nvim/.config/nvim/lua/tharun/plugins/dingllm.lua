@@ -45,7 +45,7 @@ return {
             dingllm.invoke_llm_and_stream_into_editor({
                 url = "https://openrouter.ai/api/v1/chat/completions",
                 model = "nousresearch/hermes-3-llama-3.1-405b",
-                api_key_name = "OPEN_ROUTER_API_KEY",
+                api_key_name = "OPENROUTER_API_KEY",
                 max_tokens = "128",
                 replace = false,
             }, custom_make_openai_spec_curl_args, handle_open_router_spec_data)
