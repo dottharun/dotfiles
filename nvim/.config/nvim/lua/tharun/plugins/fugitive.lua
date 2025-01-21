@@ -16,10 +16,10 @@ return {
 
         vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "[g]it [s]tatus" })
         vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", { desc = "[g]it [b]lame" })
-        vim.keymap.set("n", "<leader>gll", ":Git log<CR>", { desc = "[g]it [l]og" })
-        vim.keymap.set("n", "<leader>glo", ":Git log --oneline<CR>", { desc = "[g]it [l]og --[o]neline" })
+        -- vim.keymap.set("n", "<leader>gll", ":Git log<CR>", { desc = "[g]it [l]og" })
+        -- vim.keymap.set("n", "<leader>glo", ":Git log --oneline<CR>", { desc = "[g]it [l]og --[o]neline" })
 
-        vim.keymap.set("n", "<leader>ga", ":Git add .<CR>", { desc = "[g]it [a]dd ." })
+        -- vim.keymap.set("n", "<leader>ga", ":Git add .<CR>", { desc = "[g]it [a]dd ." })
 
         --commiting
         vim.keymap.set("n", "<leader>gcs", ":Git commit -s<CR>", { desc = "[g]it [c]ommit --[s]igned" })

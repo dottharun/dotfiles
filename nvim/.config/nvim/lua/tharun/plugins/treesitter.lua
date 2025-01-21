@@ -23,6 +23,7 @@ return {
                     "vimdoc",
                     "bash",
                     "query",
+                    "java",
                 },
 
                 -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -76,8 +77,12 @@ return {
                         keymaps = {
                             ["af"] = "@function.outer",
                             ["if"] = "@function.inner",
-                            ["ac"] = "@class.outer",
-                            ["ic"] = "@class.inner",
+                            ["aC"] = "@class.outer",
+                            ["iC"] = "@class.inner",
+                            ["ac"] = "@comment.outer", -- annotation
+                            ["ic"] = "@comment.outer",
+                            ["ab"] = "@block.outer", -- for md files
+                            ["ib"] = "@block.inner",
                         },
                     },
                 },

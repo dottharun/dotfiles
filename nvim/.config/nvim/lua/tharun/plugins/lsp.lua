@@ -27,13 +27,42 @@ return {
             cmp_lsp.default_capabilities()
         )
 
-        require("lspconfig").clangd.setup({
-            cmd = {
-                "clangd",
-                "-header-insertion=never",
-                -- "--log=verbose", -- for debugging
-            },
-        })
+        -- require("lspconfig").clangd.setup({
+        --     cmd = {
+        --         "clangd",
+        --         "--header-insertion=never",
+        --         "--background-index=false",
+        --         "--pch-storage=memory",
+        --         "--limit-results=10",
+        --         "--clang-tidy=false",
+        --         "--completion-style=detailed",
+        --         "--malloc-trim",
+        --         "--suggest-missing-includes=false",
+        --         "--cross-file-rename=false",
+        --         "--all-scopes-completion=false",
+        --         -- "--log=verbose", -- for debugging
+        --     },
+        -- })
+
+        -- require("lspconfig").clangd.setup({
+        --     cmd = {
+        --         "clangd",
+        --         "--offset-encoding=utf-16",
+        --         "--background-index",
+        --         "--malloc-trim",
+        --         "--suggest-missing-includes=false",
+        --         "--header-insertion=never",
+        --         "--completion-style=bundled",
+        --         "--limit-references=0",
+        --         "--limit-results=0",
+        --         "-j=8",
+        --     },
+        -- })
+
+        require("lspconfig").ccls.setup({})
+
+        -- java
+        -- require("lspconfig").jdtls.setup({})
 
         require("fidget").setup({})
         require("mason").setup()
@@ -47,6 +76,14 @@ return {
             },
 
             handlers = {
+                bashls = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.bashls.setup({})
+                end,
+                pyright = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.pyright.setup({})
+                end,
                 lua_ls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup({
@@ -167,6 +204,10 @@ return {
             }, {
                 { name = "buffer" },
             }),
+            performance = {
+                max_view_entries = 10,
+                debounce = 200,
+            },
         })
 
         vim.diagnostic.config({

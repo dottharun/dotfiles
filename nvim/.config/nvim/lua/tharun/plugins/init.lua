@@ -28,6 +28,7 @@ return {
             -- vim.keymap.set("n", "<leader>Gs", ":Gitsigns toggle_signs<CR>")
             vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk_inline<CR>")
             vim.keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>")
+            vim.keymap.set("n", "<leader>ga", ":Gitsigns stage_hunk<CR>")
         end,
     },
     {
