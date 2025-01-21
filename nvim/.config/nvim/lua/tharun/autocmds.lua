@@ -6,6 +6,30 @@ local autocmd = vim.api.nvim_create_autocmd
 local trailing_group = augroup("trailingWhiteSpace", {})
 local yank_group = augroup("HighlightYank", {})
 local lsp_group = augroup("MyLSP", {})
+local gitignore_group = augroup("GitIgnoreCheck", {})
+
+local function is_buffer_gitignored(buffer_number)
+    local file_path = vim.api.nvim_buf_get_name(buffer_number)
+    local handle = io.popen("git check-ignore " .. file_path)
+
+    if handle then
+        local result = handle:read("*a")
+        handle:close()
+        return result ~= ""
+    end
+
+    return false
+end
+
+autocmd("BufReadPost", {
+    group = gitignore_group,
+    callback = function(e)
+        if is_buffer_gitignored(e.buf) then
+            vim.bo.readonly = true
+            print("File is git-ignored and opened in read-only mode")
+        end
+    end,
+})
 
 autocmd("TextYankPost", {
     group = yank_group,
@@ -55,7 +79,7 @@ autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>vsd", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", opts)
         vim.keymap.set("n", "gs", "<cmd>Telescope lsp_workspace_symbols<CR>", opts)
         vim.keymap.set("n", "gy", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", opts)
-        vim.keymap.set("n", "<CR><CR>", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", opts)
+        vim.keymap.set("n", "gw", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", opts)
 
         vim.keymap.set("n", "<leader>vd", function()
             vim.diagnostic.open_float()
