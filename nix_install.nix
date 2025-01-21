@@ -39,7 +39,9 @@ ps_mem
 
 # i3 i3lock i3status
 #   - installed by apt
-maim xclip xdotool
+maim
+# xclip
+xdotool
 blueman
 normcap
 
