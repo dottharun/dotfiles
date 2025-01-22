@@ -3,6 +3,7 @@ return {
     ft = { "java" },
     config = function()
         local java_cmds = vim.api.nvim_create_augroup("java_cmds", { clear = true })
+        local home = os.getenv("HOME")
         local cache_vars = {}
 
         local root_files = {
@@ -29,10 +30,9 @@ return {
             end
 
             local path = {}
-
             path.data_dir = vim.fn.stdpath("cache") .. "/nvim-jdtls"
 
-            local jdtls_install = "/home/tt/Downloads/jdtls_install"
+            local jdtls_install = home .. "/.local/share/jdtls"
 
             -- path.java_agent = jdtls_install .. "/lombok.jar"
 
@@ -132,14 +132,16 @@ return {
 
             -- The following mappings are based on the suggested usage of nvim-jdtls
             -- https://github.com/mfussenegger/nvim-jdtls#usage
+            -- -- cr => code/cut refactor
 
             local opts = { buffer = bufnr }
-            vim.keymap.set("n", "<A-o>", "<cmd>lua require('jdtls').organize_imports()<cr>", opts)
+            vim.keymap.set("n", "cro", "<cmd>lua require('jdtls').organize_imports()<cr>", opts)
             vim.keymap.set("n", "crv", "<cmd>lua require('jdtls').extract_variable()<cr>", opts)
             vim.keymap.set("x", "crv", "<esc><cmd>lua require('jdtls').extract_variable(true)<cr>", opts)
             vim.keymap.set("n", "crc", "<cmd>lua require('jdtls').extract_constant()<cr>", opts)
             vim.keymap.set("x", "crc", "<esc><cmd>lua require('jdtls').extract_constant(true)<cr>", opts)
             vim.keymap.set("x", "crm", "<esc><Cmd>lua require('jdtls').extract_method(true)<cr>", opts)
+            -- to print java bytecode with javap - print-java-p
             vim.keymap.set("n", "<leader>pjp", "<cmd>lua require('jdtls').javap()<cr>", opts)
         end
 
@@ -233,7 +235,7 @@ return {
                     format = {
                         enabled = true,
                         settings = {
-                            url = "/home/tt/dotfiles/nvim/.config/nvim/lsp/idea-java.xml",
+                            url = home .. "/dotfiles/nvim/.config/nvim/lsp/idea-java.xml",
                         },
                     },
                 },
