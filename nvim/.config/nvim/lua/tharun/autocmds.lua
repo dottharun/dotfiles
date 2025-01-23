@@ -10,15 +10,9 @@ local gitignore_group = augroup("GitIgnoreCheck", {})
 
 local function is_buffer_gitignored(buffer_number)
     local file_path = vim.api.nvim_buf_get_name(buffer_number)
-    local handle = io.popen("git check-ignore " .. file_path)
-
-    if handle then
-        local result = handle:read("*a")
-        handle:close()
-        return result ~= ""
-    end
-
-    return false
+    local obj = vim.system({ "git", "check-ignore", file_path, "-q" }, { text = true }):wait()
+    -- print("obj: ", vim.inspect(obj))
+    return obj.code == 0
 end
 
 autocmd("BufReadPost", {
