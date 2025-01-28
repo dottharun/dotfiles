@@ -7,12 +7,15 @@ return {
         local cache_vars = {}
 
         local root_files = {
-            ".git",
-            "mvnw",
-            "gradlew",
+            "settings.gradle",
+            "settings.gradle.kts",
             "pom.xml",
             "build.gradle",
-            "build.sbt",
+            "mvnw",
+            "gradlew",
+            "build.gradle",
+            "build.gradle.kts",
+            ".git",
         }
 
         local features = {
@@ -73,25 +76,25 @@ return {
             --     vim.list_extend(path.bundles, java_debug_bundle)
             -- end
 
-            -- ---
-            -- -- Useful if you're starting jdtls with a Java version that's
-            -- -- different from the one the project uses.
-            -- ---
-            -- path.runtimes = {
-            --     -- Note: the field `name` must be a valid `ExecutionEnvironment`,
-            --     -- you can find the list here:
-            --     -- https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-            --     --
-            --     -- This example assume you are using sdkman: https://sdkman.io
-            --     {
-            --         name = "JavaSE-21",
-            --         path = vim.fn.expand("~/.sdkman/candidates/java/21.0.2-tem"),
-            --     },
-            --     {
-            --         name = "JavaSE-23",
-            --         path = vim.fn.expand("~/.sdkman/candidates/java/23-tem"),
-            --     },
-            -- }
+            ---
+            -- Useful if you're starting jdtls with a Java version that's
+            -- different from the one the project uses.
+            ---
+            path.runtimes = {
+                -- Note: the field `name` must be a valid `ExecutionEnvironment`,
+                -- you can find the list here:
+                -- https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+                --
+                -- This example assume you are using sdkman: https://sdkman.io
+                {
+                    name = "JavaSE-21",
+                    path = vim.fn.expand("~/.sdkman/candidates/java/21.0.5-tem"),
+                },
+                {
+                    name = "JavaSE-23",
+                    path = vim.fn.expand("~/.sdkman/candidates/java/23.0.1-tem"),
+                },
+            }
 
             cache_vars.paths = path
 
@@ -206,13 +209,16 @@ return {
                         referencedLibraries = {
                             -- add any library jars here for the lsp to pick them up
                         },
+                        -- for the main source path for the java package management
+                        -- TODO: might fail in maven/gradle -- needs research
+                        sourcePaths = { "" },
                     },
                     eclipse = {
                         downloadSources = true,
                     },
                     configuration = {
                         updateBuildConfiguration = "interactive",
-                        -- runtimes = path.runtimes,
+                        runtimes = path.runtimes,
                     },
                     maven = {
                         downloadSources = true,
@@ -278,7 +284,7 @@ return {
                 settings = lsp_settings,
                 on_attach = jdtls_on_attach,
                 capabilities = cache_vars.capabilities,
-                root_dir = jdtls.setup.find_root(root_files),
+                root_dir = vim.fs.root(0, root_files),
                 flags = {
                     allow_incremental_sync = true,
                 },
