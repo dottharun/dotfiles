@@ -9,5 +9,8 @@ set selection-clipboard clipboard
 set incremental-search true
 
 # zoom
-map <C-i> zoom in
-map <C-o> zoom out
+map <C--> zoom out
+map <C-=> zoom in
+
+# font
+set font 'monospace normal 14'
