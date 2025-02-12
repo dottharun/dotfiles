@@ -3,7 +3,7 @@ return {
     event = "InsertEnter",
     dependencies = {
         -- Snippet Engine
-        "L3MON4D3/LuaSnip",
+        { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
         "saadparwaiz1/cmp_luasnip",
         -- Adds other completion capabilities.
         --  nvim-cmp does not ship with all sources by default. They are split
@@ -32,6 +32,7 @@ return {
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
                 { name = "luasnip" }, -- For luasnip users.
+                { name = "path" },
             }, {
                 { name = "buffer" },
             }),
