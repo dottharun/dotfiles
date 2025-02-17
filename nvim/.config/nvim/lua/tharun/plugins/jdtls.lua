@@ -1,6 +1,13 @@
 return {
     "mfussenegger/nvim-jdtls",
+    dependencies = {
+        "williamboman/mason.nvim",
+
+        -- for debugger
+        "mfussenegger/nvim-dap",
+    },
     ft = { "java" },
+    -- TODO: cleanup and restructure the whole file, remove redundant and silly hacks
     config = function()
         local java_cmds = vim.api.nvim_create_augroup("java_cmds", { clear = true })
         local home = os.getenv("HOME")
@@ -24,7 +31,7 @@ return {
 
             -- change this to `true` if you have `nvim-dap`,
             -- `java-test` and `java-debug-adapter` installed
-            debugger = false,
+            debugger = true,
         }
 
         local function get_jdtls_paths()
@@ -49,8 +56,8 @@ return {
                 path.platform_config = jdtls_install .. "/config_win"
             end
 
-            -- path.bundles = {}
-            --
+            path.bundles = {}
+
             -- ---
             -- -- Include java-test bundle if present
             -- ---
@@ -61,20 +68,20 @@ return {
             -- if java_test_bundle[1] ~= "" then
             --     vim.list_extend(path.bundles, java_test_bundle)
             -- end
-            --
-            -- ---
-            -- -- Include java-debug-adapter bundle if present
-            -- ---
-            -- local java_debug_path = require("mason-registry").get_package("java-debug-adapter"):get_install_path()
-            --
-            -- local java_debug_bundle = vim.split(
-            --     vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar"),
-            --     "\n"
-            -- )
-            --
-            -- if java_debug_bundle[1] ~= "" then
-            --     vim.list_extend(path.bundles, java_debug_bundle)
-            -- end
+
+            ---
+            -- Include java-debug-adapter bundle if present
+            ---
+            local java_debug_path = require("mason-registry").get_package("java-debug-adapter"):get_install_path()
+
+            local java_debug_bundle = vim.split(
+                vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar"),
+                "\n"
+            )
+
+            if java_debug_bundle[1] ~= "" then
+                vim.list_extend(path.bundles, java_debug_bundle)
+            end
 
             ---
             -- Useful if you're starting jdtls with a Java version that's
@@ -115,12 +122,21 @@ return {
         end
 
         local function enable_debugger(bufnr)
-            require("jdtls").setup_dap({ hotcodereplace = "auto" })
+            -- require("jdtls").setup_dap({ hotcodereplace = "auto" })
             require("jdtls.dap").setup_dap_main_class_configs()
 
-            local opts = { buffer = bufnr }
-            vim.keymap.set("n", "<leader>df", "<cmd>lua require('jdtls').test_class()<cr>", opts)
-            vim.keymap.set("n", "<leader>dn", "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
+            -- vim.keymap.set(
+            --     "n",
+            --     "<leader>df",
+            --     "<cmd>lua require('jdtls').test_class()<cr>",
+            --     { buffer = bufnr, desc = "debug test class" }
+            -- )
+            -- vim.keymap.set(
+            --     "n",
+            --     "<leader>dn",
+            --     "<cmd>lua require('jdtls').test_nearest_method()<cr>",
+            --     { buffer = bufnr, desc = "debug nearest test method" }
+            -- )
         end
 
         local function jdtls_on_attach(_, bufnr)
@@ -211,7 +227,7 @@ return {
                         },
                         -- for the main source path for the java package management
                         -- TODO: might fail in maven/gradle -- needs research
-                        sourcePaths = { "" },
+                        sourcePaths = { "src", "", "src/main/java" },
                     },
                     eclipse = {
                         downloadSources = true,
@@ -289,7 +305,7 @@ return {
                     allow_incremental_sync = true,
                 },
                 init_options = {
-                    -- bundles = path.bundles,
+                    bundles = path.bundles,
                     extendedClientCapabilities = extendedClientCapabilities,
                 },
             })

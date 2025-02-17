@@ -26,7 +26,10 @@ vim.opt.fixendofline = false -- stops nvim from autofixing end-of-line during sa
 -- vim.g.disable_autoformat = true
 
 -- turn off that mouse always disturbing
-vim.opt.mouse = ""
+vim.opt.mouse = "nv"
+
+-- statusline
+vim.opt.laststatus = 3
 
 vim.opt.smartindent = true
 vim.opt.wrap = false
