@@ -1,0 +1,15 @@
+font-family = "Source Code Pro Medium"
+# font-family = "SauceCodePro NFM Medium"
+font-feature = -calt
+font-size = 14
+
+theme = Adventure
+
+cursor-style = block
+cursor-style-blink = false
+
+window-decoration = false
+window-padding-x = 0
+window-padding-y = 0
+
+gtk-titlebar = false
