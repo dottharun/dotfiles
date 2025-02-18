@@ -32,11 +32,11 @@ return {
             vim.keymap.set("n", "<F1>", dap.step_into)
             vim.keymap.set("n", "<F2>", dap.step_over)
             vim.keymap.set("n", "<F3>", dap.step_out)
-            vim.keymap.set("n", "<F4>", dap.step_back) -- is it even available
+            -- vim.keymap.set("n", "<F4>", dap.step_back) -- is it even available
             vim.keymap.set("n", "<F5>", dap.continue)
             vim.keymap.set("n", "<F12>", dap.restart)
 
-            vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
+            vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "toggle breakpoint" })
 
             dapui.setup()
 
@@ -53,12 +53,12 @@ return {
                 dapui.close()
             end
 
-            vim.keymap.set("n", "<leader>du", dapui.toggle)
+            vim.keymap.set("n", "<leader>dd", dapui.toggle, { desc = "toggle dap ui" })
 
             -- Eval var under cursor
             vim.keymap.set("n", "<leader>?", function()
                 dapui.eval(nil, { enter = true })
-            end)
+            end, { desc = "dap eval under cursor" })
         end,
     },
 }
