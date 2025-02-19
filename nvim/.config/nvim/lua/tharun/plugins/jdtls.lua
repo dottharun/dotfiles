@@ -139,8 +139,13 @@ return {
             -- )
         end
 
-        local function jdtls_on_attach(_, bufnr)
-            --vim.lsp.inlay_hint(bufnr, true)
+        local function jdtls_on_attach(client, bufnr)
+            -- enable inlay hint by default for java
+            vim.lsp.inlay_hint.enable(true, { bufnr })
+
+            -- to turn off semantic tokens for java only -- raw treesitter seems better
+            client.server_capabilities.semanticTokensProvider = nil
+
             if features.debugger then
                 enable_debugger(bufnr)
             end
@@ -250,9 +255,9 @@ return {
                     },
                     inlayHints = {
                         enabled = true,
-                        --parameterNames = {
-                        --   enabled = 'all' -- literals, all, none
-                        --}
+                        parameterNames = {
+                            enabled = "all", -- literals, all, none
+                        },
                     },
                     format = {
                         enabled = true,

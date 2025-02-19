@@ -87,8 +87,13 @@ autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>vrn", function()
             vim.lsp.buf.rename()
         end, opts)
+        -- TODO: find if this even works
         vim.keymap.set("i", "<C-p>", function()
             vim.lsp.buf.signature_help()
+        end, opts)
+
+        vim.keymap.set("n", "<leader>vh", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
         end, opts)
     end,
 })
