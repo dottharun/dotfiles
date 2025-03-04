@@ -12,7 +12,6 @@ source $PERSONAL/.env
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 export GOPATH=$HOME/go
-export JAVA_HOME=/opt/java/jdk-23.0.1
 export NIXPKGS_ALLOW_UNFREE=1
 export EDITOR='nvim'
 # for heap allocation errs in node - default is 2gb
@@ -193,7 +192,7 @@ git_prompt_info() {
   local dirty="%{$fg_bold[red]%} X%{$reset_color%}"
 
   # does'nt care about untracked files
-  if [[ ! -z $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
+  if [[ ! -z $(git status --porcelain --untracked-files=no 2> /dev/null | tail -n1) ]]; then
     dirstatus=$dirty
   fi
 

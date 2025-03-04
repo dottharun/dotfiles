@@ -9,5 +9,5 @@ addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
 addToPathFront $HOME/go/bin             #for other go versions
 addToPathFront $HOME/.rbenv/bin
-addToPathFront /opt/nvim-linux64/bin    #neovim binary
+addToPathFront /opt/nvim-linux-x86_64/bin    #neovim binary
 addToPathFront $JAVA_HOME/bin           #java
