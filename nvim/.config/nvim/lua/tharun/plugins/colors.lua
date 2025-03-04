@@ -25,6 +25,16 @@ return {
                     colors = {
                         bg0 = "#111111",
                         bg1 = "#000000",
+                        -- grey = "#ffffff",
+                    },
+                    highlights = {
+                        -- for unreadable comments
+                        ["@comment"] = {
+                            fg = "#8F96A3",
+                            bg = "none",
+                            sp = "none",
+                            fmt = "none",
+                        },
                     },
                 })
 
