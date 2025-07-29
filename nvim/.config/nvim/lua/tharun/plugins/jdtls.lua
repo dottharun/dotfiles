@@ -11,6 +11,7 @@ return {
     config = function()
         local java_cmds = vim.api.nvim_create_augroup("java_cmds", { clear = true })
         local home = os.getenv("HOME")
+        local java_home = os.getenv("JAVA_HOME")
         local cache_vars = {}
 
         local root_files = {
@@ -27,7 +28,7 @@ return {
 
         local features = {
             -- change this to `true` to enable codelens
-            codelens = true,
+            -- codelens = true,
 
             -- change this to `true` if you have `nvim-dap`,
             -- `java-test` and `java-debug-adapter` installed
@@ -94,12 +95,16 @@ return {
                 --
                 -- This example assume you are using sdkman: https://sdkman.io
                 {
-                    name = "JavaSE-21",
-                    path = vim.fn.expand("~/.sdkman/candidates/java/21.0.5-tem"),
+                    name = "JavaSE-24",
+                    path = vim.fn.expand("~/.sdkman/candidates/java/24.0.1-tem"),
                 },
                 {
                     name = "JavaSE-23",
                     path = vim.fn.expand("~/.sdkman/candidates/java/23.0.1-tem"),
+                },
+                {
+                    name = "JavaSE-21",
+                    path = vim.fn.expand("~/.sdkman/candidates/java/21.0.5-tem"),
                 },
             }
 
@@ -141,7 +146,7 @@ return {
 
         local function jdtls_on_attach(client, bufnr)
             -- enable inlay hint by default for java
-            vim.lsp.inlay_hint.enable(true, { bufnr })
+            -- vim.lsp.inlay_hint.enable(true, { bufnr })
 
             -- to turn off semantic tokens for java only -- raw treesitter seems better
             client.server_capabilities.semanticTokensProvider = nil
@@ -191,7 +196,9 @@ return {
             -- The command that starts the language server
             -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
             local cmd = {
-                "java",
+                -- TODO: should work without manually setting the path - try adding JAVA_HOME, path to .profile file
+                java_home .. "/bin/java",
+                -- "java",
 
                 "-Declipse.application=org.eclipse.jdt.ls.core.id1",
                 "-Dosgi.bundles.defaultStartLevel=4",
@@ -262,7 +269,7 @@ return {
                     format = {
                         enabled = true,
                         settings = {
-                            url = home .. "/dotfiles/nvim/.config/nvim/lsp/idea-java.xml",
+                            url = home .. "/dotfiles/nvim/.config/nvim/lsp/tharun_new.xml",
                         },
                     },
                 },
@@ -315,6 +322,11 @@ return {
                 },
             })
         end
+
+        --TODO: hack to enfore the formatting by the formatter
+        vim.opt.tabstop = 2
+        vim.opt.softtabstop = 2
+        vim.opt.shiftwidth = 2
 
         vim.api.nvim_create_autocmd("FileType", {
             group = java_cmds,
