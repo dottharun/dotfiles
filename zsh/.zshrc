@@ -149,3 +149,10 @@ export PATH="/home/tharun/.rbenv/shims:${PATH}"
 
 # bun completions
 [ -s "/home/tharun/.bun/_bun" ] && source "/home/tharun/.bun/_bun"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# opencode
+export PATH=/home/tharun/.opencode/bin:$PATH

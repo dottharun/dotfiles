@@ -1,15 +1,14 @@
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+vim.keymap.set("n", "-", vim.cmd.Ex)
 
-vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>write<CR>", { desc = "Save current file" }) -- will work when tmux key is disabled
+vim.keymap.set({ "n", "i", "v" }, "<C-s>", vim.cmd.write, { desc = "Save current file" }) -- will work when tmux key is disabled
 
 -- TS inspect
 vim.keymap.set("n", "<leader>i", vim.cmd.Inspect)
 
-vim.keymap.set("n", "-", vim.cmd.Ex)
-
-vim.keymap.set("n", "<C-m>", vim.cmd.make)
+-- vim.keymap.set("n", "<C-m>", vim.cmd.make)
 
 local function set_makeprg()
     local makeprg = vim.fn.input("set makeprg: ")
@@ -88,7 +87,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- leader+y to yank to system clipboard and similars
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+-- vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- paste from clipboard -- for firenvim
 vim.keymap.set("n", "<C-S-v>", '"+p', { noremap = true, silent = true })

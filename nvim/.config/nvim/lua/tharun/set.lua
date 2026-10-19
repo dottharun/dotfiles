@@ -22,6 +22,9 @@ vim.opt.expandtab = true
 vim.g.editorconfig = false -- stops nvim from respecting editorconfig
 vim.opt.fixendofline = false -- stops nvim from autofixing end-of-line during save
 
+-- stop extending comments
+vim.opt.formatoptions = vim.opt.formatoptions + {}
+
 -- to disable conform autoformat
 -- vim.g.disable_autoformat = true
 

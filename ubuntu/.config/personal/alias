@@ -103,9 +103,19 @@ alias msl='m system login'
 # node
 alias noden='/usr/local/bin/n'
 
+alias oc='opencode'
+
+alias p='pi'
+alias puck='pi --no-session'
+
+alias o='omp'
+
+# pi
+export PI_TELEMETRY=0
+
 # watchexec
 we() {
-  watchexec --no-process-group -r "$*"
+  watchexec --stop-timeout=3s --no-process-group --restart "$*"
 }
 
 function nvim_url() {

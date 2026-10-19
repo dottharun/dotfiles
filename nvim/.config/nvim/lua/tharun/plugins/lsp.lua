@@ -30,22 +30,22 @@ return {
         --     lspconfig[config.name].setup(config)
         -- end
 
-        -- lspconfig.clangd.setup({
-        --     cmd = {
-        --         "clangd",
-        --         "--header-insertion=never",
-        --         "--background-index=false",
-        --         "--pch-storage=memory",
-        --         "--limit-results=10",
-        --         "--clang-tidy=false",
-        --         "--completion-style=detailed",
-        --         "--malloc-trim",
-        --         "--suggest-missing-includes=false",
-        --         "--cross-file-rename=false",
-        --         "--all-scopes-completion=false",
-        --         -- "--log=verbose", -- for debugging
-        --     },
-        -- })
+        lspconfig.clangd.setup({
+            cmd = {
+                "clangd",
+                "--header-insertion=never",
+                "--background-index=false",
+                "--pch-storage=memory",
+                "--limit-results=10",
+                "--clang-tidy=false",
+                "--completion-style=detailed",
+                "--malloc-trim",
+                "--suggest-missing-includes=false",
+                "--cross-file-rename=false",
+                "--all-scopes-completion=false",
+                "--log=verbose", -- for debugging
+            },
+        })
 
         -- lspconfig.clangd.setup({
         --     cmd = {
@@ -62,14 +62,14 @@ return {
         --     },
         -- })
 
-        lspconfig.ccls.setup({})
+        -- lspconfig.ccls.setup({})
 
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
                 "gopls",
-                "tsserver",
+                -- "ts_ls",
                 "pyright",
                 "rust_analyzer",
             },
@@ -110,8 +110,8 @@ return {
                         },
                     })
                 end,
-                tsserver = function()
-                    lspconfig.tsserver.setup({
+                ts_ls = function()
+                    lspconfig.ts_ls.setup({
                         --for manual startup in js files
                         -- autostart = false,
 

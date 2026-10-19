@@ -11,3 +11,4 @@ addToPathFront $HOME/go/bin             #for other go versions
 addToPathFront $HOME/.rbenv/bin
 addToPathFront /opt/nvim-linux-x86_64/bin    #neovim binary
 addToPathFront $JAVA_HOME/bin           #java
+

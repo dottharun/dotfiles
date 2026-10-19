@@ -7,6 +7,7 @@ local trailing_group = augroup("trailingWhiteSpace", {})
 local yank_group = augroup("HighlightYank", {})
 local lsp_group = augroup("MyLSP", {})
 local gitignore_group = augroup("GitIgnoreCheck", {})
+local comment_correction_group = augroup("CommentCorrection", {})
 
 local function is_buffer_gitignored(buffer_number)
     local file_path = vim.api.nvim_buf_get_name(buffer_number)
@@ -14,6 +15,12 @@ local function is_buffer_gitignored(buffer_number)
     -- print("obj: ", vim.inspect(obj))
     return obj.code == 0
 end
+
+autocmd("BufEnter", {
+    group = comment_correction_group,
+    pattern = "*",
+    command = "set formatoptions-=cro",
+})
 
 autocmd("BufReadPost", {
     group = gitignore_group,
@@ -35,6 +42,26 @@ autocmd("TextYankPost", {
         })
     end,
 })
+
+-- autocmd("TextChanged", {
+--     group = yank_group,
+--     pattern = "*",
+--     callback = function(ev)
+--         vim.highlight.range({
+--             buffer = ev.buf,
+--             ns = "nice",
+--             higroup = "IncSearch",
+--             start = "'[",
+--             finish = "']",
+--             {
+--                 -- regtype = "v", -- TODO
+--                 -- inclusive = true,
+--                 -- priority = opts.priority or M.priorities.user,
+--                 timeout = 150,
+--             },
+--         })
+--     end,
+-- })
 
 autocmd({ "BufWritePre" }, {
     group = trailing_group,
@@ -78,9 +105,10 @@ autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>vd", function()
             vim.diagnostic.open_float()
         end, opts)
-        vim.keymap.set("n", "<leader>vca", function()
-            vim.lsp.buf.code_action()
-        end, opts)
+        -- TODO: using telescope preview plugin
+        -- vim.keymap.set("n", "<leader>vca", function()
+        --     vim.lsp.buf.code_action()
+        -- end, opts)
         vim.keymap.set("n", "<leader>vrr", function()
             vim.lsp.buf.references()
         end, opts)

@@ -1,81 +1,164 @@
-with import <nixpkgs> {}; [
-vim gh zsh tmux stow
-# neovim
-# keyd
-#   - needs source cloning - https://github.com/rvaiya/keyd?tab=readme-ov-file#from-source
-#   - needs systemctl cmds for installation with config manual linking
+# Package list for the user nix profile.
 #
-# alacritty - cargo install with apt dept
-#   - https://github.com/alacritty/alacritty/blob/master/INSTALL.md#dependencies
-#   - then manually change default terminal
-neofetch rofi
+# NOT a nix expression - a reference of what is installed via `nix profile`.
+# Everything here came from the `nixpkgs` registry flake, so
+# `nix profile upgrade --all` works against all of it.
+#
+#   install all (pi comes from its own flake, so exclude it here):
+#     NIXPKGS_ALLOW_UNFREE=1 nix profile install --impure \
+#       $(nix eval --json -f nix_install.nix | jq -r '.[]|select(. != "pi")|"nixpkgs#\(.)"' \
+#         | tr '\n' ' ')
+#
+#   upgrade all:
+#     nix profile upgrade --all
+#
+# NIXPKGS_ALLOW_UNFREE is only needed for slack and discord. There is no
+# ~/.config/nixpkgs/config.nix on this machine, so unfree has to be granted
+# per invocation.
+#
+# The previous revision of this file used `nix-env` and `import <nixpkgs>`.
+# That mechanism is gone: `nix-env` now refuses this profile outright.
+# See git log for the old version.
 
+let
+  # shells, editors, viewers
+  core = [
+    "zsh"
+    "vim"
+    "neovim"
+    "helix" # binary is `hx`
+    "less"
+    "bat"
+  ];
 
-/*
-TODO:
-setup tmux /
-setup i3 touchpad issues
-    - scroll natural /
-    - click /
-setup default apps /
-install npm node / - to install without npm first - https://github.com/tj/n?tab=readme-ov-file#installation
-    - go - https://go.dev/doc/install
-    - docker k8s
-rofi config /
-*/
+  vcs = [
+    "git"
+    "gh"
+    "lazygit"
+    "difftastic"
+    "abduco"
+  ];
 
-ripgrep
-prettierd
-lazygit
-zathura
+  searchAndNav = [
+    "ripgrep" # binary is `rg`
+    "fzf"
+    "zoxide"
+    "ueberzugpp"
+    "yazi"
+  ];
 
-# fzf - need apt in debian
-gf
-watchexec
+  terminalAndTui = [
+    "kitty"
+    "sqlitebrowser"
+  ];
 
-zoxide
+  sysutils = [
+    "htop"
+    "btop"
+    "ncdu"
+    "qdirstat"
+    "ps_mem"
+    "nethogs"
+    "watchexec"
+    "valgrind"
+  ];
 
-ps_mem
+  filesAndMedia = [
+    "wget"
+    "unzip"
+    "zip"
+    "ffmpeg"
+    "w3m"
+    "dillo"
+    "netsurf-browser" # binary is `netsurf-gtk3`
+  ];
 
-# i3 i3lock i3status
-#   - installed by apt
-maim
-# xclip
-xdotool
-blueman
-normcap
+  mail = [
+    "neomutt" # priority 5 - wins file collisions
+    "mutt" # priority 4 - see note below
+    "miniflux"
+  ];
 
-# apps
-# google-chrome  -- weird flash bang glitch in nix
-# chromium
-brave slack
-# zoom-us # need page download - https://zoom.us/download
-#               - warning: wont install correctly needs manual installation of dependency
-# clickup # not downloading in nix --too unstable
-# vscode-fhs
-zed-editor
-# audacity pavucontrol - both needs to be installed from apt
-# vlc
+  langs = [
+    "nushell"
+    "stylua"
+    "bundler"
+    "jekyll"
+  ];
 
-# tools
-less jq ffmpeg speedtest-cli ncdu unzip wget zip
-# mpv
-font-manager
-htop btop nethogs
-qdirstat
-direnv
+  systemAndDesktop = [
+    "stow"
+    "direnv"
+    "xdotool"
+    "maim"
+    "rofi"
+    "font-manager"
+    "blueman"
+    "keyd"
+    "normcap"
+    "raylib"
+  ];
 
-# docker
-#   - requires adding custom apt repo - https://docs.docker.com/engine/install/debian/#install-using-the-repository
- # kubectl - binary installation - https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux
-# minikube - binary installation - https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fdebian+package
- jekyll bundler
-# postgres - need to download from apt
-# soda - all three from go - https://gobuffalo.io/documentation/database/soda/
-# hydra - https://www.ory.sh/docs/hydra/5min-tutorial
-# kratos - https://go-kratos.dev/en/docs/getting-started/start/
+  apps = [
+    "brave"
+    "vscodium" # binary is `codium`
+    "zathura"
+    "jq"
+    "dissent"
+    "webcord"
+    "simplescreenrecorder"
+    "teams-for-linux"
+    "thunderbird-bin"
+    "tmatrix"
+    "tmux"
+    "speedtest-cli"
+    "gf" # binary is `gf2`
+  ];
 
+  # not from nixpkgs - kept separate so the nixpkgs# loop above stays valid
+  otherFlakes = [
+    "pi" # github:earendil-works/pi/stable
+  ];
 
-# lang - lua
-stylua
-]
+  # unfree - needs NIXPKGS_ALLOW_UNFREE=1
+  unfree = [
+    "slack"
+    "discord"
+  ];
+in
+  builtins.concatLists [
+    core
+    vcs
+    searchAndNav
+    terminalAndTui
+    sysutils
+    filesAndMedia
+    mail
+    langs
+    systemAndDesktop
+    apps
+    unfree
+    otherFlakes
+  ]
+# NOTES
+#
+# mutt vs neomutt
+#   Both ship bin/smime_keys and collide in the profile. mutt is installed at
+#   priority 4 and neomutt at 5, so neomutt owns the shared file.
+#   To re-create that from scratch:
+#     nix profile install nixpkgs#neomutt
+#     nix profile install --priority 4 nixpkgs#mutt
+#
+# upstream renames vs the 2024 nix-env set
+#   helix            -> hx
+#   vscodium         -> codium
+#   netsurf          -> netsurf-browser, binary netsurf-gtk3
+#   gf               -> gf, binary gf2
+#   neofetch         -> removed upstream, dropped (hyfetch/fastfetch exist)
+#   python3.11-speedtest-cli -> speedtest-cli
+#   zathura-with-plugins -> zathura (still resolves to a with-plugins build)
+#
+# from the old file, deliberately not listed
+#   prettierd, zed-editor, mpv - were commented out or absent from the profile
+#   alacritty, ghostty, wezterm - cargo/other installers, not nixpkgs here
+#   i3, i3lock, i3status, pavucontrol, audacity, vlc, xclip - apt, not nix
