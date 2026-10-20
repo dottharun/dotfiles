@@ -91,3 +91,15 @@ subagent stop <handle>
 Explicitly stop every subagent when it is no longer needed; do not leave completed subagents running idle. This terminates tmux and removes the run transcript and metadata. Keep an idle subagent alive only when concrete follow-up work is expected, then stop it afterward.
 
 The interactive `/subagent` command lists active subagents spawned by the current Pi session. Selecting one suspends the current Pi TUI and attaches to its tmux session; detaching returns to the parent Pi. When the parent already runs inside tmux, selection switches the current tmux client instead.
+
+# Choosing models (User Preference)
+
+- Try to use the most capable free models in opencode if possible for simple tasks
+    - or try to make the tasks simpler and use these models
+    - they might be free for limited time only though keep note
+    - currently its "minimax-m3.1-flash-free" model with "opencode-go" provider
+        - i prefer high to be rigorous
+
+- Then for more difficult intellectual tasks - use
+    - gemini-4-argon-contributor with provider "opencode-go" -- more pricy use sparsely
+    - muse-spark-1.3-contributor with provider "opencode-go" -- less pricy can be used when free models won't cut it
