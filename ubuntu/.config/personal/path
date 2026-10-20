@@ -4,6 +4,8 @@ addToPath $HOME/.cargo/bin
 addToPath $HOME/.npm/bin
 addToPath /usr/local/go/bin #for main go versions
 
+addToPath $HOME/.pi/agent/bin #for pi
+
 addToPathFront $HOME/personal/bg_api
 addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin

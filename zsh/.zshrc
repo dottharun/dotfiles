@@ -156,3 +156,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # opencode
 export PATH=/home/tharun/.opencode/bin:$PATH
+
+# Vite+ bin (https://viteplus.dev)
+. "/home/tharun/.config/vite-plus/env"
