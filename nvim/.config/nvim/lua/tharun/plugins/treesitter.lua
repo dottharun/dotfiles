@@ -1,53 +1,53 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "main",
+        lazy = false,
         build = ":TSUpdate",
-        event = { "BufReadPre", "BufNewFile" },
         config = function()
-            require("nvim-treesitter.configs").setup({
-                -- A list of parser names, or "all"
-                ensure_installed = {
-                    "html",
-                    "css",
-                    "json",
-                    "jsonc",
-                    "jsdoc",
-                    "javascript",
-                    "typescript",
-                    "c",
-                    "cpp",
-                    "go",
-                    "rust",
-                    "lua",
-                    "vim",
-                    "vimdoc",
-                    "bash",
-                    "query",
-                    "java",
-                },
+            local ts = require("nvim-treesitter")
+            ts.setup()
+            ts.install({
+                "html",
+                "css",
+                "json",
+                "jsdoc",
+                "javascript",
+                "typescript",
+                "c",
+                "cpp",
+                "go",
+                "rust",
+                "lua",
+                "vim",
+                "vimdoc",
+                "bash",
+                "query",
+                "java",
+                "markdown",
+                "markdown_inline",
+            })
 
-                -- Install parsers synchronously (only applied to `ensure_installed`)
-                sync_install = false,
+            local disabled_ft = {
+                latex = true,
+                tex = true,
+                csv = true,
+                swift = true,
+            }
 
-                -- Automatically install missing parsers when entering buffer
-                -- Recommendation: set to false if you don"t have `tree-sitter` CLI installed locally
-                auto_install = true,
-
-                indent = {
-                    enable = true,
-                },
-
-                highlight = {
-                    -- `false` will disable the whole extension
-                    enable = true,
-                    disable = { "latex", "csv", "swift" },
-
-                    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-                    -- Set this to `true` if you depend on "syntax" being enabled (like for indentation).
-                    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-                    -- Instead of true it can also be a list of languages
-                    additional_vim_regex_highlighting = { "markdown" },
-                },
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function(args)
+                    local ft = vim.bo[args.buf].filetype
+                    if disabled_ft[ft] then
+                        return
+                    end
+                    if pcall(vim.treesitter.start, args.buf) then
+                        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                        if ft == "markdown" then
+                            vim.bo[args.buf].syntax = "ON"
+                        end
+                    end
+                end,
             })
         end,
     },
@@ -68,25 +68,31 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         config = function()
-            require("nvim-treesitter.configs").setup({
-                textobjects = {
-                    select = {
-                        enable = true,
-                        keymaps = {
-                            ["af"] = "@function.outer",
-                            ["if"] = "@function.inner",
-                            ["aC"] = "@class.outer",
-                            ["iC"] = "@class.inner",
-                            ["ac"] = "@comment.outer", -- annotation
-                            ["ic"] = "@comment.outer",
-                            ["ab"] = "@block.outer", -- for md files
-                            ["ib"] = "@block.inner",
-                        },
-                    },
+            require("nvim-treesitter-textobjects").setup({
+                select = {
+                    lookahead = true,
                 },
             })
+
+            local select = require("nvim-treesitter-textobjects.select")
+            local keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["aC"] = "@class.outer",
+                ["iC"] = "@class.inner",
+                ["ac"] = "@comment.outer", -- annotation
+                ["ic"] = "@comment.outer",
+                ["ab"] = "@block.outer", -- for md files
+                ["ib"] = "@block.inner",
+            }
+            for lhs, query in pairs(keymaps) do
+                vim.keymap.set({ "x", "o" }, lhs, function()
+                    select.select_textobject(query, "textobjects")
+                end)
+            end
         end,
     },
 }
