@@ -82,6 +82,7 @@ let
   langs = [
     "nushell"
     "stylua"
+    "tree-sitter"
     "bundler"
     "jekyll"
   ];
