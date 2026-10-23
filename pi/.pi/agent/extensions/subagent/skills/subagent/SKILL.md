@@ -94,11 +94,10 @@ The interactive `/subagent` command lists active subagents spawned by the curren
 
 # Choosing models (User Preference)
 
-- Try to use the most capable free models in opencode if possible for simple tasks
-    - or try to make the tasks simpler and use these models
-    - they might be free for limited time only though keep note
-    - currently its "minimax-m3.1-flash-free" model with "opencode-go" provider
-        - i prefer high to be rigorous
+- By default use this free model
+    - or try to make the tasks simpler and use this model
+    - its "minimax-m3.1-flash-free" model with "opencode-go" provider
+        - prefer high thinking to be rigorous
 
 - Then for more difficult intellectual tasks - use
     - gemini-4-argon-contributor with provider "opencode-go" -- more pricy use sparsely
