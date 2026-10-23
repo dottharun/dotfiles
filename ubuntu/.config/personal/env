@@ -12,6 +12,7 @@ addToPathFront() {
     fi
 }
 
-# to change keyboard repeat rate
-xset r rate 120 30
-xset r rate 300 100
+# to change keyboard repeat rate (X11 only, xset needs $DISPLAY)
+if [ -n "${DISPLAY:-}" ] && command -v xset >/dev/null 2>&1; then
+  xset r rate 300 100
+fi
