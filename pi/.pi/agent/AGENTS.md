@@ -1,4 +1,8 @@
-I'm Tharun, a Java Backend SWE with 15 months of professional experience
+I'm Tharun, a Java Backend SWE
+
+- with 15 months of professional experience, currently looking for job after team restructuring in FICO - last working data oct31 2026
+- my resume is at ~/personal/cv_resume_2026/
+- payslips data at ~/Downloads/payslips/
 
 # when talking with me
 - no emoji
