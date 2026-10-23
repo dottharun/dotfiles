@@ -8,4 +8,4 @@ description: when writing a cover letter for a job application
 
 - like job posting desc, company values page through web search, etc
 
-- by default keep it 300-500 words, be subtle on the company values unless stated otherwise
+- by default keep it 150-300 words, be subtle on the company values unless stated otherwise
