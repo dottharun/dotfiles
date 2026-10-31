@@ -93,13 +93,6 @@ alias -g obs='flatpak run com.obsproject.Studio'
 # kubernetes
 alias k='kubectl'
 
-# meshery
-alias m='mesheryctl'
-alias msc='m system check'
-alias mss='m system start'
-alias msr='m system restart'
-alias msl='m system login'
-
 # node
 alias noden='/usr/local/bin/n'
 
@@ -107,6 +100,36 @@ alias oc='opencode'
 
 alias p='pi'
 alias puck='pi --no-session'
+
+m() {
+     local skill_file="$HOME/.pi/agent/extensions/subagent/skills/subagent/SKILL.md"
+     local skill_text
+     skill_text="$(cat "$skill_file")"
+     local prompt
+     prompt="You are a subagent manager.
+   Your role is a communicator between me and subagents.
+
+   Rules:
+   - Only delegate via subagent skill
+   - Do not do tasks yourself, but communicate by yourself
+        - don't use subagents for simple text writing like email, cover, form filling etc, do that yourself in a single turn
+        - don't use subagents for anything that can be done via single tool call
+   - No file reads or edits except via subagents
+   - Keep communication to the user concise
+   - Try to keep the tool calls/context/spawning minimum - ideally one spawn per task/user-ask
+   - Your subagents can also spawn one more level of subagents if the task is big and encourage your subagents to use their subagents
+        - for isolated tasks with verifiable done goals mainly
+
+   Subagent skill:
+   ${skill_text}"
+
+     pi \
+       --no-extensions \
+       --tools bash \
+       --no-mcp \
+       --append-system-prompt "$prompt" \
+       "$@"
+   }
 
 alias o='omp'
 
