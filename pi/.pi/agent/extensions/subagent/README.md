@@ -80,4 +80,8 @@ Optional spawn flags:
 - `--no-prompt-templates`: disable prompt templates
 - `--no-context-files`: ignore repository instruction files
 
-Nested subagents are disabled. Child sessions do not receive the subagent skill. Children survive `/reload`. When their spawning Pi session quits or is replaced, running children are suspended: the process stops, but transcript and metadata are kept. Resuming that parent session relaunches them idle with their full history. `subagent stop` removes a run permanently.
+## Nesting depth (owner setting)
+
+`shared.ts` `MAX_SUBAGENT_DEPTH` is the only knob. Depth 0 is the main session, 1 a top-level subagent, 2 a nested subagent. Spawn is allowed while current depth < max. Default `2`: children can spawn grandchildren, grandchildren cannot spawn further. Set `1` to restore the old no-nesting behavior. There is deliberately no CLI flag, env override, or skill option for this; agents that try `PI_SUBAGENT_DEPTH=0 subagent spawn` still fail because the parent depth is read from its metadata file.
+
+Child sessions receive the subagent skill only while they are still allowed to nest deeper. Children survive `/reload`. When a session quits or is replaced, its whole tree is suspended deepest-first: processes stop, but transcripts and metadata are kept. Resuming relaunches direct children, which in turn relaunch theirs. `subagent stop` removes a run and its descendants permanently.

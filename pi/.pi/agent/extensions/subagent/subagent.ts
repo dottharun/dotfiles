@@ -7,11 +7,15 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
 	assistantText,
+	collectDescendants,
+	currentSubagentDepth,
+	currentSubagentHandle,
 	effectiveRunState,
 	getRunsDir,
 	inboxDir,
 	launchRun,
 	listRuns,
+	MAX_SUBAGENT_DEPTH,
 	readLatestAssistant,
 	readMetadata,
 	removeRunDir,
@@ -78,7 +82,11 @@ function generateHandle(): string {
 }
 
 function spawnSubagent(args: string[]): void {
-	if (process.env.PI_SUBAGENT_RUN_DIR) fail("Nested subagents are disabled");
+	const currentDepth = currentSubagentDepth();
+	if (currentDepth >= MAX_SUBAGENT_DEPTH)
+		fail(`Max subagent depth reached (depth ${currentDepth}/${MAX_SUBAGENT_DEPTH})`);
+	const childDepth = currentDepth + 1;
+	const parentHandle = currentSubagentHandle();
 	let name: string | undefined;
 	let provider = process.env.PI_PROVIDER;
 	let model = process.env.PI_MODEL;
@@ -183,6 +191,8 @@ function spawnSubagent(args: string[]): void {
 		provider,
 		model,
 		thinking,
+		depth: childDepth,
+		parentHandle,
 		launchArgs,
 		state: "starting",
 		hasStarted: false,
@@ -206,8 +216,9 @@ function spawnSubagent(args: string[]): void {
 function statusSubagent(args: string[]): void {
 	if (args.length !== 1) usage();
 	const metadata = getRun(args[0]);
+	const depth = metadata.depth ?? 1;
 	process.stdout.write(
-		`${runDisplayName(metadata)}: ${effectiveRunState(metadata)} (${metadata.provider}/${metadata.model}, ${metadata.thinking})\nAttach: tmux attach -t ${metadata.tmuxSession}\n`,
+		`${runDisplayName(metadata)}: ${effectiveRunState(metadata)} (${metadata.provider}/${metadata.model}, ${metadata.thinking}, depth ${depth}/${MAX_SUBAGENT_DEPTH})\nAttach: tmux attach -t ${metadata.tmuxSession}\n`,
 	);
 }
 
@@ -286,6 +297,14 @@ async function waitSubagent(args: string[]): Promise<void> {
 async function stopSubagent(args: string[]): Promise<void> {
 	if (args.length !== 1) usage();
 	const metadata = getRun(args[0]);
+	// Stop descendants first so nested runs are not orphaned.
+	const descendants = metadata.childSessionId ? collectDescendants(metadata.childSessionId) : [];
+	for (const child of descendants.reverse()) {
+		const running = tmuxSessionExists(child.tmuxSession);
+		spawnSync("tmux", ["kill-session", "-t", child.tmuxSession], { stdio: "ignore" });
+		if (running) await waitForRunShutdown(child.runDir);
+		removeRunDir(child.runDir);
+	}
 	const wasRunning = tmuxSessionExists(metadata.tmuxSession);
 	spawnSync("tmux", ["kill-session", "-t", metadata.tmuxSession], { stdio: "ignore" });
 	if (wasRunning) await waitForRunShutdown(metadata.runDir);
@@ -302,7 +321,7 @@ function listSubagents(args: string[]): void {
 	}
 	for (const metadata of runs) {
 		process.stdout.write(
-			`${runDisplayName(metadata)}  ${effectiveRunState(metadata).padEnd(8)}  ${metadata.provider}/${metadata.model}  ${metadata.thinking}\n`,
+			`${runDisplayName(metadata)}  ${effectiveRunState(metadata).padEnd(8)}  ${metadata.provider}/${metadata.model}  ${metadata.thinking}  depth ${metadata.depth ?? 1}\n`,
 		);
 	}
 }

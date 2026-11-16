@@ -15,6 +15,12 @@ import { dirname, join } from "node:path";
 
 export type RunState = "starting" | "busy" | "idle" | "exited" | "error";
 
+// OWNER ONLY: max nesting depth for subagents. Depth 0 is the main session,
+// depth 1 is a top-level subagent, depth 2 is a nested subagent, and so on.
+// Spawn is allowed only while current depth < MAX_SUBAGENT_DEPTH.
+// Deliberately not exposed as a CLI flag, env override, or skill option.
+export const MAX_SUBAGENT_DEPTH = 2;
+
 export interface RunMetadata {
 	version: 1;
 	handle: string;
@@ -29,6 +35,10 @@ export interface RunMetadata {
 	provider: string;
 	model: string;
 	thinking: string;
+	/** Nesting depth of this run: 1 for a top-level subagent, 2 for its child, and so on. */
+	depth: number;
+	/** Handle of the direct parent run, when the spawner is itself a subagent. */
+	parentHandle?: string;
 	/** Extra pi CLI flags (tools, isolation) reused when the run is relaunched. */
 	launchArgs?: string[];
 	/** Set by the parent when it stops the child on quit or session switch; the child is relaunched on resume. */
@@ -78,6 +88,38 @@ export function metadataPath(runDir: string): string {
 
 export function inboxDir(runDir: string): string {
 	return join(runDir, "inbox");
+}
+
+/** Depth of the current session: 0 for the main session, N for a subagent at depth N. */
+export function currentSubagentDepth(): number {
+	const runDir = process.env.PI_SUBAGENT_RUN_DIR;
+	if (!runDir) return 0;
+	// Metadata is authoritative; env is only a fallback so agents cannot
+	// bypass the limit with `PI_SUBAGENT_DEPTH=0 subagent spawn`.
+	try {
+		const raw: unknown = JSON.parse(readFileSync(metadataPath(runDir), "utf8"));
+		const depth = (raw as Partial<RunMetadata>).depth;
+		if (typeof depth === "number" && Number.isInteger(depth) && depth >= 1) return depth;
+	} catch {
+		// Fall through to env fallback.
+	}
+	const fromEnv = Number(process.env.PI_SUBAGENT_DEPTH);
+	if (Number.isInteger(fromEnv) && fromEnv >= 1) return fromEnv;
+	return 1;
+}
+
+/** Handle of the current subagent run, if this session is a subagent. */
+export function currentSubagentHandle(): string | undefined {
+	const runDir = process.env.PI_SUBAGENT_RUN_DIR;
+	if (!runDir) return undefined;
+	try {
+		const raw: unknown = JSON.parse(readFileSync(metadataPath(runDir), "utf8"));
+		const handle = (raw as Partial<RunMetadata>).handle;
+		if (typeof handle === "string" && handle) return handle;
+	} catch {
+		return undefined;
+	}
+	return undefined;
 }
 
 export function isValidRunName(value: unknown): value is string {
@@ -182,6 +224,7 @@ export function launchRun(metadata: RunMetadata, initialArgs: string[] = []): vo
 			"--",
 			"env",
 			`PI_SUBAGENT_RUN_DIR=${metadata.runDir}`,
+			`PI_SUBAGENT_DEPTH=${metadata.depth}`,
 			launcher,
 			"--session",
 			metadata.sessionFile,
@@ -221,6 +264,23 @@ export function listRuns(parentSessionId?: string): RunMetadata[] {
 		runs.push(metadata);
 	}
 	return runs.sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+}
+
+/** All descendant runs below a session, following parentSessionId -> childSessionId links. */
+export function collectDescendants(sessionId: string): RunMetadata[] {
+	const out: RunMetadata[] = [];
+	const seen = new Set<string>();
+	const walk = (id: string): void => {
+		for (const run of listRuns(id)) {
+			if (seen.has(run.handle)) continue;
+			seen.add(run.handle);
+			out.push(run);
+			const fresh = readMetadata(run.runDir) ?? run;
+			if (fresh.childSessionId) walk(fresh.childSessionId);
+		}
+	};
+	walk(sessionId);
+	return out;
 }
 
 function isSessionEntry(value: unknown): value is SessionEntry {

@@ -5,10 +5,13 @@ import { fileURLToPath } from "node:url";
 import { DynamicBorder, type ExtensionAPI, type ExtensionContext, keyHint } from "@earendil-works/pi-coding-agent";
 import { Container, type SelectItem, SelectList, Text, type TUI } from "@earendil-works/pi-tui";
 import {
+	collectDescendants,
+	currentSubagentDepth,
 	effectiveRunState,
 	inboxDir,
 	launchRun,
 	listRuns,
+	MAX_SUBAGENT_DEPTH,
 	readMetadata,
 	removeRunDir,
 	runDisplayName,
@@ -31,9 +34,45 @@ function displayState(metadata: RunMetadata): string {
 	return effectiveRunState(metadata).padEnd(8);
 }
 
+/** Relaunch direct children suspended on quit/switch. Deeper levels resume via their own parent. */
+function relaunchOwnRuns(sessionId: string, ctx: ExtensionContext): void {
+	for (const run of listRuns(sessionId)) {
+		if (!run.suspended || tmuxSessionExists(run.tmuxSession)) continue;
+		if (!existsSync(run.sessionFile)) {
+			removeRunDir(run.runDir);
+			continue;
+		}
+		const starting = updateMetadata(run.runDir, { state: "starting", error: undefined }) ?? run;
+		try {
+			launchRun(starting);
+		} catch (error) {
+			const message = error instanceof Error ? error.message : String(error);
+			updateMetadata(run.runDir, { state: "error", error: message });
+			if (ctx.hasUI) ctx.ui.notify(`Could not resume subagent ${runDisplayName(run)}: ${message}`, "error");
+		}
+	}
+}
+
+/** Suspend a whole tree deepest-first so nested runs are never orphaned. */
+async function suspendOwnTree(sessionId: string): Promise<void> {
+	const all = collectDescendants(sessionId);
+	for (const run of all.reverse()) {
+		const fresh = readMetadata(run.runDir) ?? run;
+		if (!tmuxSessionExists(fresh.tmuxSession)) {
+			if (!fresh.suspended) removeRunDir(fresh.runDir);
+			continue;
+		}
+		updateMetadata(fresh.runDir, { suspended: true });
+		spawnSync("tmux", ["kill-session", "-t", fresh.tmuxSession], { stdio: "ignore" });
+		await waitForRunShutdown(fresh.runDir);
+	}
+}
+
 export default function subagentExtension(pi: ExtensionAPI) {
 	const runDir = process.env.PI_SUBAGENT_RUN_DIR;
-	if (!runDir) {
+	// Skill is available while this session is still allowed to nest deeper.
+	// The limit itself lives only in shared.ts MAX_SUBAGENT_DEPTH.
+	if (currentSubagentDepth() < MAX_SUBAGENT_DEPTH) {
 		pi.on("resources_discover", () => ({ skillPaths: [join(packageDir, "skills")] }));
 	}
 
@@ -117,87 +156,42 @@ export default function subagentExtension(pi: ExtensionAPI) {
 		},
 	});
 
-	if (!runDir) {
-		let widgetTimer: ReturnType<typeof setInterval> | undefined;
-		let widgetContext: ExtensionContext | undefined;
+	let widgetTimer: ReturnType<typeof setInterval> | undefined;
+	let widgetContext: ExtensionContext | undefined;
 
-		const refreshWidget = (): void => {
-			if (!widgetContext) return;
-			const activeRuns = listRuns(widgetContext.sessionManager.getSessionId())
-				.map((run) => ({ run, state: effectiveRunState(run) }))
-				.filter(({ state }) => state !== "exited");
-			if (activeRuns.length === 0) {
-				widgetContext.ui.setWidget("subagents", undefined);
-				return;
-			}
+	const refreshWidget = (): void => {
+		if (!widgetContext) return;
+		const activeRuns = listRuns(widgetContext.sessionManager.getSessionId())
+			.map((run) => ({ run, state: effectiveRunState(run) }))
+			.filter(({ state }) => state !== "exited");
+		if (activeRuns.length === 0) {
+			widgetContext.ui.setWidget("subagents", undefined);
+			return;
+		}
 
-			const visible = activeRuns.slice(0, 5).map(({ run, state }) => {
-				const color =
-					state === "busy" ? "warning" : state === "idle" ? "success" : state === "error" ? "error" : "muted";
-				return widgetContext!.ui.theme.fg(color, `${run.name ?? run.handle}:${state}`);
-			});
-			if (activeRuns.length > visible.length) {
-				visible.push(widgetContext.ui.theme.fg("muted", `+${activeRuns.length - visible.length}`));
-			}
-			widgetContext.ui.setWidget(
-				"subagents",
-				[widgetContext.ui.theme.fg("dim", "subagents: ") + visible.join(widgetContext.ui.theme.fg("dim", " | "))],
-				{ placement: "belowEditor" },
-			);
-		};
-
-		pi.on("session_start", (_event, ctx) => {
-			// Relaunch children that were suspended when this session was last quit or switched away from.
-			for (const run of listRuns(ctx.sessionManager.getSessionId())) {
-				if (!run.suspended || tmuxSessionExists(run.tmuxSession)) continue;
-				if (!existsSync(run.sessionFile)) {
-					removeRunDir(run.runDir);
-					continue;
-				}
-				const starting = updateMetadata(run.runDir, { state: "starting", error: undefined }) ?? run;
-				try {
-					launchRun(starting);
-				} catch (error) {
-					const message = error instanceof Error ? error.message : String(error);
-					updateMetadata(run.runDir, { state: "error", error: message });
-					if (ctx.hasUI) ctx.ui.notify(`Could not resume subagent ${runDisplayName(run)}: ${message}`, "error");
-				}
-			}
-
-			if (!ctx.hasUI) return;
-			widgetContext = ctx;
-			refreshWidget();
-			widgetTimer = setInterval(refreshWidget, 1000);
-			widgetTimer.unref();
+		const visible = activeRuns.slice(0, 5).map(({ run, state }) => {
+			const color =
+				state === "busy" ? "warning" : state === "idle" ? "success" : state === "error" ? "error" : "muted";
+			return widgetContext!.ui.theme.fg(color, `${run.name ?? run.handle}:${state}`);
 		});
+		if (activeRuns.length > visible.length) {
+			visible.push(widgetContext.ui.theme.fg("muted", `+${activeRuns.length - visible.length}`));
+		}
+		widgetContext.ui.setWidget(
+			"subagents",
+			[widgetContext.ui.theme.fg("dim", "subagents: ") + visible.join(widgetContext.ui.theme.fg("dim", " | "))],
+			{ placement: "belowEditor" },
+		);
+	};
 
-		pi.on("session_shutdown", async (event, ctx) => {
-			if (widgetTimer) clearInterval(widgetTimer);
-			widgetTimer = undefined;
-			widgetContext = undefined;
-			ctx.ui.setWidget("subagents", undefined);
-			if (event.reason === "reload") return;
-			// Suspend running children: stop the process but keep transcript and metadata so resuming this
-			// session relaunches them. Children that already exited on their own are discarded.
-			for (const run of listRuns(ctx.sessionManager.getSessionId())) {
-				if (!tmuxSessionExists(run.tmuxSession)) {
-					if (!run.suspended) removeRunDir(run.runDir);
-					continue;
-				}
-				updateMetadata(run.runDir, { suspended: true });
-				spawnSync("tmux", ["kill-session", "-t", run.tmuxSession], { stdio: "ignore" });
-				await waitForRunShutdown(run.runDir);
-			}
-		});
-		return;
-	}
-
+	// Control-inbox state: only meaningful inside a subagent run.
 	let currentContext: ExtensionContext | undefined;
 	let timer: ReturnType<typeof setInterval> | undefined;
 	let processing = false;
 	let sessionName: string | undefined;
 
 	const syncSessionName = (): void => {
+		if (!runDir) return;
 		const metadata = readMetadata(runDir);
 		if (!metadata) return;
 		const next = `subagent ${metadata.name ?? metadata.handle}`;
@@ -207,7 +201,7 @@ export default function subagentExtension(pi: ExtensionAPI) {
 	};
 
 	const processInbox = async (): Promise<void> => {
-		if (processing || !currentContext) return;
+		if (!runDir || processing || !currentContext) return;
 		syncSessionName();
 		const queueDir = inboxDir(runDir);
 		if (!existsSync(queueDir)) return;
@@ -256,39 +250,66 @@ export default function subagentExtension(pi: ExtensionAPI) {
 
 	pi.on("session_start", (_event, ctx) => {
 		currentContext = ctx;
-		const metadata = readMetadata(runDir);
-		if (!metadata) return;
-		updateMetadata(runDir, {
-			childSessionId: ctx.sessionManager.getSessionId(),
-			sessionFile: ctx.sessionManager.getSessionFile() ?? metadata.sessionFile,
-			state: ctx.isIdle() ? "idle" : "busy",
-			suspended: undefined,
-			error: undefined,
-		});
-		syncSessionName();
-		if (!timer) {
-			timer = setInterval(() => void processInbox(), 250);
-			timer.unref();
+		if (runDir) {
+			const metadata = readMetadata(runDir);
+			if (metadata) {
+				updateMetadata(runDir, {
+					childSessionId: ctx.sessionManager.getSessionId(),
+					sessionFile: ctx.sessionManager.getSessionFile() ?? metadata.sessionFile,
+					state: ctx.isIdle() ? "idle" : "busy",
+					suspended: undefined,
+					error: undefined,
+				});
+			}
+			syncSessionName();
+			if (!timer) {
+				timer = setInterval(() => void processInbox(), 250);
+				timer.unref();
+			}
+			void processInbox();
 		}
-		void processInbox();
+		// Every level relaunches its own suspended children.
+		relaunchOwnRuns(ctx.sessionManager.getSessionId(), ctx);
+
+		if (!ctx.hasUI) return;
+		widgetContext = ctx;
+		refreshWidget();
+		if (!widgetTimer) {
+			widgetTimer = setInterval(refreshWidget, 1000);
+			widgetTimer.unref();
+		}
 	});
 
-	pi.on("agent_start", (_event, ctx) => {
-		currentContext = ctx;
-		updateMetadata(runDir, { state: "busy", hasStarted: true, error: undefined });
-	});
+	if (runDir) {
+		pi.on("agent_start", (_event, ctx) => {
+			currentContext = ctx;
+			updateMetadata(runDir, { state: "busy", hasStarted: true, error: undefined });
+		});
 
-	pi.on("agent_settled", (_event, ctx) => {
-		currentContext = ctx;
-		if (ctx.isIdle()) updateMetadata(runDir, { state: "idle" });
-	});
+		pi.on("agent_settled", (_event, ctx) => {
+			currentContext = ctx;
+			if (ctx.isIdle()) updateMetadata(runDir, { state: "idle" });
+		});
+	}
 
-	pi.on("session_shutdown", (event) => {
+	pi.on("session_shutdown", async (event, ctx) => {
 		currentContext = undefined;
 		if (timer) {
 			clearInterval(timer);
 			timer = undefined;
 		}
-		if (event.reason === "quit") updateMetadata(runDir, { state: "exited" });
+		if (widgetTimer) clearInterval(widgetTimer);
+		widgetTimer = undefined;
+		widgetContext = undefined;
+		try {
+			ctx.ui.setWidget("subagents", undefined);
+		} catch {
+			// Headless shutdown has no widget.
+		}
+		if (event.reason === "reload") return;
+		// Suspend the whole tree below this session; children keep transcripts
+		// and resume when this session is resumed.
+		await suspendOwnTree(ctx.sessionManager.getSessionId());
+		if (runDir && event.reason === "quit") updateMetadata(runDir, { state: "exited" });
 	});
 }

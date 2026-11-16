@@ -5,7 +5,7 @@ description: Spawn and communicate with observable Pi subagents for second opini
 
 # Subagent
 
-Use the `subagent` CLI to delegate work to a separate Pi process with its own context and tmux session. Managed subagents cannot spawn nested subagents, and this skill is not loaded into their sessions.
+Use the `subagent` CLI to delegate work to a separate Pi process with its own context and tmux session. Subagents may themselves spawn nested subagents, up to a fixed depth. This skill is only visible while the current session is still allowed to nest deeper. If `spawn` fails with max depth reached, do the work directly instead of delegating further.
 
 ## Spawn
 
@@ -88,9 +88,14 @@ Names are 1–64 characters and need not be unique. Messages use the subagent ex
 subagent stop <handle>
 ```
 
-Explicitly stop every subagent when it is no longer needed; do not leave completed subagents running idle. This terminates tmux and removes the run transcript and metadata. Keep an idle subagent alive only when concrete follow-up work is expected, then stop it afterward.
+Explicitly stop every subagent when it is no longer needed; do not leave completed subagents running idle. This terminates tmux and removes the run transcript and metadata, including any nested runs below it. Keep an idle subagent alive only when concrete follow-up work is expected, then stop it afterward.
 
 The interactive `/subagent` command lists active subagents spawned by the current Pi session. Selecting one suspends the current Pi TUI and attaches to its tmux session; detaching returns to the parent Pi. When the parent already runs inside tmux, selection switches the current tmux client instead.
 
 # Choosing models (User Preference)
 
+- use cheap models for small tasks with defined end goals like
+    - task following not decision making
+    - provider="claude-bridge" model="claude-sonnet-5-5"
+
+- use `pi --list-models`, if needed any other model
