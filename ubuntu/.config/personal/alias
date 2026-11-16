@@ -136,6 +136,8 @@ alias o='omp'
 # pi
 export PI_TELEMETRY=0
 
+export PI_WEB_TOOLS_SEARCH_PROVIDER="keenable"
+
 # watchexec
 we() {
   watchexec --stop-timeout=3s --no-process-group --restart "$*"
