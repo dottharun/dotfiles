@@ -6,6 +6,10 @@
       "command": "gnome-terminal"
     },
     {
+      "class": "com.mitchellh.ghostty",
+      "command": "ghostty"
+    },
+    {
       "class": "sioyek",
       "command": "sioyek"
     },
@@ -16,11 +20,16 @@
     {
       "class": "Brave-browser",
       "command": "brave"
+    },
+    {
+      "class": "discord",
+      "command": "discord"
     }
   ],
   "window_swallow_criteria": {},
   "terminals": [
     "Gnome-terminal",
-    "Alacritty"
+    "Alacritty",
+    "com.mitchellh.ghostty"
   ]
 }

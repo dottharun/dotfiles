@@ -1,12 +1,16 @@
-font-family = "Source Code Pro Medium"
+font-family = "Source Code Pro"
+font-style = Medium
 # font-family = "SauceCodePro NFM Medium"
 # font-family = "ProFontWindows"
 font-feature = -calt
-font-size = 14
+font-size = 15
+
+# same TERM as alacritty, so tmux/ssh never hit a missing xterm-ghostty terminfo
+term = xterm-256color
 
 shell-integration-features = no-cursor, no-sudo, no-title
 
-theme = Adventure
+theme = Gruvbox Dark Hard
 
 cursor-style = block
 cursor-style-blink = false
@@ -16,3 +20,17 @@ window-padding-x = 0
 window-padding-y = 0
 
 gtk-titlebar = false
+
+# clipboard - keep defaults explicit so tmux (OSC 52) and ctrl+shift+c/v keep working
+clipboard-write = allow
+clipboard-read = ask
+copy-on-select = true
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+
+# ctrl+shift+<key> as CSI u for nvim (ported from alacritty bindings)
+keybind = ctrl+shift+t=csi:84;6u
+keybind = ctrl+shift+b=csi:66;6u
+# harpoon prev/next (nvim/lua/tharun/plugins/harpoon.lua)
+keybind = ctrl+shift+p=csi:80;6u
+keybind = ctrl+shift+n=csi:78;6u
