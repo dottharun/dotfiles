@@ -98,4 +98,7 @@ The interactive `/subagent` command lists active subagents spawned by the curren
     - task following not decision making
     - provider="claude-bridge" model="claude-sonnet-5-5"
 
+- for data analysis, searching for specific patterns in a document or repo - maybe use haiku
+    - provider="claude-bridge" model="claude-haiku-5-5"
+
 - use `pi --list-models`, if needed any other model
