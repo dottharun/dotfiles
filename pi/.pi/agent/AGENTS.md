@@ -6,6 +6,7 @@ I'm Tharun, a SWE
 
 - i prefer learning resources in text/books/blogs updated accurate visualized over video lectures
     - i like the greppability and less noise there
+    - in vids i lose some time, when thinking about what's said in previous seconds and end up rewatching everything multiple times
 
 # when talking with me
 - no emoji
