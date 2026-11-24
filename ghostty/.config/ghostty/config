@@ -1,4 +1,6 @@
 font-family = "Source Code Pro"
+# fallback for CJK/fullwidth glyphs (e.g. U+FF5C in yt-dlp filenames), else lines render blank
+font-family = "Noto Sans Mono CJK JP"
 font-style = Medium
 # font-family = "SauceCodePro NFM Medium"
 # font-family = "ProFontWindows"
